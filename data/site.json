@@ -1,0 +1,219 @@
+{
+  "site": {
+    "name": "Funnelplugs",
+    "domain": "funnelplugs.com",
+    "canonical_url": "https://funnelplugs.com",
+    "language": "en",
+    "locale": "en_US",
+    "direction": "ltr",
+    "timezone": "Asia/Seoul",
+    "environment": "production",
+    "tagline": "The Logic of the Missing Plug",
+    "title_default": "Funnelplugs — The Logic of the Missing Plug",
+    "description_default": "Funnelplugs is a sovereign-grade reference system for funnel integrity, commercial leakage logic, and the intervention layers required to restore flow, trust, and conversion.",
+    "keywords_default": [
+      "funnel integrity",
+      "revenue leakage",
+      "conversion systems",
+      "commercial flow",
+      "digital funnel structure",
+      "plug registry",
+      "funnel standards"
+    ]
+  },
+  "brand": {
+    "positioning": "Sovereign-grade strategic digital asset",
+    "voice": "Institutional, precise, controlled, strategic, intelligent",
+    "narrative": "The Logic of the Missing Plug",
+    "reference_role": "Reference system for funnel integrity",
+    "ui_mode": "Control-room, premium, structurally clear, non-generic",
+    "visual_character": {
+      "avoid": [
+        "generic martech blog patterns",
+        "aggressive conversion UI",
+        "affiliate clutter",
+        "template-like SaaS visuals"
+      ],
+      "prioritize": [
+        "clarity",
+        "authority",
+        "hierarchy",
+        "structural calm",
+        "high-trust presentation"
+      ]
+    }
+  },
+  "organization": {
+    "entity_type": "Organization",
+    "name": "Funnelplugs",
+    "url": "https://funnelplugs.com",
+    "logo": "/assets/icons/logo-mark.svg",
+    "same_as": [],
+    "contact_email": "",
+    "country": "",
+    "founding_principle": "Revenue is often lost not because traffic is absent, but because the commercial path is structurally incomplete."
+  },
+  "seo": {
+    "robots_default": "index, follow",
+    "canonical_policy": "self-referencing",
+    "generate_open_graph": true,
+    "generate_twitter_cards": true,
+    "generate_schema": true,
+    "twitter_card_type": "summary_large_image",
+    "default_og_image": "/assets/img/og-default.jpg",
+    "sitemap_filename": "sitemap.xml",
+    "sitemap_include_lastmod": true,
+    "trailing_slash_policy": "no_trailing_slash_canonical",
+    "preferred_protocol": "https"
+  },
+  "navigation": {
+    "header": [
+      {
+        "label": "Manifesto",
+        "href": "/manifesto.html",
+        "key": "manifesto"
+      },
+      {
+        "label": "Protocol",
+        "href": "/protocol.html",
+        "key": "protocol"
+      },
+      {
+        "label": "Standard",
+        "href": "/standard.html",
+        "key": "standard"
+      },
+      {
+        "label": "Registry",
+        "href": "/registry.html",
+        "key": "registry"
+      },
+      {
+        "label": "Engine",
+        "href": "/engine.html",
+        "key": "engine"
+      }
+    ],
+    "footer": [
+      {
+        "label": "Foundation Doctrine",
+        "href": "/docs/FOUNDATION_DOCTRINE.md",
+        "key": "foundation_doctrine",
+        "public": false
+      },
+      {
+        "label": "Asset Thesis",
+        "href": "/docs/ASSET_THESIS.md",
+        "key": "asset_thesis",
+        "public": false
+      }
+    ]
+  },
+  "core_pages": [
+    {
+      "key": "home",
+      "file": "index.html",
+      "slug": "",
+      "url": "https://funnelplugs.com",
+      "template": "page.html",
+      "title": "Funnelplugs — The Logic of the Missing Plug",
+      "description": "A sovereign-grade reference system for funnel integrity, structural revenue leakage, and the intervention layers required to restore commercial flow.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    },
+    {
+      "key": "manifesto",
+      "file": "manifesto.html",
+      "slug": "manifesto",
+      "url": "https://funnelplugs.com/manifesto.html",
+      "template": "page.html",
+      "title": "Manifesto — Funnelplugs",
+      "description": "The founding declaration of Funnelplugs and the core narrative behind The Logic of the Missing Plug.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/manifesto.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    },
+    {
+      "key": "protocol",
+      "file": "protocol.html",
+      "slug": "protocol",
+      "url": "https://funnelplugs.com/protocol.html",
+      "template": "page.html",
+      "title": "Protocol — Funnelplugs",
+      "description": "The methodological system Funnelplugs uses to identify, classify, and interpret structural revenue leakage across digital customer journeys.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/protocol.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    },
+    {
+      "key": "standard",
+      "file": "standard.html",
+      "slug": "standard",
+      "url": "https://funnelplugs.com/standard.html",
+      "template": "page.html",
+      "title": "Funnel Integrity Standard — Funnelplugs",
+      "description": "The structural standard that defines what a sound, complete, and conversion-capable digital commercial journey requires.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/standard.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    },
+    {
+      "key": "registry",
+      "file": "registry.html",
+      "slug": "registry",
+      "url": "https://funnelplugs.com/registry.html",
+      "template": "page.html",
+      "title": "Plug Registry — Funnelplugs",
+      "description": "A governed reference layer for plugs, intervention classes, and structured response categories organized under the Funnelplugs standard.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/registry.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    },
+    {
+      "key": "engine",
+      "file": "engine.html",
+      "slug": "engine",
+      "url": "https://funnelplugs.com/engine.html",
+      "template": "page.html",
+      "title": "Revenue Leak Engine — Funnelplugs",
+      "description": "A practical diagnostic layer that translates Funnelplugs theory into applied evaluation of leakage, friction, and missing intervention layers.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/engine.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "foundational"
+    }
+  ],
+  "content_system": {
+    "taxonomy_roots": [
+      "plugs",
+      "leaks",
+      "standards",
+      "glossary",
+      "reports"
+    ],
+    "generation_mode": "data-driven",
+    "page_quality_rule": "No page is generated unless it has structural purpose, metadata completeness, canonical clarity, and conceptual fit.",
+    "scale_rule": "Scale is permitted only through validated taxonomy, controlled templates, and passed quality gates."
+  },
+  "validation": {
+    "require_unique_page_keys": true,
+    "require_unique_slugs": true,
+    "require_titles": true,
+    "require_descriptions": true,
+    "require_canonicals": true,
+    "require_indexable_flag": true,
+    "require_valid_template": true,
+    "reject_placeholder_copy": true
+  },
+  "public_files": {
+    "robots": "robots.txt",
+    "sitemap": "sitemap.xml",
+    "favicon": "favicon.ico"
+  }
+}
