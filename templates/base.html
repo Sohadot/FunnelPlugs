@@ -1,262 +1,95 @@
 <!DOCTYPE html>
-<html lang="{{ page.language or site.language }}" dir="{{ page.direction or site.direction }}">
+<html lang="{{ site.language }}" dir="{{ site.direction }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title or site.title_default }}</title>
+    
+    <meta name="description" content="{{ page.description or site.description_default }}">
+    <meta name="robots" content="{{ seo.robots_default }}">
+    <link rel="canonical" href="{{ page.canonical or site.canonical_url }}">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:url" content="{{ page.canonical }}">
+    <meta property="og:image" content="{{ seo.default_og_image }}">
+    <meta name="twitter:card" content="summary_large_image">
 
-  <title>{{ page.title or site.title_default }}</title>
-  <meta name="description" content="{{ page.description or site.description_default }}">
-  <meta name="robots" content="{{ page.robots or seo.robots_default }}">
-  <meta name="language" content="{{ page.language or site.language }}">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="color-scheme" content="dark light">
-
-  {% if page.keywords %}
-  <meta name="keywords" content="{{ page.keywords | join(', ') }}">
-  {% elif site.keywords_default %}
-  <meta name="keywords" content="{{ site.keywords_default | join(', ') }}">
-  {% endif %}
-
-  {% if page.canonical %}
-  <link rel="canonical" href="{{ page.canonical }}">
-  {% else %}
-  <link rel="canonical" href="{{ site.canonical_url }}">
-  {% endif %}
-
-  <meta property="og:site_name" content="{{ site.name }}">
-  <meta property="og:title" content="{{ page.og_title or page.title or site.title_default }}">
-  <meta property="og:description" content="{{ page.og_description or page.description or site.description_default }}">
-  <meta property="og:type" content="{{ page.og_type or 'website' }}">
-  <meta property="og:locale" content="{{ site.locale }}">
-  <meta property="og:url" content="{{ page.canonical or site.canonical_url }}">
-  <meta property="og:image" content="{{ page.og_image or seo.default_og_image }}">
-  <meta property="og:image:alt" content="{{ page.og_image_alt or page.title or site.title_default }}">
-
-  <meta name="twitter:card" content="{{ seo.twitter_card_type }}">
-  <meta name="twitter:title" content="{{ page.og_title or page.title or site.title_default }}">
-  <meta name="twitter:description" content="{{ page.og_description or page.description or site.description_default }}">
-  <meta name="twitter:image" content="{{ page.og_image or seo.default_og_image }}">
-
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <script src="/assets/js/main.js" defer></script>
-
-  {% if page.extra_head %}
-    {{ page.extra_head | safe }}
-  {% endif %}
+    <style>
+        :root {
+            --ui-accent: #00ff41; /* Matrix/Control Green */
+            --ui-bg: #05070a;
+            --ui-border: #1a1f26;
+            --ui-text: #d1d5db;
+        }
+    </style>
 </head>
-<body class="site-shell page-{{ page.key or 'unknown' }} page-type-{{ page.page_type or 'generic' }}">
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+<body class="sovereign-shell status-online">
 
-  <div class="site-frame" aria-hidden="true">
-    <div class="site-frame__glow site-frame__glow--top"></div>
-    <div class="site-frame__glow site-frame__glow--bottom"></div>
-    <div class="site-frame__grid"></div>
-  </div>
-
-  <header class="site-header" data-role="global-header">
-    <div class="container site-header__inner">
-      <div class="brand-cluster">
-        <a class="brand-mark" href="/" aria-label="{{ site.name }} home">
-          <span class="brand-mark__core"></span>
-          <span class="brand-mark__ring"></span>
-        </a>
-
-        <div class="brand-meta">
-          <a class="brand-name" href="/">{{ site.name }}</a>
-          <p class="brand-tagline">{{ site.tagline }}</p>
-        </div>
-      </div>
-
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-navigation"
-        data-nav-toggle>
-        <span class="nav-toggle__label">Menu</span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-      </button>
-
-      <nav
-        id="primary-navigation"
-        class="primary-nav"
-        aria-label="Primary"
-        data-nav-panel>
-        <ul class="primary-nav__list">
-          {% for item in navigation.header %}
-          <li class="primary-nav__item">
-            <a
-              class="primary-nav__link {% if page.key == item.key %}is-active{% endif %}"
-              href="{{ item.href }}"
-              {% if page.key == item.key %}aria-current="page"{% endif %}>
-              {{ item.label }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content" class="site-main" tabindex="-1">
-    {% if page.hero %}
-    <section class="hero hero--{{ page.key or 'generic' }}">
-      <div class="container hero__inner">
-        <div class="hero__eyebrow-wrap">
-          {% if page.eyebrow %}
-          <p class="hero__eyebrow">{{ page.eyebrow }}</p>
-          {% elif brand.reference_role %}
-          <p class="hero__eyebrow">{{ brand.reference_role }}</p>
-          {% endif %}
-        </div>
-
-        <div class="hero__content">
-          <div class="hero__copy">
-            <h1 class="hero__title">{{ page.hero.title or page.title or site.title_default }}</h1>
-
-            {% if page.hero.lead %}
-            <p class="hero__lead">{{ page.hero.lead }}</p>
-            {% elif page.description %}
-            <p class="hero__lead">{{ page.description }}</p>
-            {% endif %}
-
-            {% if page.hero.actions %}
-            <div class="hero__actions">
-              {% for action in page.hero.actions %}
-              <a
-                class="button {% if action.variant %}button--{{ action.variant }}{% else %}button--primary{% endif %}"
-                href="{{ action.href }}">
-                {{ action.label }}
-              </a>
-              {% endfor %}
+    <header class="control-header">
+        <div class="header-grid">
+            <div class="brand-unit">
+                <a href="/" class="logo-link">
+                    <span class="prefix">FP</span><span class="domain-dot">.</span><span class="suffix">COM</span>
+                </a>
+                <span class="status-indicator"></span>
             </div>
-            {% endif %}
-          </div>
+            
+            <nav class="system-nav">
+                <ul class="nav-links">
+                    {% for item in navigation.header %}
+                    <li>
+                        <a href="{{ item.href }}" class="nav-item {% if page.key == item.key %}active{% endif %}">
+                            {{ item.label | upper }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
 
-          {% if page.hero.panel %}
-          <aside class="hero__panel" aria-label="Context panel">
-            {% if page.hero.panel.kicker %}
-            <p class="hero__panel-kicker">{{ page.hero.panel.kicker }}</p>
-            {% endif %}
-
-            {% if page.hero.panel.title %}
-            <h2 class="hero__panel-title">{{ page.hero.panel.title }}</h2>
-            {% endif %}
-
-            {% if page.hero.panel.body %}
-            <p class="hero__panel-body">{{ page.hero.panel.body }}</p>
-            {% endif %}
-
-            {% if page.hero.panel.points %}
-            <ul class="hero__panel-list">
-              {% for point in page.hero.panel.points %}
-              <li class="hero__panel-item">{{ point }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-          </aside>
-          {% endif %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    {% if page.breadcrumbs %}
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <div class="container">
-        <ol class="breadcrumbs__list">
-          {% for crumb in page.breadcrumbs %}
-          <li class="breadcrumbs__item">
-            {% if crumb.href %}
-            <a class="breadcrumbs__link" href="{{ crumb.href }}">{{ crumb.label }}</a>
-            {% else %}
-            <span class="breadcrumbs__current" aria-current="page">{{ crumb.label }}</span>
-            {% endif %}
-          </li>
-          {% endfor %}
-        </ol>
-      </div>
-    </nav>
-    {% endif %}
-
-    <div class="container content-shell">
-      {% if page.sidebar %}
-      <aside class="content-shell__sidebar" aria-label="Section navigation">
-        <div class="sidebar-panel">
-          {% if page.sidebar.title %}
-          <h2 class="sidebar-panel__title">{{ page.sidebar.title }}</h2>
-          {% endif %}
-
-          {% if page.sidebar.items %}
-          <ul class="sidebar-panel__list">
-            {% for item in page.sidebar.items %}
-            <li class="sidebar-panel__item">
-              <a class="sidebar-panel__link" href="{{ item.href }}">{{ item.label }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-      </aside>
-      {% endif %}
-
-      <article class="content-shell__main content-article">
-        {% if page.intro %}
-        <section class="content-section content-section--intro">
-          <div class="section-card section-card--emphasis">
-            {% if page.intro.title %}
-            <h2 class="section-title">{{ page.intro.title }}</h2>
-            {% endif %}
-
-            {% if page.intro.body %}
-            <div class="rich-text">
-              {{ page.intro.body | safe }}
+            <div class="system-meta">
+                <span class="system-clock" id="live-clock">00:00:00 UTC</span>
+                <span class="version-tag">V.{{ site.version or "0.1.0" }}</span>
             </div>
-            {% endif %}
-          </div>
-        </section>
-        {% endif %}
+        </div>
+    </header>
 
-        {% block content %}
-        <section class="content-section">
-          <div class="section-card">
-            <h2 class="section-title">Structured content pending</h2>
-            <p class="section-body">
-              This page is connected to the sovereign template system but has not yet received its final structured content layer.
-            </p>
-          </div>
-        </section>
-        {% endblock %}
-      </article>
-    </div>
-  </main>
+    <main id="main-view" class="viewport">
+        
+        <div class="path-monitor">
+            <span class="path-root">ROOT</span>
+            <span class="path-separator">/</span>
+            <span class="current-path">{{ (page.key or "INDEX") | upper }}</span>
+        </div>
 
-  <footer class="site-footer" data-role="global-footer">
-    <div class="container site-footer__inner">
-      <div class="site-footer__identity">
-        <p class="site-footer__name">{{ site.name }}</p>
-        <p class="site-footer__statement">{{ brand.reference_role }}</p>
-      </div>
+        <article class="data-container">
+            {% block content %}
+            {% endblock %}
+        </article>
 
-      <div class="site-footer__meta">
-        <p class="site-footer__copy">
-          © {{ page.year or "2026" }} {{ site.name }}. All rights reserved.
-        </p>
+    </main>
 
-        <ul class="site-footer__nav">
-          {% for item in navigation.footer %}
-            {% if item.public %}
-            <li class="site-footer__nav-item">
-              <a class="site-footer__nav-link" href="{{ item.href }}">{{ item.label }}</a>
-            </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </footer>
+    <footer class="system-footer">
+        <div class="footer-grid">
+            <div class="legal-clearance">
+                <p>&copy; 2026 FUNNELPLUGS. <span class="security-clearance">SOVEREIGN-GRADE ASSET</span></p>
+            </div>
+            <div class="footer-status">
+                <span class="label">STATUS:</span>
+                <span class="value">STABLE_DEPLOIMENT</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toISOString().substr(11, 8) + ' UTC';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
