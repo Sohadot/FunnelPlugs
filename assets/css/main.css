@@ -1,0 +1,142 @@
+/* 1. ARCHITECTURAL TOKENS (The DNA) */
+:root {
+    /* Base Tones - Deep Space */
+    --ui-bg-solid: #05070a;
+    --ui-bg-glass: rgba(11, 16, 32, 0.85);
+    --ui-border: #1a1f26;
+    --ui-border-active: #2d343f;
+    
+    /* Functional Colors - Logic Gate */
+    --ui-accent: #00ff41;       /* Sovereign Green (Active/Plugged) */
+    --ui-warning: #ff3e3e;      /* Leak Red (Critical) */
+    --ui-dim: #6b7280;          /* Metadata Grey */
+    --ui-text: #d1d5db;         /* Primary Intel */
+    --ui-text-bright: #ffffff;
+    
+    /* Typography - Technical Precision */
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    
+    /* Grids & Spacing */
+    --grid-unit: 4px;
+    --container-max: 1200px;
+}
+
+/* 2. SYSTEM RESET & BASE FOUNDATION */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--ui-bg-solid);
+    color: var(--ui-text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Grid background effect */
+    background-image: 
+        linear-gradient(var(--ui-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ui-border) 1px, transparent 1px);
+    background-size: calc(var(--grid-unit) * 10) calc(var(--grid-unit) * 10);
+}
+
+/* 3. CONTROL ROOM LAYOUT (The Grid) */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 calc(var(--grid-unit) * 8);
+}
+
+/* 4. SOVEREIGN HEADER (Monitoring Bar) */
+.control-header {
+    height: 60px;
+    border-bottom: 1px solid var(--ui-border);
+    background: var(--ui-bg-glass);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-unit .logo-link {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    color: var(--ui-accent);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+/* 5. DOCUMENT ARCHITECTURE (The Sovereign Page) */
+.sovereign-document {
+    margin-top: calc(var(--grid-unit) * 10);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg-glass);
+    position: relative;
+    padding: 3rem;
+}
+
+/* Corner Accents - The "Industrial" Look */
+.sovereign-document::before, .sovereign-document::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--ui-accent);
+}
+.sovereign-document::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.sovereign-document::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+/* 6. TYPOGRAPHY HIERARCHY */
+h1, h2, h3, .doc-id, .spec-label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+
+.doc-header__title {
+    font-size: 2.5rem;
+    color: var(--ui-text-bright);
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+}
+
+/* 7. DATA BLOCKS & STATUS CODES */
+.spec-node {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid var(--ui-border);
+    margin-right: 10px;
+    font-size: 0.75rem;
+}
+
+.spec-label { color: var(--ui-dim); margin-right: 8px; }
+.spec-value { color: var(--ui-accent); font-weight: bold; }
+
+/* 8. INTERACTIVE ELEMENTS (Surgical Precision) */
+.nav-item {
+    color: var(--ui-dim);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--ui-accent);
+    text-shadow: 0 0 8px var(--ui-accent);
+}
+
+/* 9. THE SEAL (Final Integrity) */
+.doc-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--ui-border);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
