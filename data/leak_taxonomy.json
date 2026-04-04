@@ -1,0 +1,12 @@
+{
+  "id": "LEAK-01",
+  "slug": "trust-collapse",
+  "title": "Trust Collapse",
+  "description": "Decision-stage confidence is under-supported by proof, reassurance, or legitimacy.",
+  "signals": [
+    "hesitation near commitment",
+    "insufficient trust signals",
+    "weak reassurance before action"
+  ],
+  "recommended_plug_classes": ["PLUG-01"]
+}
