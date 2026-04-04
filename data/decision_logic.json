@@ -1,0 +1,433 @@
+{
+  "system_metadata": {
+    "uid": "FP-DECISION-LOGIC-RLDE-V1",
+    "version": "1.0.0",
+    "status": "production_foundation",
+    "engine": "Revenue Leak Diagnostic Engine",
+    "engine_version": "v1",
+    "logic_class": "sovereign_interpretive_decision_layer",
+    "determinism": "rule_based",
+    "auditable": true,
+    "indexable": false,
+    "last_reviewed": "2026-04-04"
+  },
+  "framework": {
+    "id": "DECISION-LOGIC-001",
+    "slug": "revenue-leak-diagnostic-engine-decision-logic",
+    "title": "Revenue Leak Diagnostic Engine Decision Logic",
+    "description": "A governed interpretive decision layer that converts scored questionnaire outputs into stable diagnostic states, leak-class resolution, intervention priority, and report-ready explanatory structures.",
+    "positioning": "Sovereign interpretive decision system",
+    "purpose": "To ensure that structural scores are transformed into decision outputs through explicit, reviewable, non-decorative logic rather than ad hoc interpretation.",
+    "methodology_note": "This layer does not create new evidence. It interprets declared questionnaire outputs using governed thresholds, tie-handling rules, priority resolution, and reporting templates.",
+    "output_model": "diagnostic_state_plus_interpretive_report_state"
+  },
+  "input_contract": {
+    "required_inputs": [
+      "total_integrity_score",
+      "integrity_band_slug",
+      "dimension_scores",
+      "leak_signal_scores",
+      "primary_leak_candidate",
+      "secondary_leak_candidate"
+    ],
+    "required_dimension_keys": [
+      "trust_integrity",
+      "flow_continuity",
+      "decision_clarity",
+      "friction_containment",
+      "recovery_readiness"
+    ],
+    "required_leak_keys": [
+      "LEAK-01",
+      "LEAK-02",
+      "LEAK-03",
+      "LEAK-04",
+      "LEAK-05",
+      "LEAK-06"
+    ],
+    "invalid_input_policy": {
+      "allow_partial_inputs": false,
+      "on_missing_required_input": "block_output",
+      "reason": "v1 does not permit interpretive output from incomplete structural scoring."
+    }
+  },
+  "diagnostic_resolution": {
+    "primary_resolution": {
+      "rule": "The leak class with the lowest normalized leak signal score is the default primary leak class.",
+      "minimum_distinction_threshold": 5,
+      "explanation": "If the lowest class score is at least 5 points lower than the next candidate, it is treated as materially primary."
+    },
+    "secondary_resolution": {
+      "rule": "The second-lowest normalized leak signal score becomes a secondary leak class only when it remains diagnostically meaningful.",
+      "maximum_secondary_score_threshold": 60,
+      "minimum_gap_from_primary": 0,
+      "explanation": "Secondary state is permitted when the second class remains weak enough to matter and is not merely noise."
+    },
+    "dual_state_resolution": {
+      "enabled": true,
+      "tie_threshold": 3,
+      "rule": "If the two lowest leak-class scores differ by 3 points or less, the result may enter a dual-state diagnostic mode.",
+      "dual_state_label_format": "dual_primary",
+      "explanation": "v1 allows interpretive duality where forcing singularity would create false precision."
+    },
+    "upstream_override": {
+      "enabled": true,
+      "rules": [
+        {
+          "id": "UP-01",
+          "name": "message_path_alignment_override",
+          "trigger_leak": "LEAK-06",
+          "override_window_points": 5,
+          "override_condition": "If LEAK-06 is within 5 points of the lowest leak score and total_integrity_score <= 69, LEAK-06 may take strategic priority.",
+          "reason": "Misalignment can contaminate downstream interpretation by breaking continuity before local remediation has leverage."
+        }
+      ]
+    }
+  },
+  "dimension_state_logic": {
+    "banding_model": "five_band_dimension_state",
+    "bands": [
+      {
+        "slug": "strong",
+        "min_score_inclusive": 85,
+        "max_score_inclusive": 100,
+        "meaning": "The dimension appears structurally sound and is unlikely to be the dominant failure source."
+      },
+      {
+        "slug": "stable_with_minor_weakness",
+        "min_score_inclusive": 70,
+        "max_score_inclusive": 84,
+        "meaning": "The dimension is generally stable but contains meaningful weakness."
+      },
+      {
+        "slug": "material_weakness",
+        "min_score_inclusive": 55,
+        "max_score_inclusive": 69,
+        "meaning": "The dimension is meaningfully underperforming and may contribute directly to leakage."
+      },
+      {
+        "slug": "serious_weakness",
+        "min_score_inclusive": 40,
+        "max_score_inclusive": 54,
+        "meaning": "The dimension is seriously compromised and likely contributes heavily to leakage."
+      },
+      {
+        "slug": "critical_failure",
+        "min_score_inclusive": 0,
+        "max_score_inclusive": 39,
+        "meaning": "The dimension is structurally failing and cannot be treated as operationally stable."
+      }
+    ],
+    "weakest_dimension_rule": "The lowest-scoring dimension becomes the weakest dimension.",
+    "strongest_dimension_rule": "The highest-scoring dimension becomes the strongest dimension.",
+    "multi_weakness_rule": {
+      "enabled": true,
+      "threshold_score": 54,
+      "meaningful_count_for_multi_weakness": 2,
+      "output_flag": "multi_weakness_detected",
+      "explanation": "If two or more dimensions score 54 or below, the system may surface a multi-weakness condition."
+    }
+  },
+  "report_state_logic": {
+    "integrity_status_mapping": [
+      {
+        "integrity_band_slug": "structurally-sound",
+        "report_state_slug": "sound_state",
+        "report_state_title": "Structurally Sound",
+        "executive_tone": "controlled_confident"
+      },
+      {
+        "integrity_band_slug": "minor-leakage",
+        "report_state_slug": "minor_leakage_state",
+        "report_state_title": "Minor Leakage",
+        "executive_tone": "measured_caution"
+      },
+      {
+        "integrity_band_slug": "moderate-weakness",
+        "report_state_slug": "moderate_weakness_state",
+        "report_state_title": "Moderate Weakness",
+        "executive_tone": "firm_diagnostic"
+      },
+      {
+        "integrity_band_slug": "serious-leakage",
+        "report_state_slug": "serious_leakage_state",
+        "report_state_title": "Serious Leakage",
+        "executive_tone": "high_urgency"
+      },
+      {
+        "integrity_band_slug": "critical-integrity-failure",
+        "report_state_slug": "critical_failure_state",
+        "report_state_title": "Critical Integrity Failure",
+        "executive_tone": "maximum_urgency"
+      }
+    ],
+    "executive_summary_structure": [
+      "integrity_status",
+      "primary_leak_class",
+      "secondary_leak_class_if_meaningful",
+      "weakest_dimension",
+      "recommended_primary_plug_class",
+      "recommended_secondary_plug_class_if_meaningful"
+    ],
+    "strategic_priority_rule": "The report must always surface the first intervention priority before discussing secondary optimization opportunities."
+  },
+  "priority_resolution": {
+    "priority_buckets": [
+      {
+        "slug": "priority_1",
+        "title": "Immediate Structural Priority",
+        "classes": ["LEAK-06", "LEAK-01", "LEAK-04", "LEAK-02"],
+        "meaning": "These classes can directly destabilize the interpretive or decision foundation of the path."
+      },
+      {
+        "slug": "priority_2",
+        "title": "High Operational Priority",
+        "classes": ["LEAK-03", "LEAK-05"],
+        "meaning": "These classes materially suppress performance and should be addressed once higher-order distortion is understood."
+      }
+    ],
+    "priority_order_rules": [
+      {
+        "id": "PO-01",
+        "condition": "primary_leak_class == LEAK-06",
+        "priority_rank": 1,
+        "priority_label": "Restore alignment before local optimization",
+        "reason": "Misalignment distorts the meaning of downstream behavior and weakens relevance from the start."
+      },
+      {
+        "id": "PO-02",
+        "condition": "primary_leak_class == LEAK-01",
+        "priority_rank": 1,
+        "priority_label": "Restore confidence before pushing harder for conversion",
+        "reason": "Trust weakness blocks commitment directly."
+      },
+      {
+        "id": "PO-03",
+        "condition": "primary_leak_class == LEAK-04",
+        "priority_rank": 1,
+        "priority_label": "Clarify decision logic before increasing persuasive intensity",
+        "reason": "Users cannot act confidently when interpretation remains weak."
+      },
+      {
+        "id": "PO-04",
+        "condition": "primary_leak_class == LEAK-02",
+        "priority_rank": 1,
+        "priority_label": "Repair continuity before optimizing local elements",
+        "reason": "Flow failure interrupts movement itself."
+      },
+      {
+        "id": "PO-05",
+        "condition": "primary_leak_class == LEAK-03",
+        "priority_rank": 2,
+        "priority_label": "Reduce burden after continuity and decision support are understood",
+        "reason": "Friction overload suppresses movement through process cost."
+      },
+      {
+        "id": "PO-06",
+        "condition": "primary_leak_class == LEAK-05",
+        "priority_rank": 2,
+        "priority_label": "Build recovery after the core path is structurally legible",
+        "reason": "Recovery matters most when the primary path has recoverable value."
+      }
+    ]
+  },
+  "secondary_state_rules": {
+    "allow_secondary_interpretation": true,
+    "secondary_output_conditions": [
+      {
+        "id": "SEC-01",
+        "condition": "secondary_leak_score <= 60",
+        "allow": true,
+        "reason": "Secondary weakness remains materially meaningful."
+      },
+      {
+        "id": "SEC-02",
+        "condition": "secondary_leak_score > 60",
+        "allow": false,
+        "reason": "Secondary class is not weak enough to justify explicit reporting."
+      }
+    ],
+    "secondary_redundancy_rules": [
+      {
+        "id": "SEC-RED-01",
+        "condition": "secondary_plug_class == primary_plug_class",
+        "action": "collapse_secondary_plug_output",
+        "reason": "Do not duplicate intervention outputs when both states map to the same plug class."
+      }
+    ],
+    "dual_state_output_rules": [
+      {
+        "id": "DUAL-01",
+        "condition": "abs(primary_leak_score - secondary_leak_score) <= 3",
+        "action": "render_dual_state_headline",
+        "headline_format": "Dual structural weakness detected: {primary_title} + {secondary_title}",
+        "reason": "Avoid false singularity when two structural failure modes are effectively co-dominant."
+      }
+    ]
+  },
+  "plug_recommendation_logic": {
+    "primary_mapping_policy": "The primary leak class maps to the primary plug class using governed leak-to-plug rules from scoring_rules.json.",
+    "secondary_mapping_policy": "A secondary plug class may be surfaced when the secondary leak class remains meaningful and non-redundant.",
+    "intervention_order_policy": "Primary plug class must always be shown before any secondary recommendation.",
+    "override_ordering_rules": [
+      {
+        "id": "PR-OVR-01",
+        "condition": "primary_leak_class == LEAK-06",
+        "primary_plug_class": "PLUG-06",
+        "note": "Alignment repair takes interpretive precedence over local conversion tuning."
+      },
+      {
+        "id": "PR-OVR-02",
+        "condition": "primary_leak_class == LEAK-01",
+        "primary_plug_class": "PLUG-01",
+        "note": "Trust repair takes precedence when confidence is structurally insufficient."
+      }
+    ]
+  },
+  "interpretation_templates": {
+    "executive_openers": {
+      "sound_state": "The path appears structurally stable across its primary integrity dimensions.",
+      "minor_leakage_state": "The path remains viable, but meaningful structural leakage is present.",
+      "moderate_weakness_state": "The path contains material structural weakness that is likely suppressing conversion integrity.",
+      "serious_leakage_state": "The path is materially compromised by major structural failure patterns.",
+      "critical_failure_state": "The path is structurally unstable enough that reliable conversion integrity cannot be assumed."
+    },
+    "weakest_dimension_templates": {
+      "trust_integrity": "The weakest structural dimension is trust integrity, indicating that confidence support is lagging behind commitment demand.",
+      "flow_continuity": "The weakest structural dimension is flow continuity, indicating that movement is not being carried cleanly through the path.",
+      "decision_clarity": "The weakest structural dimension is decision clarity, indicating that users are under-supported at the moment of interpretation and choice.",
+      "friction_containment": "The weakest structural dimension is friction containment, indicating that process burden is eroding movement or completion.",
+      "recovery_readiness": "The weakest structural dimension is recovery readiness, indicating that interrupted intent is not being reclaimed effectively."
+    },
+    "primary_secondary_templates": [
+      {
+        "id": "TPL-01",
+        "primary": "LEAK-01",
+        "secondary": "LEAK-04",
+        "template": "The path appears to be losing commitment through a combination of weak confidence architecture and under-supported decision clarity."
+      },
+      {
+        "id": "TPL-02",
+        "primary": "LEAK-02",
+        "secondary": "LEAK-03",
+        "template": "The path appears to be losing momentum through continuity failure reinforced by unnecessary burden."
+      },
+      {
+        "id": "TPL-03",
+        "primary": "LEAK-04",
+        "secondary": "LEAK-01",
+        "template": "The path appears to be under-explaining the decision while also failing to support confidence strongly enough."
+      },
+      {
+        "id": "TPL-04",
+        "primary": "LEAK-05",
+        "secondary": "LEAK-01",
+        "template": "The system appears weak not only in reclaiming lost intent, but also in sustaining confidence when users hesitate."
+      },
+      {
+        "id": "TPL-05",
+        "primary": "LEAK-06",
+        "secondary": "LEAK-04",
+        "template": "The path appears to break continuity between entry promise and decision logic, creating ambiguity downstream."
+      },
+      {
+        "id": "TPL-06",
+        "primary": "LEAK-06",
+        "secondary": "LEAK-02",
+        "template": "The path appears to violate expectation continuity early and then lose movement stability through the journey."
+      }
+    ],
+    "fallback_secondary_template": "A secondary structural weakness is also present and should be considered after the primary failure mode is addressed.",
+    "single_state_template": "The dominant structural weakness appears sufficiently distinct to justify a singular primary diagnosis."
+  },
+  "report_construction": {
+    "required_sections": [
+      "executive_status",
+      "score_summary",
+      "dimension_summary",
+      "primary_diagnosis",
+      "secondary_diagnosis_if_meaningful",
+      "plug_recommendation",
+      "strategic_interpretation",
+      "methodology_boundary_note"
+    ],
+    "section_rules": {
+      "executive_status": {
+        "required_fields": [
+          "integrity_status",
+          "total_integrity_score",
+          "integrity_band_slug"
+        ]
+      },
+      "score_summary": {
+        "required_fields": [
+          "total_integrity_score",
+          "weakest_dimension",
+          "strongest_dimension"
+        ]
+      },
+      "dimension_summary": {
+        "required_fields": [
+          "dimension_scores"
+        ]
+      },
+      "primary_diagnosis": {
+        "required_fields": [
+          "primary_leak_class",
+          "primary_leak_score",
+          "primary_plug_class"
+        ]
+      },
+      "secondary_diagnosis_if_meaningful": {
+        "required_fields": [
+          "secondary_leak_class",
+          "secondary_leak_score",
+          "secondary_plug_class_if_nonredundant"
+        ],
+        "render_condition": "secondary_interpretation_allowed == true"
+      },
+      "plug_recommendation": {
+        "required_fields": [
+          "primary_plug_class"
+        ]
+      },
+      "strategic_interpretation": {
+        "required_fields": [
+          "executive_opener",
+          "weakest_dimension_sentence",
+          "primary_secondary_interpretation_block"
+        ]
+      },
+      "methodology_boundary_note": {
+        "required_fields": [
+          "methodology_boundary_message"
+        ]
+      }
+    }
+  },
+  "methodology_boundary_messages": [
+    {
+      "id": "MB-01",
+      "slug": "structural_not_financial",
+      "message": "This result is a structural diagnostic, not a financial forecast."
+    },
+    {
+      "id": "MB-02",
+      "slug": "declared_conditions_only",
+      "message": "This result is derived from declared funnel conditions rather than observed behavioral telemetry."
+    },
+    {
+      "id": "MB-03",
+      "slug": "priority_guidance_not_guarantee",
+      "message": "The output is intended to guide intervention priority, not guarantee commercial uplift."
+    }
+  ],
+  "non_permitted_outputs": {
+    "financial_estimates": false,
+    "market_percentiles": false,
+    "industry_benchmarks": false,
+    "confidence_percentages": false,
+    "guaranteed_uplift_claims": false,
+    "undocumented_ai_inference": false
+  }
+}
