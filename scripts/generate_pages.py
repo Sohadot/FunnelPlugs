@@ -115,6 +115,10 @@ def dataclass_to_dict(value: Any) -> Any:
     return value
 
 
+def normalize_whitespace(value: str) -> str:
+    """Normalize whitespace for reliable comparisons."""
+    return " ".join(value.split())
+
 def load_site_data() -> dict[str, Any]:
     """Load and validate the sovereign site data source."""
     if not SITE_DATA_FILE.exists():
