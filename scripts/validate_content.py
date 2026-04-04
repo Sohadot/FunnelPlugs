@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -57,7 +58,7 @@ SHELL_WEAKNESS_PATTERNS = (
     re.compile(r"structured page shell active", re.IGNORECASE),
     re.compile(r"ready to receive validated structured content", re.IGNORECASE),
     re.compile(r"content pending", re.IGNORECASE),
-    re.compile(r"pending", re.IGNORECASE),
+    re.compile(r"\bpending\b", re.IGNORECASE),
 )
 
 UNSAFE_CONTENT_PATTERNS = (
@@ -66,10 +67,9 @@ UNSAFE_CONTENT_PATTERNS = (
     re.compile(r"<\s*iframe\b", re.IGNORECASE),
 )
 
-INLINE_SCRIPT_PATTERN = re.compile(
-    r"<\s*script\b(?![^>]*\bsrc=)[^>]*>",
-    re.IGNORECASE,
-)
+ALLOWED_SCRIPT_SRCS = {
+    "/assets/js/main.js",
+}
 
 SITE_CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
 
@@ -81,20 +81,36 @@ class Issue:
     message: str
 
 
-class LinkExtractor(HTMLParser):
-    """Extract href attributes from rendered HTML."""
+class HTMLInspector(HTMLParser):
+    """Extract hrefs and inspect script usage from rendered HTML."""
 
     def __init__(self) -> None:
         super().__init__()
         self.hrefs: list[str] = []
+        self.script_srcs: list[str] = []
+        self.inline_script_detected = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag.lower() != "a":
-            return
+        tag_lower = tag.lower()
         attr_map = dict(attrs)
-        href = attr_map.get("href")
-        if href:
-            self.hrefs.append(href.strip())
+
+        if tag_lower == "a":
+            href = attr_map.get("href")
+            if href:
+                self.hrefs.append(href.strip())
+
+        if tag_lower == "script":
+            src = attr_map.get("src")
+            if src:
+                self.script_srcs.append(src.strip())
+            else:
+                self.inline_script_detected = True
+
+    def handle_data(self, data: str) -> None:
+        if data.strip():
+            # Actual inline script bodies are already blocked by handle_starttag
+            # when there is no src. Nothing more is needed here.
+            return
 
 
 def load_site_data() -> dict[str, Any]:
@@ -149,11 +165,14 @@ def declared_pages_by_file(site_data: dict[str, Any]) -> dict[str, dict[str, Any
     for page in site_data["core_pages"]:
         if not isinstance(page, dict):
             raise ValidationError("Each item in core_pages must be an object.")
+
         file_value = str(page.get("file", "")).strip()
         if not file_value:
             raise ValidationError("A page in core_pages is missing its 'file' field.")
+
         if file_value in mapping:
             raise ValidationError(f"Duplicate declared page file detected: '{file_value}'")
+
         mapping[file_value] = page
 
     return mapping
@@ -172,7 +191,16 @@ def validate_site_json_structure(site_data: dict[str, Any]) -> list[Issue]:
     for page in pages:
         scope = f"page:{page.get('key', 'unknown')}"
 
-        for field in ("key", "file", "title", "description", "template", "page_type", "indexable", "canonical"):
+        for field in (
+            "key",
+            "file",
+            "title",
+            "description",
+            "template",
+            "page_type",
+            "indexable",
+            "canonical",
+        ):
             if field not in page:
                 issues.append(Issue("ERROR", scope, f"Missing required field '{field}' in site.json."))
                 continue
@@ -214,16 +242,15 @@ def validate_site_json_structure(site_data: dict[str, Any]) -> list[Issue]:
             else:
                 seen_slugs.add(slug)
 
-            if file_value:
-                expected_file = f"{slug}.html" if slug else "index.html"
-                if file_value != expected_file:
-                    issues.append(
-                        Issue(
-                            "ERROR",
-                            scope,
-                            f"Non-home page file '{file_value}' must match slug-based convention '{expected_file}'.",
-                        )
+            expected_file = f"{slug}.html"
+            if file_value and file_value != expected_file:
+                issues.append(
+                    Issue(
+                        "ERROR",
+                        scope,
+                        f"Non-home page file '{file_value}' must match slug-based convention '{expected_file}'.",
                     )
+                )
 
         if not title:
             issues.append(Issue("ERROR", scope, "Page title must be non-empty."))
@@ -329,6 +356,7 @@ def scan_nested_content_for_patterns(node: Any, scope: str, issues: list[Issue],
                         f"Placeholder pattern detected in declared content at '{path}'.",
                     )
                 )
+
         for pattern in SHELL_WEAKNESS_PATTERNS:
             if pattern.search(node):
                 issues.append(
@@ -338,6 +366,7 @@ def scan_nested_content_for_patterns(node: Any, scope: str, issues: list[Issue],
                         f"Potential shell weakness language detected in declared content at '{path}'.",
                     )
                 )
+
         for pattern in UNSAFE_CONTENT_PATTERNS:
             if pattern.search(node):
                 issues.append(
@@ -379,6 +408,7 @@ def validate_navigation_declared_targets(site_data: dict[str, Any]) -> list[Issu
                 issues.append(Issue("ERROR", scope, "Navigation item label must be non-empty."))
             if not href:
                 issues.append(Issue("ERROR", scope, "Navigation item href must be non-empty."))
+
             if key:
                 if key in seen_keys:
                     issues.append(Issue("ERROR", scope, f"Duplicate navigation key detected: '{key}'"))
@@ -407,26 +437,66 @@ def extract_rendered_metadata(html: str) -> dict[str, str]:
     h1_match = H1_PATTERN.search(html)
 
     return {
-        "title": normalize_whitespace(title_match.group(1)) if title_match else "",
-        "description": normalize_whitespace(description_match.group(1)) if description_match else "",
+        "title": normalize_whitespace(unescape(title_match.group(1))) if title_match else "",
+        "description": normalize_whitespace(unescape(description_match.group(1))) if description_match else "",
         "canonical": canonical_match.group(1).strip() if canonical_match else "",
-        "robots": normalize_whitespace(robots_match.group(1)) if robots_match else "",
-        "h1": normalize_whitespace(h1_match.group(1)) if h1_match else "",
+        "robots": normalize_whitespace(unescape(robots_match.group(1))) if robots_match else "",
+        "h1": normalize_whitespace(unescape(h1_match.group(1))) if h1_match else "",
     }
+
+
+def inspect_rendered_html(html: str) -> HTMLInspector:
+    """Inspect rendered HTML for links and script usage."""
+    inspector = HTMLInspector()
+    inspector.feed(html)
+    return inspector
 
 
 def extract_internal_links(html: str) -> list[str]:
     """Extract internal hrefs from rendered HTML."""
-    parser = LinkExtractor()
-    parser.feed(html)
-    hrefs = parser.hrefs
+    inspector = inspect_rendered_html(html)
 
     internal: list[str] = []
-    for href in hrefs:
+    for href in inspector.hrefs:
         if href.startswith(("http://", "https://", "mailto:", "tel:", "#")):
             continue
         internal.append(href)
+
     return internal
+
+
+def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None:
+    """Allow only approved external scripts and forbid inline scripts."""
+    inspector = inspect_rendered_html(html)
+
+    if inspector.inline_script_detected:
+        issues.append(
+            Issue(
+                "ERROR",
+                scope,
+                "Rendered page contains inline script markup, which is not permitted.",
+            )
+        )
+
+    for src in inspector.script_srcs:
+        if src not in ALLOWED_SCRIPT_SRCS:
+            issues.append(
+                Issue(
+                    "ERROR",
+                    scope,
+                    f"Rendered page references a non-approved script source: '{src}'",
+                )
+            )
+
+    for pattern in UNSAFE_CONTENT_PATTERNS:
+        if pattern.search(html):
+            issues.append(
+                Issue(
+                    "ERROR",
+                    scope,
+                    "Rendered page contains unsafe markup patterns.",
+                )
+            )
 
 
 def resolve_internal_href(href: str, current_file: Path) -> Path | None:
@@ -528,16 +598,7 @@ def validate_rendered_pages(site_data: dict[str, Any]) -> list[Issue]:
                     )
                 )
 
-        for pattern in UNSAFE_CONTENT_PATTERNS:
-            if pattern.search(html):
-                issues.append(
-                    Issue(
-                        "ERROR",
-                        scope,
-                        "Rendered page contains unsafe markup patterns.",
-                    )
-                )
-
+        validate_script_security(scope, html, issues)
         validate_internal_links(relative, html, file_path, issues)
 
     return issues
@@ -622,7 +683,6 @@ def validate_internal_links(
             continue
 
         if target.suffix == "":
-            # Allow directory targets only if they contain an index.html
             target = target / "index.html"
 
         if not target.exists():
