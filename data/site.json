@@ -1,4 +1,13 @@
 {
+  "system_metadata": {
+    "uid": "FP-SOVEREIGN-SYSTEM-2026",
+    "version": "1.0.0",
+    "engine": "Sovereign-Gen-V1",
+    "build_status": "FOUNDATION_IN_PROGRESS",
+    "security_state": "CONTROLLED_STATIC_INFRASTRUCTURE",
+    "publishing_model": "LOCAL_PYTHON_TO_GITHUB_TO_GITHUB_ACTIONS",
+    "root_output_mode": true
+  },
   "site": {
     "name": "Funnelplugs",
     "domain": "funnelplugs.com",
@@ -9,23 +18,23 @@
     "timezone": "Asia/Seoul",
     "environment": "production",
     "tagline": "The Logic of the Missing Plug",
-    "title_default": "Funnelplugs — The Logic of the Missing Plug",
-    "description_default": "Funnelplugs is a sovereign-grade reference system for funnel integrity, commercial leakage logic, and the intervention layers required to restore flow, trust, and conversion.",
+    "title_default": "Funnelplugs — The Sovereign Reference for Funnel Integrity",
+    "description_default": "Funnelplugs is a reference system for identifying structural revenue leakage and defining the intervention architecture required to restore commercial flow.",
     "keywords_default": [
       "funnel integrity",
       "revenue leakage",
-      "conversion systems",
       "commercial flow",
-      "digital funnel structure",
+      "conversion systems",
       "plug registry",
-      "funnel standards"
+      "funnel standard",
+      "revenue recovery"
     ]
   },
   "brand": {
     "positioning": "Sovereign-grade strategic digital asset",
-    "voice": "Institutional, precise, controlled, strategic, intelligent",
-    "narrative": "The Logic of the Missing Plug",
-    "reference_role": "Reference system for funnel integrity",
+    "reference_role": "Central Registry for Funnel Integrity",
+    "voice": "Institutional, precise, controlled, strategic",
+    "narrative": "Revenue is lost because the path is structurally incomplete.",
     "ui_mode": "Control-room, premium, structurally clear, non-generic",
     "visual_character": {
       "avoid": [
@@ -94,20 +103,7 @@
         "key": "engine"
       }
     ],
-    "footer": [
-      {
-        "label": "Foundation Doctrine",
-        "href": "/docs/FOUNDATION_DOCTRINE.md",
-        "key": "foundation_doctrine",
-        "public": false
-      },
-      {
-        "label": "Asset Thesis",
-        "href": "/docs/ASSET_THESIS.md",
-        "key": "asset_thesis",
-        "public": false
-      }
-    ]
+    "footer": []
   },
   "core_pages": [
     {
@@ -116,12 +112,98 @@
       "slug": "",
       "url": "https://funnelplugs.com",
       "template": "page.html",
-      "title": "Funnelplugs — The Logic of the Missing Plug",
-      "description": "A sovereign-grade reference system for funnel integrity, structural revenue leakage, and the intervention layers required to restore commercial flow.",
+      "title": "Funnelplugs — Control Your Revenue Flow",
+      "description": "The sovereign reference for funnel integrity, commercial flow continuity, and revenue leakage logic.",
       "indexable": true,
       "canonical": "https://funnelplugs.com",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "gateway",
+      "hero": {
+        "title": "Control the Structural Logic of Revenue Flow",
+        "lead": "Funnelplugs exists to identify missing intervention layers, classify structural leakage, and restore commercial integrity.",
+        "actions": [
+          {
+            "label": "Read the Manifesto",
+            "href": "/manifesto.html",
+            "variant": "primary"
+          },
+          {
+            "label": "Open the Registry",
+            "href": "/registry.html",
+            "variant": "secondary"
+          }
+        ],
+        "panel": {
+          "kicker": "System status",
+          "title": "Infrastructure online",
+          "body": "The sovereign reference layer for funnel integrity is entering structured build mode.",
+          "points": [
+            "Governed architecture active",
+            "Core taxonomy initialized",
+            "Quality-first scaling model enabled"
+          ]
+        }
+      },
+      "summary": {
+        "title": "Gateway position",
+        "body": "<p>Funnelplugs is not a generic optimization website. It is a governed interpretation system for identifying where commercial paths fail structurally and what intervention layers are required to restore flow.</p>"
+      },
+      "sections": [
+        {
+          "type": "cards",
+          "title": "System layers",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Doctrine",
+              "title": "Manifesto",
+              "body": "<p>The conceptual position behind the missing plug logic.</p>",
+              "link": {
+                "label": "View manifesto",
+                "href": "/manifesto.html"
+              }
+            },
+            {
+              "eyebrow": "Method",
+              "title": "Protocol",
+              "body": "<p>The system for reading, classifying, and interpreting leakage.</p>",
+              "link": {
+                "label": "View protocol",
+                "href": "/protocol.html"
+              }
+            },
+            {
+              "eyebrow": "Utility",
+              "title": "Engine",
+              "body": "<p>The diagnostic layer that turns theory into applied evaluation.</p>",
+              "link": {
+                "label": "Open engine",
+                "href": "/engine.html"
+              }
+            }
+          ]
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Foundation",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Read the founding declaration of the asset."
+        },
+        {
+          "eyebrow": "Methodology",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "Understand how leakage is classified."
+        },
+        {
+          "eyebrow": "Reference Layer",
+          "label": "Registry",
+          "href": "/registry.html",
+          "description": "Explore governed plug categories."
+        }
+      ]
     },
     {
       "key": "manifesto",
@@ -129,12 +211,51 @@
       "slug": "manifesto",
       "url": "https://funnelplugs.com/manifesto.html",
       "template": "page.html",
-      "title": "Manifesto — Funnelplugs",
-      "description": "The founding declaration of Funnelplugs and the core narrative behind The Logic of the Missing Plug.",
+      "title": "The Manifesto — The Logic of the Missing Plug",
+      "description": "The founding declaration of Funnelplugs. An intervention against structural revenue leakage.",
       "indexable": true,
       "canonical": "https://funnelplugs.com/manifesto.html",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "foundational",
+      "hero": {
+        "title": "The Logic of the Missing Plug",
+        "lead": "Revenue is often lost not because traffic is absent, but because the commercial path is structurally incomplete."
+      },
+      "summary": {
+        "title": "Foundational position",
+        "body": "<p>Funnelplugs exists to make missing structural intervention layers visible, classifiable, and correctable.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "01. The Fallacy of Volume",
+          "body": "<p>Many systems mistake traffic shortage for the root cause of failure. But the deeper cause is often structural incompleteness inside the commercial path itself.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "02. The Doctrine",
+          "body": "<p>We do not treat commercial leakage as vague underperformance. We treat it as evidence that a required plug is missing from the system.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "03. The Position",
+          "body": "<p>Funnelplugs is not a generic marketing site. It is a sovereign reference layer for reading revenue leakage with structural precision.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "See how the system classifies incompleteness."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "View the formal conditions of structural soundness."
+        }
+      ]
     },
     {
       "key": "protocol",
@@ -142,12 +263,58 @@
       "slug": "protocol",
       "url": "https://funnelplugs.com/protocol.html",
       "template": "page.html",
-      "title": "Protocol — Funnelplugs",
-      "description": "The methodological system Funnelplugs uses to identify, classify, and interpret structural revenue leakage across digital customer journeys.",
+      "title": "The Protocol — Identification & Intervention",
+      "description": "The methodological system for classifying and correcting structural revenue leakage.",
       "indexable": true,
       "canonical": "https://funnelplugs.com/protocol.html",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "technical",
+      "hero": {
+        "title": "Identification and Intervention Protocol",
+        "lead": "A governed methodology for mapping commercial incompleteness, classifying failure, and assigning the right intervention layer."
+      },
+      "summary": {
+        "title": "Protocol role",
+        "body": "<p>The protocol translates conceptual doctrine into a repeatable system for diagnosing where commercial flow breaks and what kind of plug is required.</p>"
+      },
+      "sections": [
+        {
+          "type": "cards",
+          "title": "Protocol sequence",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Stage 01",
+              "title": "Detection",
+              "body": "<p>Map the commercial path against the integrity standard to identify incomplete zones.</p>"
+            },
+            {
+              "eyebrow": "Stage 02",
+              "title": "Classification",
+              "body": "<p>Assign leakage to a structural class such as friction, trust failure, discontinuity, or recovery absence.</p>"
+            },
+            {
+              "eyebrow": "Stage 03",
+              "title": "Intervention",
+              "body": "<p>Define the correct plug class required to restore continuity, trust, or completion.</p>"
+            }
+          ]
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Review the formal requirements of a structurally sound path."
+        },
+        {
+          "eyebrow": "Registry",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "Explore governed intervention categories."
+        }
+      ]
     },
     {
       "key": "standard",
@@ -156,11 +323,53 @@
       "url": "https://funnelplugs.com/standard.html",
       "template": "page.html",
       "title": "Funnel Integrity Standard — Funnelplugs",
-      "description": "The structural standard that defines what a sound, complete, and conversion-capable digital commercial journey requires.",
+      "description": "The formal standard that defines what a sound, complete, and conversion-capable digital commercial journey requires.",
       "indexable": true,
       "canonical": "https://funnelplugs.com/standard.html",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "foundational",
+      "hero": {
+        "title": "Funnel Integrity Standard",
+        "lead": "A governed standard for defining whether a commercial path is structurally sound, complete, and capable of carrying revenue without hidden collapse."
+      },
+      "summary": {
+        "title": "Standard role",
+        "body": "<p>The standard defines the minimum structural conditions required for commercial continuity, trust, clarity, response, and recovery.</p>"
+      },
+      "sections": [
+        {
+          "type": "list",
+          "title": "Core standard dimensions",
+          "items": [
+            {
+              "title": "Trust Integrity",
+              "body": "<p>The path must sustain confidence at decision-critical points.</p>"
+            },
+            {
+              "title": "Flow Continuity",
+              "body": "<p>The path must not break, stall, or create avoidable interruption between intent and completion.</p>"
+            },
+            {
+              "title": "Recovery Readiness",
+              "body": "<p>The system must include mechanisms for restoring momentum after abandonment or hesitation.</p>"
+            }
+          ]
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "See how the standard is applied diagnostically."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Registry",
+          "href": "/registry.html",
+          "description": "View plug classes aligned with the standard."
+        }
+      ]
     },
     {
       "key": "registry",
@@ -173,7 +382,53 @@
       "indexable": true,
       "canonical": "https://funnelplugs.com/registry.html",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "reference",
+      "hero": {
+        "title": "Plug Registry",
+        "lead": "A governed classification layer for the intervention systems required to restore structural integrity across digital customer journeys."
+      },
+      "summary": {
+        "title": "Registry logic",
+        "body": "<p>The registry does not list software casually. It organizes intervention categories under a governed reference structure aligned with the Funnel Integrity Standard.</p>"
+      },
+      "sections": [
+        {
+          "type": "cards",
+          "title": "Primary categories",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "CAT-001",
+              "title": "Trust Infrastructure",
+              "body": "<p>Intervention layers that restore confidence, proof, and legitimacy.</p>"
+            },
+            {
+              "eyebrow": "CAT-002",
+              "title": "Flow Continuity",
+              "body": "<p>Systems that reduce interruption and maintain movement through the path.</p>"
+            },
+            {
+              "eyebrow": "CAT-003",
+              "title": "Recovery Systems",
+              "body": "<p>Mechanisms that restore momentum after drop-off, hesitation, or abandonment.</p>"
+            }
+          ]
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Understand the rules behind registry governance."
+        },
+        {
+          "eyebrow": "Utility",
+          "label": "Revenue Leak Engine",
+          "href": "/engine.html",
+          "description": "Move from category understanding to practical evaluation."
+        }
+      ]
     },
     {
       "key": "engine",
@@ -186,20 +441,94 @@
       "indexable": true,
       "canonical": "https://funnelplugs.com/engine.html",
       "og_image": "/assets/img/og-default.jpg",
-      "page_type": "foundational"
+      "page_type": "utility",
+      "hero": {
+        "title": "Revenue Leak Engine",
+        "lead": "A practical diagnostic layer for identifying where structural incompleteness suppresses flow, trust, completion, or recovery."
+      },
+      "summary": {
+        "title": "Engine role",
+        "body": "<p>The engine converts the Funnelplugs doctrine into a decision-support layer capable of exposing missing plugs and guiding intervention logic.</p>"
+      },
+      "sections": [
+        {
+          "type": "list",
+          "title": "Engine output classes",
+          "items": [
+            {
+              "title": "Leak Location",
+              "body": "<p>Where the path is structurally incomplete.</p>"
+            },
+            {
+              "title": "Failure Class",
+              "body": "<p>What type of systemic weakness is present.</p>"
+            },
+            {
+              "title": "Intervention Priority",
+              "body": "<p>Which plug class should be addressed first.</p>"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "default",
+          "body": "<p>The interactive evaluation layer will be introduced through the controlled utility build sequence. The current page defines the strategic function of the engine within the sovereign architecture.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "See how evaluation logic is structured."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Registry",
+          "href": "/registry.html",
+          "description": "Explore the intervention classes that the engine can surface."
+        }
+      ]
     }
   ],
-  "content_system": {
+  "scaling_factory": {
     "taxonomy_roots": [
-      "plugs",
       "leaks",
+      "plugs",
       "standards",
+      "registries",
       "glossary",
       "reports"
     ],
+    "registry_categories": [
+      {
+        "id": "CAT-001",
+        "name": "Trust Infrastructure",
+        "slug": "trust"
+      },
+      {
+        "id": "CAT-002",
+        "name": "Flow Continuity",
+        "slug": "flow"
+      },
+      {
+        "id": "CAT-003",
+        "name": "Recovery Systems",
+        "slug": "recovery"
+      }
+    ],
+    "automation_rules": {
+      "auto_generate_ids": true,
+      "enforce_integrity_seal": true,
+      "block_incomplete_data": true,
+      "require_valid_template": true,
+      "require_metadata_completeness": true
+    },
+    "scale_rule": "Mass-scale page generation is allowed only through validated taxonomy, governed templates, real structural purpose, and passed quality gates."
+  },
+  "content_system": {
     "generation_mode": "data-driven",
-    "page_quality_rule": "No page is generated unless it has structural purpose, metadata completeness, canonical clarity, and conceptual fit.",
-    "scale_rule": "Scale is permitted only through validated taxonomy, controlled templates, and passed quality gates."
+    "page_quality_rule": "No page is generated unless it has structural purpose, metadata completeness, canonical clarity, and conceptual fit."
   },
   "validation": {
     "require_unique_page_keys": true,
@@ -209,7 +538,8 @@
     "require_canonicals": true,
     "require_indexable_flag": true,
     "require_valid_template": true,
-    "reject_placeholder_copy": true
+    "reject_placeholder_copy": true,
+    "require_all_navigation_targets_to_exist": true
   },
   "public_files": {
     "robots": "robots.txt",
