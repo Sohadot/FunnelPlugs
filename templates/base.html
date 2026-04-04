@@ -1,47 +1,52 @@
+{% set hero = page.get('hero', {}) %}
+{% set summary = page.get('summary', {}) %}
+{% set breadcrumbs = page.get('breadcrumbs', []) %}
+{% set extra_head = page.get('extra_head', '') %}
+{% set hero_panel = hero.get('panel', {}) %}
 <!DOCTYPE html>
-<html lang="{{ page.language or site.language }}" dir="{{ page.direction or site.direction }}">
+<html lang="{{ page.get('language') or site.get('language') }}" dir="{{ page.get('direction') or site.get('direction') }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>{{ page.title or site.title_default }}</title>
-  <meta name="description" content="{{ page.description or site.description_default }}">
-  <meta name="robots" content="{{ page.robots or seo.robots_default }}">
-  <meta name="language" content="{{ page.language or site.language }}">
+  <title>{{ page.get('title') or site.get('title_default') }}</title>
+  <meta name="description" content="{{ page.get('description') or site.get('description_default') }}">
+  <meta name="robots" content="{{ page.get('robots') or seo.get('robots_default') }}">
+  <meta name="language" content="{{ page.get('language') or site.get('language') }}">
   <meta name="theme-color" content="#05070a">
   <meta name="color-scheme" content="dark">
 
-  {% if page.keywords %}
-  <meta name="keywords" content="{{ page.keywords | join(', ') }}">
-  {% elif site.keywords_default %}
-  <meta name="keywords" content="{{ site.keywords_default | join(', ') }}">
+  {% if page.get('keywords') %}
+  <meta name="keywords" content="{{ page.get('keywords') | join(', ') }}">
+  {% elif site.get('keywords_default') %}
+  <meta name="keywords" content="{{ site.get('keywords_default') | join(', ') }}">
   {% endif %}
 
-  <link rel="canonical" href="{{ page.canonical or site.canonical_url }}">
+  <link rel="canonical" href="{{ page.get('canonical') or site.get('canonical_url') }}">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/main.js" defer></script>
 
-  <meta property="og:site_name" content="{{ site.name }}">
-  <meta property="og:title" content="{{ page.og_title or page.title or site.title_default }}">
-  <meta property="og:description" content="{{ page.og_description or page.description or site.description_default }}">
-  <meta property="og:type" content="{{ page.og_type or 'website' }}">
-  <meta property="og:locale" content="{{ site.locale }}">
-  <meta property="og:url" content="{{ page.canonical or site.canonical_url }}">
-  <meta property="og:image" content="{{ page.og_image or seo.default_og_image }}">
-  <meta property="og:image:alt" content="{{ page.og_image_alt or page.title or site.title_default }}">
+  <meta property="og:site_name" content="{{ site.get('name') }}">
+  <meta property="og:title" content="{{ page.get('og_title') or page.get('title') or site.get('title_default') }}">
+  <meta property="og:description" content="{{ page.get('og_description') or page.get('description') or site.get('description_default') }}">
+  <meta property="og:type" content="{{ page.get('og_type') or 'website' }}">
+  <meta property="og:locale" content="{{ site.get('locale') }}">
+  <meta property="og:url" content="{{ page.get('canonical') or site.get('canonical_url') }}">
+  <meta property="og:image" content="{{ page.get('og_image') or seo.get('default_og_image') }}">
+  <meta property="og:image:alt" content="{{ page.get('og_image_alt') or page.get('title') or site.get('title_default') }}">
 
-  <meta name="twitter:card" content="{{ seo.twitter_card_type }}">
-  <meta name="twitter:title" content="{{ page.og_title or page.title or site.title_default }}">
-  <meta name="twitter:description" content="{{ page.og_description or page.description or site.description_default }}">
-  <meta name="twitter:image" content="{{ page.og_image or seo.default_og_image }}">
+  <meta name="twitter:card" content="{{ seo.get('twitter_card_type') }}">
+  <meta name="twitter:title" content="{{ page.get('og_title') or page.get('title') or site.get('title_default') }}">
+  <meta name="twitter:description" content="{{ page.get('og_description') or page.get('description') or site.get('description_default') }}">
+  <meta name="twitter:image" content="{{ page.get('og_image') or seo.get('default_og_image') }}">
 
-  {% if page.extra_head %}
-    {{ page.extra_head | safe }}
+  {% if extra_head %}
+    {{ extra_head | safe }}
   {% endif %}
 </head>
-<body class="fp-shell page-{{ page.key or 'unknown' }} page-type-{{ page.page_type or 'generic' }}">
+<body class="fp-shell page-{{ page.get('key') or 'unknown' }} page-type-{{ page.get('page_type') or 'generic' }}">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <div class="site-grid" aria-hidden="true"></div>
@@ -51,17 +56,17 @@
   <header class="control-header" data-role="global-header">
     <div class="container header-grid">
       <div class="brand-unit">
-        <a class="logo-link" href="/" aria-label="{{ site.name }} home">
+        <a class="logo-link" href="/" aria-label="{{ site.get('name') }} home">
           <span class="logo-glyph" aria-hidden="true"></span>
-          <span class="logo-text">{{ site.name }}</span>
+          <span class="logo-text">{{ site.get('name') }}</span>
         </a>
-        <p class="brand-tagline">{{ site.tagline }}</p>
+        <p class="brand-tagline">{{ site.get('tagline') }}</p>
       </div>
 
       <div class="header-status" aria-label="System status">
         <span class="spec-node">
           <span class="spec-label">ROLE</span>
-          <span class="spec-value">{{ brand.reference_role }}</span>
+          <span class="spec-value">{{ brand.get('reference_role') }}</span>
         </span>
         <span class="spec-node spec-node--accent">
           <span class="spec-label">STATE</span>
@@ -88,13 +93,13 @@
         aria-label="Primary navigation"
         data-nav-panel>
         <ul class="primary-nav__list">
-          {% for item in navigation.header %}
+          {% for item in navigation.get('header', []) %}
           <li class="primary-nav__item">
             <a
-              class="nav-item {% if page.key == item.key %}active{% endif %}"
-              href="{{ item.href }}"
-              {% if page.key == item.key %}aria-current="page"{% endif %}>
-              {{ item.label }}
+              class="nav-item {% if page.get('key') == item.get('key') %}active{% endif %}"
+              href="{{ item.get('href') }}"
+              {% if page.get('key') == item.get('key') %}aria-current="page"{% endif %}>
+              {{ item.get('label') }}
             </a>
           </li>
           {% endfor %}
@@ -105,15 +110,15 @@
 
   <main id="main-content" class="document-stage">
     <div class="container">
-      {% if page.breadcrumbs %}
+      {% if breadcrumbs %}
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <ol class="breadcrumbs__list">
-          {% for crumb in page.breadcrumbs %}
+          {% for crumb in breadcrumbs %}
           <li class="breadcrumbs__item">
-            {% if crumb.href %}
-            <a class="breadcrumbs__link" href="{{ crumb.href }}">{{ crumb.label }}</a>
+            {% if crumb.get('href') %}
+            <a class="breadcrumbs__link" href="{{ crumb.get('href') }}">{{ crumb.get('label') }}</a>
             {% else %}
-            <span class="breadcrumbs__current" aria-current="page">{{ crumb.label }}</span>
+            <span class="breadcrumbs__current" aria-current="page">{{ crumb.get('label') }}</span>
             {% endif %}
           </li>
           {% endfor %}
@@ -126,56 +131,56 @@
           <div class="doc-meta">
             <span class="spec-node">
               <span class="spec-label">DOC</span>
-              <span class="spec-value">{{ page.key or 'unknown' }}</span>
+              <span class="spec-value">{{ page.get('key') or 'unknown' }}</span>
             </span>
             <span class="spec-node">
               <span class="spec-label">TYPE</span>
-              <span class="spec-value">{{ page.page_type or 'generic' }}</span>
+              <span class="spec-value">{{ page.get('page_type') or 'generic' }}</span>
             </span>
             <span class="spec-node">
               <span class="spec-label">SYSTEM</span>
-              <span class="spec-value">{{ site.name }}</span>
+              <span class="spec-value">{{ site.get('name') }}</span>
             </span>
           </div>
 
-          {% if page.eyebrow or brand.reference_role %}
-          <p class="doc-eyebrow">{{ page.eyebrow or brand.reference_role }}</p>
+          {% if page.get('eyebrow') or brand.get('reference_role') %}
+          <p class="doc-eyebrow">{{ page.get('eyebrow') or brand.get('reference_role') }}</p>
           {% endif %}
 
-          <h1 class="doc-header__title">{{ page.hero.title or page.title or site.title_default }}</h1>
+          <h1 class="doc-header__title">{{ hero.get('title') or page.get('title') or site.get('title_default') }}</h1>
 
-          {% if page.hero.lead %}
-          <p class="doc-header__lead">{{ page.hero.lead }}</p>
-          {% elif page.description %}
-          <p class="doc-header__lead">{{ page.description }}</p>
+          {% if hero.get('lead') %}
+          <p class="doc-header__lead">{{ hero.get('lead') }}</p>
+          {% elif page.get('description') %}
+          <p class="doc-header__lead">{{ page.get('description') }}</p>
           {% endif %}
 
-          {% if page.hero.actions %}
+          {% if hero.get('actions') %}
           <div class="doc-actions">
-            {% for action in page.hero.actions %}
+            {% for action in hero.get('actions', []) %}
             <a
-              class="button {% if action.variant %}button--{{ action.variant }}{% else %}button--primary{% endif %}"
-              href="{{ action.href }}">
-              {{ action.label }}
+              class="button {% if action.get('variant') %}button--{{ action.get('variant') }}{% else %}button--primary{% endif %}"
+              href="{{ action.get('href') }}">
+              {{ action.get('label') }}
             </a>
             {% endfor %}
           </div>
           {% endif %}
 
-          {% if page.hero.panel %}
+          {% if hero_panel %}
           <aside class="hero-panel" aria-label="Context panel">
-            {% if page.hero.panel.kicker %}
-            <p class="hero-panel__kicker">{{ page.hero.panel.kicker }}</p>
+            {% if hero_panel.get('kicker') %}
+            <p class="hero-panel__kicker">{{ hero_panel.get('kicker') }}</p>
             {% endif %}
-            {% if page.hero.panel.title %}
-            <h2 class="hero-panel__title">{{ page.hero.panel.title }}</h2>
+            {% if hero_panel.get('title') %}
+            <h2 class="hero-panel__title">{{ hero_panel.get('title') }}</h2>
             {% endif %}
-            {% if page.hero.panel.body %}
-            <p class="hero-panel__body">{{ page.hero.panel.body }}</p>
+            {% if hero_panel.get('body') %}
+            <p class="hero-panel__body">{{ hero_panel.get('body') }}</p>
             {% endif %}
-            {% if page.hero.panel.points %}
+            {% if hero_panel.get('points') %}
             <ul class="hero-panel__list">
-              {% for point in page.hero.panel.points %}
+              {% for point in hero_panel.get('points', []) %}
               <li class="hero-panel__item">{{ point }}</li>
               {% endfor %}
             </ul>
@@ -184,14 +189,14 @@
           {% endif %}
         </header>
 
-        {% if page.summary %}
+        {% if summary %}
         <section class="document-summary">
-          {% if page.summary.title %}
-          <h2 class="section-title">{{ page.summary.title }}</h2>
+          {% if summary.get('title') %}
+          <h2 class="section-title">{{ summary.get('title') }}</h2>
           {% endif %}
-          {% if page.summary.body %}
+          {% if summary.get('body') %}
           <div class="rich-text rich-text--summary">
-            {{ page.summary.body | safe }}
+            {{ summary.get('body') | safe }}
           </div>
           {% endif %}
         </section>
@@ -206,7 +211,7 @@
           </div>
           <div class="doc-footer__system">
             <span class="spec-label">SYSTEM</span>
-            <span class="spec-value">{{ site.name }}</span>
+            <span class="spec-value">{{ site.get('name') }}</span>
           </div>
         </footer>
       </article>
@@ -216,16 +221,16 @@
   <footer class="site-footer" data-role="global-footer">
     <div class="container site-footer__grid">
       <div class="site-footer__identity">
-        <p class="site-footer__name">{{ site.name }}</p>
-        <p class="site-footer__role">{{ brand.reference_role }}</p>
+        <p class="site-footer__name">{{ site.get('name') }}</p>
+        <p class="site-footer__role">{{ brand.get('reference_role') }}</p>
       </div>
 
       <div class="site-footer__statement">
-        <p>{{ brand.narrative }}</p>
+        <p>{{ brand.get('narrative') }}</p>
       </div>
 
       <div class="site-footer__meta">
-        <p>© {{ page.year or "2026" }} {{ site.name }}</p>
+        <p>© {{ page.get('year') or "2026" }} {{ site.get('name') }}</p>
       </div>
     </div>
   </footer>
