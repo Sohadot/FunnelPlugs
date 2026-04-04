@@ -1,91 +1,459 @@
+from __future__ import annotations
+
 import json
-import os
+import re
+from copy import deepcopy
+from dataclasses import asdict, is_dataclass
+from datetime import datetime, timezone
 from pathlib import Path
-from datetime import datetime
+from typing import Any
 
-# استدعاء الإعدادات من config.py
 try:
-    from config import get_config
-except ImportError:
-    # في حال التشغيل المباشر من مجلد scripts
-    import sys
-    sys.path.append(str(Path(__file__).resolve().parents[1]))
-    from scripts.config import get_config
+    from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
+except ImportError as exc:
+    raise SystemExit(
+        "Jinja2 is required for generate_pages.py. "
+        "Install it locally before running the build workflow."
+    ) from exc
 
-def load_site_data(path: Path):
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+from config import get_config
 
-def build_asset():
-    config = get_config()
-    data = load_site_data(config.paths.data_dir / "site.json")
-    
-    # 1. تحميل القوالب (Templates)
-    base_tpl_path = config.paths.templates_dir / "base.html"
-    page_tpl_path = config.paths.templates_dir / "page.html"
-    
-    if not base_tpl_path.exists() or not page_tpl_path.exists():
-        raise FileNotFoundError("Critical Error: Foundation templates (base/page) are missing.")
 
-    with open(base_tpl_path, 'r', encoding='utf-8') as f:
-        base_html = f.read()
-    with open(page_tpl_path, 'r', encoding='utf-8') as f:
-        page_html = f.read()
+class GenerationError(Exception):
+    """Raised when the sovereign page generation pipeline detects a blocking issue."""
 
-    print(f"--- Sovereign Build Initiated: {data['site']['name']} v{data['site_info'].get('version', '0.1.0')} ---")
 
-    # 2. توليد الصفحات (Core Pages)
-    for page in data['core_pages']:
-        print(f"Processing Layer: {page['key']}...")
-        
-        # Quality Gate Check
-        if not page['title'] or not page['description']:
-            if data['validation']['require_titles']:
-                raise ValueError(f"Sovereign Breach: Page '{page['key']}' missing required metadata.")
+CONFIG = get_config()
+ROOT_DIR = CONFIG.paths.root
+DATA_DIR = CONFIG.paths.data_dir
+TEMPLATES_DIR = CONFIG.paths.templates_dir
+OUTPUT_DIR = CONFIG.paths.output_dir
 
-        # حقن المحتوى في قالب الصفحة
-        # ملاحظة: سنفترض وجود ملفات محتوى منفصلة أو حقن من الـ JSON مباشرة
-        page_content = page.get('content', f"")
-        current_page_body = page_html.replace("{{ page_title }}", page['title'])
-        current_page_body = current_page_body.replace("{{ page_content }}", page_content)
+SITE_DATA_FILE = DATA_DIR / "site.json"
 
-        # حقن الكل في القالب الأساسي
-        final_output = base_html
-        final_output = final_output.replace("{{ title }}", page['title'])
-        final_output = final_output.replace("{{ description }}", page['description'])
-        final_output = final_output.replace("{{ canonical }}", page['canonical'])
-        final_output = final_output.replace("{{ content }}", current_page_body)
-        
-        # حقن بيانات البراند والملاحة
-        final_output = final_output.replace("{{ site_name }}", data['site']['name'])
-        final_output = final_output.replace("{{ tagline }}", data['site']['tagline'])
-        
-        # حفظ الملف في الجذر (Main Output)
-        output_file = config.paths.output_dir / page['file']
-        with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(final_output)
-        
-        print(f"Verified & Generated: {page['file']}")
+REQUIRED_TOP_LEVEL_KEYS = (
+    "site",
+    "brand",
+    "seo",
+    "navigation",
+    "core_pages",
+)
 
-    # 3. توليد الـ Sitemap
-    generate_sitemap(config, data)
+REQUIRED_PAGE_KEYS = (
+    "key",
+    "file",
+    "title",
+    "description",
+    "template",
+    "page_type",
+    "indexable",
+    "canonical",
+)
 
-def generate_sitemap(config, data):
-    today = datetime.now().strftime("%Y-%m-%d")
-    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    
-    for page in data['core_pages']:
-        if page.get('indexable', True):
-            sitemap.append(f"  <url>")
-            sitemap.append(f"    <loc>{page['url']}</loc>")
-            sitemap.append(f"    <lastmod>{today}</lastmod>")
-            sitemap.append(f"    <priority>1.0</priority>")
-            sitemap.append(f"  </url>")
-    
-    sitemap.append("</urlset>")
-    with open(config.paths.output_dir / data['seo']['sitemap_filename'], 'w', encoding='utf-8') as f:
-        f.write("\n".join(sitemap))
-    print("Sitemap Engine: Execution Complete.")
+FORBIDDEN_OUTPUT_SEGMENTS = {
+    "scripts",
+    "templates",
+    "data",
+    "docs",
+    ".github",
+    "__pycache__",
+}
+
+FORBIDDEN_CONTENT_PATTERNS = (
+    re.compile(r"<\s*script\b", re.IGNORECASE),
+    re.compile(r"javascript\s*:", re.IGNORECASE),
+    re.compile(r"\bon\w+\s*=", re.IGNORECASE),
+    re.compile(r"<\s*iframe\b", re.IGNORECASE),
+)
+
+PLACEHOLDER_PATTERNS = (
+    re.compile(r"\bTODO\b", re.IGNORECASE),
+    re.compile(r"\bTBD\b", re.IGNORECASE),
+    re.compile(r"lorem ipsum", re.IGNORECASE),
+    re.compile(r"placeholder", re.IGNORECASE),
+)
+
+RENDER_VALIDATION_PATTERNS = {
+    "title": re.compile(r"<title>.+?</title>", re.IGNORECASE | re.DOTALL),
+    "description": re.compile(
+        r'<meta\s+name="description"\s+content="[^"]+">',
+        re.IGNORECASE,
+    ),
+    "canonical": re.compile(
+        r'<link\s+rel="canonical"\s+href="https://[^"]+">',
+        re.IGNORECASE,
+    ),
+    "h1": re.compile(r"<h1\b[^>]*>.+?</h1>", re.IGNORECASE | re.DOTALL),
+}
+
+CURRENT_YEAR = str(datetime.now(timezone.utc).year)
+
+
+def dataclass_to_dict(value: Any) -> Any:
+    """Safely convert dataclass-based config objects into plain dictionaries."""
+    if is_dataclass(value):
+        return asdict(value)
+    return value
+
+
+def load_site_data() -> dict[str, Any]:
+    """Load and validate the sovereign site data source."""
+    if not SITE_DATA_FILE.exists():
+        raise GenerationError(f"Missing required data file: {SITE_DATA_FILE}")
+
+    try:
+        raw = SITE_DATA_FILE.read_text(encoding="utf-8")
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise GenerationError(f"Invalid JSON in {SITE_DATA_FILE}: {exc}") from exc
+
+    if not isinstance(data, dict):
+        raise GenerationError("site.json must contain a top-level JSON object.")
+
+    for key in REQUIRED_TOP_LEVEL_KEYS:
+        if key not in data:
+            raise GenerationError(f"site.json is missing required top-level key: '{key}'")
+
+    if not isinstance(data["core_pages"], list) or not data["core_pages"]:
+        raise GenerationError("site.json must include a non-empty 'core_pages' array.")
+
+    return data
+
+
+def validate_top_level_data(data: dict[str, Any]) -> None:
+    """Validate core global structures before page generation begins."""
+    site = data["site"]
+    seo = data["seo"]
+    navigation = data["navigation"]
+    core_pages = data["core_pages"]
+
+    if site.get("canonical_url") != CONFIG.site.canonical_url:
+        raise GenerationError(
+            "site.json canonical_url does not match config.py canonical_url. "
+            "The source of truth must remain consistent."
+        )
+
+    if seo.get("preferred_protocol") != "https":
+        raise GenerationError("preferred_protocol must be 'https' for sovereign production output.")
+
+    if not isinstance(navigation, dict) or "header" not in navigation:
+        raise GenerationError("navigation.header is required.")
+
+    if not isinstance(navigation["header"], list):
+        raise GenerationError("navigation.header must be a list.")
+
+    if not isinstance(core_pages, list):
+        raise GenerationError("core_pages must be a list.")
+
+    validate_navigation_targets(data)
+    validate_required_core_pages(data)
+
+
+def validate_required_core_pages(data: dict[str, Any]) -> None:
+    """Ensure all required core files defined in config exist in site.json."""
+    files = {str(page.get("file", "")).strip() for page in data["core_pages"]}
+    missing = [page for page in CONFIG.pages.required_core_pages if page not in files]
+    if missing:
+        raise GenerationError(
+            f"site.json is missing required core pages defined in config.py: {missing}"
+        )
+
+
+def validate_navigation_targets(data: dict[str, Any]) -> None:
+    """Ensure every public navigation target points to an existing declared page."""
+    known_hrefs = {normalize_href_for_match(page.get("file", "")) for page in data["core_pages"]}
+
+    for item in data["navigation"].get("header", []):
+        href = str(item.get("href", "")).strip()
+        if not href:
+            raise GenerationError("A navigation.header entry is missing its href.")
+        if normalize_href_for_match(href) not in known_hrefs:
+            raise GenerationError(
+                f"Navigation target '{href}' does not match any declared core page file."
+            )
+
+
+def normalize_href_for_match(value: str) -> str:
+    """Normalize hrefs like /manifesto.html and manifesto.html for matching."""
+    return value.lstrip("/").strip()
+
+
+def validate_page_definitions(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Validate page-level rules before rendering."""
+    pages = deepcopy(data["core_pages"])
+
+    seen_keys: set[str] = set()
+    seen_files: set[str] = set()
+    seen_slugs: set[str] = set()
+    seen_canonicals: set[str] = set()
+
+    for page in pages:
+        if not isinstance(page, dict):
+            raise GenerationError("Each item in core_pages must be an object.")
+
+        for key in REQUIRED_PAGE_KEYS:
+            if key not in page:
+                raise GenerationError(
+                    f"A page is missing required field '{key}'. Page data: {page}"
+                )
+
+        page_key = require_non_empty_string(page, "key")
+        page_file = require_non_empty_string(page, "file")
+        page_title = require_non_empty_string(page, "title")
+        page_description = require_non_empty_string(page, "description")
+        page_template = require_non_empty_string(page, "template")
+        page_type = require_non_empty_string(page, "page_type")
+        page_canonical = require_non_empty_string(page, "canonical")
+
+        if page_key in seen_keys:
+            raise GenerationError(f"Duplicate page key detected: '{page_key}'")
+        seen_keys.add(page_key)
+
+        if page_file in seen_files:
+            raise GenerationError(f"Duplicate page file detected: '{page_file}'")
+        seen_files.add(page_file)
+
+        slug = str(page.get("slug", "")).strip()
+        if slug:
+            if slug in seen_slugs:
+                raise GenerationError(f"Duplicate page slug detected: '{slug}'")
+            seen_slugs.add(slug)
+
+        if page_canonical in seen_canonicals:
+            raise GenerationError(f"Duplicate canonical URL detected: '{page_canonical}'")
+        seen_canonicals.add(page_canonical)
+
+        validate_page_file(page_file)
+        validate_template_exists(page_template)
+        validate_page_canonical(page_canonical)
+        validate_page_indexability(page)
+        validate_page_text_quality(page_title, "page title")
+        validate_page_text_quality(page_description, "page description")
+        validate_page_content_safety(page)
+
+        page["year"] = CURRENT_YEAR
+        page.setdefault("language", data["site"].get("language", "en"))
+        page.setdefault("direction", data["site"].get("direction", "ltr"))
+        page.setdefault("robots", data["seo"].get("robots_default", "index, follow"))
+        page.setdefault("og_image", data["seo"].get("default_og_image", ""))
+
+        if page_key == "home":
+            if page_file != "index.html":
+                raise GenerationError("The home page must render to index.html.")
+            if slug:
+                raise GenerationError("The home page slug must be empty.")
+            if page_canonical.rstrip("/") != CONFIG.site.canonical_url.rstrip("/"):
+                raise GenerationError(
+                    "The home page canonical must match the site canonical_url exactly."
+                )
+        else:
+            if not slug:
+                raise GenerationError(f"Non-home page '{page_key}' must define a non-empty slug.")
+
+    return pages
+
+
+def require_non_empty_string(page: dict[str, Any], field_name: str) -> str:
+    """Require a non-empty string field on a page."""
+    value = page.get(field_name)
+    if not isinstance(value, str) or not value.strip():
+        raise GenerationError(f"Page '{page.get('key', 'unknown')}' has invalid '{field_name}'.")
+    return value.strip()
+
+
+def validate_page_file(file_value: str) -> None:
+    """Ensure the target output file is safe and root-governed."""
+    path = Path(file_value)
+
+    if path.is_absolute():
+        raise GenerationError(f"Absolute output paths are forbidden: '{file_value}'")
+
+    if any(part in {"..", ""} for part in path.parts[:-1]):
+        raise GenerationError(f"Unsafe relative file path detected: '{file_value}'")
+
+    if path.suffix.lower() != ".html":
+        raise GenerationError(f"Generated page files must end in .html: '{file_value}'")
+
+    if any(part in FORBIDDEN_OUTPUT_SEGMENTS for part in path.parts):
+        raise GenerationError(
+            f"Generated pages may not target protected system directories: '{file_value}'"
+        )
+
+    target = (OUTPUT_DIR / path).resolve()
+    root = OUTPUT_DIR.resolve()
+
+    if not str(target).startswith(str(root)):
+        raise GenerationError(f"Output path escapes the root directory: '{file_value}'")
+
+
+def validate_template_exists(template_name: str) -> None:
+    """Ensure the referenced Jinja template exists."""
+    template_path = TEMPLATES_DIR / template_name
+    if not template_path.exists():
+        raise GenerationError(f"Missing template referenced by page: '{template_name}'")
+
+
+def validate_page_canonical(canonical: str) -> None:
+    """Ensure canonical URLs are sovereign, secure, and root-aligned."""
+    if CONFIG.security.require_https_urls and not canonical.startswith("https://"):
+        raise GenerationError(f"Canonical URL must use HTTPS: '{canonical}'")
+
+    if not canonical.startswith(CONFIG.site.canonical_url):
+        raise GenerationError(
+            "Canonical URL must remain within the sovereign site canonical root: "
+            f"'{canonical}'"
+        )
+
+
+def validate_page_indexability(page: dict[str, Any]) -> None:
+    """Ensure indexability is explicitly declared and coherent."""
+    indexable = page.get("indexable")
+    if not isinstance(indexable, bool):
+        raise GenerationError(
+            f"Page '{page.get('key', 'unknown')}' must declare a boolean 'indexable' field."
+        )
+
+    robots = str(page.get("robots", "")).lower()
+    if not indexable and "noindex" not in robots and robots:
+        raise GenerationError(
+            f"Page '{page.get('key', 'unknown')}' is non-indexable but robots does not contain 'noindex'."
+        )
+
+
+def validate_page_text_quality(value: str, label: str) -> None:
+    """Block obviously weak or placeholder text."""
+    for pattern in PLACEHOLDER_PATTERNS:
+        if pattern.search(value):
+            raise GenerationError(f"Forbidden placeholder pattern detected in {label}: '{value}'")
+
+
+def validate_page_content_safety(page: dict[str, Any]) -> None:
+    """Recursively scan page data for unsafe inline scripting patterns."""
+    def walk(node: Any, path: str) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                walk(value, f"{path}.{key}" if path else key)
+        elif isinstance(node, list):
+            for index, item in enumerate(node):
+                walk(item, f"{path}[{index}]")
+        elif isinstance(node, str):
+            for pattern in FORBIDDEN_CONTENT_PATTERNS:
+                if pattern.search(node):
+                    raise GenerationError(
+                        f"Unsafe content pattern detected in page '{page.get('key')}' at '{path}'."
+                    )
+
+    walk(page, page.get("key", "page"))
+
+
+def build_jinja_environment() -> Environment:
+    """Create a strict Jinja rendering environment."""
+    return Environment(
+        loader=FileSystemLoader(str(TEMPLATES_DIR)),
+        autoescape=select_autoescape(enabled_extensions=("html", "xml")),
+        undefined=StrictUndefined,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+
+
+def build_global_context(data: dict[str, Any]) -> dict[str, Any]:
+    """Build the cross-page global context passed into every template."""
+    return {
+        "site": data["site"],
+        "brand": data["brand"],
+        "seo": data["seo"],
+        "navigation": data["navigation"],
+        "organization": data.get("organization", {}),
+        "system_metadata": data.get("system_metadata", {}),
+    }
+
+
+def render_pages(pages: list[dict[str, Any]], global_context: dict[str, Any]) -> list[Path]:
+    """Render each sovereign page into the live root structure."""
+    env = build_jinja_environment()
+    written_files: list[Path] = []
+
+    for page in pages:
+        template = env.get_template(page["template"])
+        context = {
+            **global_context,
+            "page": page,
+        }
+
+        rendered = template.render(**context)
+        validate_rendered_html(page, rendered)
+
+        output_path = safe_output_path(page["file"])
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(rendered, encoding="utf-8", newline="\n")
+        written_files.append(output_path)
+
+    return written_files
+
+
+def safe_output_path(file_value: str) -> Path:
+    """Resolve a safe final output path under the root live asset directory."""
+    output_path = (OUTPUT_DIR / file_value).resolve()
+    if not str(output_path).startswith(str(OUTPUT_DIR.resolve())):
+        raise GenerationError(f"Blocked unsafe output path resolution: '{file_value}'")
+    return output_path
+
+
+def validate_rendered_html(page: dict[str, Any], html: str) -> None:
+    """Validate critical output integrity after rendering."""
+    if not html.strip():
+        raise GenerationError(f"Rendered output is empty for page '{page['key']}'.")
+
+    if "{{" in html or "{%" in html or "{#" in html:
+        raise GenerationError(
+            f"Unresolved template syntax detected in rendered page '{page['key']}'."
+        )
+
+    for label, pattern in RENDER_VALIDATION_PATTERNS.items():
+        if not pattern.search(html):
+            raise GenerationError(
+                f"Rendered page '{page['key']}' failed output validation: missing {label}."
+            )
+
+    if page["description"] not in html:
+        raise GenerationError(
+            f"Rendered page '{page['key']}' does not include its declared description."
+        )
+
+    if page["title"] not in html:
+        raise GenerationError(
+            f"Rendered page '{page['key']}' does not include its declared title."
+        )
+
+
+def post_render_integrity_check(written_files: list[Path]) -> None:
+    """Perform final output sanity checks across the generated page set."""
+    if not written_files:
+        raise GenerationError("No pages were rendered. The generation pipeline produced nothing.")
+
+    for required_file in CONFIG.pages.required_core_pages:
+        expected = OUTPUT_DIR / required_file
+        if not expected.exists():
+            raise GenerationError(f"Required core output page missing after rendering: '{required_file}'")
+
+
+def main() -> None:
+    """Run the sovereign page generation pipeline."""
+    data = load_site_data()
+    validate_top_level_data(data)
+    pages = validate_page_definitions(data)
+    global_context = build_global_context(data)
+    written_files = render_pages(pages, global_context)
+    post_render_integrity_check(written_files)
+
+    print("Sovereign page generation completed successfully.")
+    for path in written_files:
+        print(f"  - {path.relative_to(ROOT_DIR)}")
+
 
 if __name__ == "__main__":
-    build_asset()
+    try:
+        main()
+    except GenerationError as exc:
+        raise SystemExit(f"[GENERATE_PAGES_ERROR] {exc}") from exc
