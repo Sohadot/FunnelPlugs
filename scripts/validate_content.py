@@ -61,10 +61,14 @@ SHELL_WEAKNESS_PATTERNS = (
 )
 
 UNSAFE_CONTENT_PATTERNS = (
-    re.compile(r"<\s*script\b", re.IGNORECASE),
     re.compile(r"javascript\s*:", re.IGNORECASE),
     re.compile(r"\bon\w+\s*=", re.IGNORECASE),
     re.compile(r"<\s*iframe\b", re.IGNORECASE),
+)
+
+INLINE_SCRIPT_PATTERN = re.compile(
+    r"<\s*script\b(?![^>]*\bsrc=)[^>]*>",
+    re.IGNORECASE,
 )
 
 SITE_CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
