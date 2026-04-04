@@ -1,12 +1,447 @@
 {
-  "id": "LEAK-01",
-  "slug": "trust-collapse",
-  "title": "Trust Collapse",
-  "description": "Decision-stage confidence is under-supported by proof, reassurance, or legitimacy.",
-  "signals": [
-    "hesitation near commitment",
-    "insufficient trust signals",
-    "weak reassurance before action"
-  ],
-  "recommended_plug_classes": ["PLUG-01"]
+  "system_metadata": {
+    "uid": "FP-LEAK-TAXONOMY-RLDE-V1",
+    "version": "1.0.0",
+    "status": "production_foundation",
+    "engine": "Revenue Leak Diagnostic Engine",
+    "engine_version": "v1",
+    "taxonomy_class": "sovereign_structural_leak_classification",
+    "determinism": "rule_based",
+    "auditable": true,
+    "indexable": false,
+    "last_reviewed": "2026-04-04"
+  },
+  "taxonomy": {
+    "id": "TAX-LEAK-001",
+    "slug": "revenue-leak-taxonomy",
+    "title": "Revenue Leak Taxonomy",
+    "description": "A governed classification system for identifying structural leakage across digital conversion paths and linking diagnostic findings to intervention logic.",
+    "positioning": "Sovereign leak classification layer",
+    "purpose": "To translate survey signals and dimensional weakness into interpretable leak classes that can guide recommendation, prioritization, and structured reporting.",
+    "methodology_note": "Leak classes are structural interpretations, not emotional labels or marketing abstractions. They describe where continuity, confidence, clarity, or recovery has weakened the path.",
+    "scope": [
+      "digital funnels",
+      "commercial journeys",
+      "conversion paths",
+      "decision systems",
+      "post-click structures"
+    ],
+    "class_count": 6
+  },
+  "decision_framework": {
+    "primary_class_rule": "The lowest normalized leak-class score becomes the primary leak class when it is materially lower than the rest.",
+    "secondary_class_rule": "The second-lowest normalized leak-class score becomes the secondary leak class when it remains diagnostically meaningful.",
+    "tie_handling_rule": "If two classes are functionally adjacent and their gap is minimal, dual-state interpretation is permitted instead of forced singularity.",
+    "interpretation_rule": "Every leak class must produce an interpretable explanation, strategic risk statement, and plug-class recommendation.",
+    "non_claim_rule": "Leak classification does not imply financial forecasting, market benchmarking, or guaranteed commercial outcomes."
+  },
+  "leak_classes": [
+    {
+      "id": "LEAK-01",
+      "slug": "trust-collapse",
+      "title": "Trust Collapse",
+      "short_title": "Trust Collapse",
+      "status": "active",
+      "class_order": 1,
+      "description": "Decision-stage confidence is under-supported by proof, reassurance, legitimacy, or perceived safety.",
+      "structural_definition": "Trust Collapse occurs when the path reaches a decision boundary without sufficient confidence architecture to sustain commitment. The user may understand the offer, but the system does not give enough structural reason to feel safe proceeding.",
+      "primary_dimensions": [
+        "trust_integrity"
+      ],
+      "secondary_dimensions": [
+        "decision_clarity"
+      ],
+      "trigger_questions": [
+        "Q05",
+        "Q06",
+        "Q07",
+        "Q08"
+      ],
+      "indicative_signals": [
+        "hesitation near commitment",
+        "weak or invisible trust signals",
+        "insufficient reassurance before action",
+        "confidence erosion at the final step",
+        "credibility feels lower than intent"
+      ],
+      "likely_symptoms": [
+        "users reach the decision point but do not convert",
+        "offer appears understandable but still feels unsafe",
+        "late-stage abandonment occurs despite interest",
+        "the path looks incomplete at the moment of trust demand"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is asking for commitment before it has earned enough confidence.",
+        "expanded": "This result suggests that the system is not failing because users cannot understand what is being offered, but because the path does not sufficiently support trust at the point where confidence becomes mandatory. The missing plug is usually not more traffic, but stronger legitimacy, proof, reassurance, or perceived safety."
+      },
+      "strategic_risk": {
+        "level": "high",
+        "statement": "When trust architecture is weak, intent does not disappear; it stalls at the boundary of commitment.",
+        "commercial_implication": "The system may generate interest efficiently while still under-converting because confidence is structurally underbuilt."
+      },
+      "recommended_plug_classes": [
+        "PLUG-01"
+      ],
+      "priority_logic": {
+        "priority_level": "high",
+        "intervention_order": 1,
+        "reason": "Trust deficits often suppress conversion even when upstream messaging and flow are relatively intact."
+      },
+      "related_leaks": [
+        "LEAK-04",
+        "LEAK-05",
+        "LEAK-06"
+      ],
+      "methodology_notes": [
+        "A trust diagnosis should not be confused with generic brand weakness.",
+        "The class is triggered by decision-stage fragility, not by aesthetic preference.",
+        "Trust Collapse may coexist with ambiguity, but confidence remains the dominant failure mode."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Trust Collapse",
+        "summary_sentence": "The path appears to be losing commitment because confidence architecture is weaker than decision demand.",
+        "next_step_sentence": "The recommended first intervention is to reinforce trust infrastructure before attempting more aggressive optimization."
+      }
+    },
+    {
+      "id": "LEAK-02",
+      "slug": "flow-break",
+      "title": "Flow Break",
+      "short_title": "Flow Break",
+      "status": "active",
+      "class_order": 2,
+      "description": "The path loses continuity between stages, creating interruption, disorientation, or movement failure before completion.",
+      "structural_definition": "Flow Break occurs when the visitor cannot move through the path with stable continuity. The path may contain transitions, pauses, step-friction, or structural discontinuities that interrupt momentum.",
+      "primary_dimensions": [
+        "flow_continuity"
+      ],
+      "secondary_dimensions": [
+        "friction_containment",
+        "decision_clarity"
+      ],
+      "trigger_questions": [
+        "Q03",
+        "Q09",
+        "Q10",
+        "Q11",
+        "Q12",
+        "Q18"
+      ],
+      "indicative_signals": [
+        "loss of momentum between steps",
+        "unexpected stopping points",
+        "re-orientation demands during progression",
+        "movement weakness despite initial interest",
+        "fragile continuity after interruption"
+      ],
+      "likely_symptoms": [
+        "users begin the path but fail to reach completion",
+        "the system feels segmented rather than continuous",
+        "progression appears possible but not smooth",
+        "completion intent decays because the path cannot carry it"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is not carrying intent cleanly from entry to action.",
+        "expanded": "This result indicates that the funnel is losing effectiveness through continuity failure rather than outright trust collapse or pure ambiguity. Users may be willing to move, but the structure introduces breaks, pauses, or transition weaknesses that dissipate momentum before conversion."
+      },
+      "strategic_risk": {
+        "level": "high",
+        "statement": "When continuity fails, demand is not always rejected; it is often interrupted into disappearance.",
+        "commercial_implication": "The system may appear functional at a surface level while silently losing conversion through process-level instability."
+      },
+      "recommended_plug_classes": [
+        "PLUG-02"
+      ],
+      "priority_logic": {
+        "priority_level": "high",
+        "intervention_order": 1,
+        "reason": "Continuity failure can nullify otherwise strong intent, trust, or offer quality."
+      },
+      "related_leaks": [
+        "LEAK-03",
+        "LEAK-04",
+        "LEAK-05",
+        "LEAK-06"
+      ],
+      "methodology_notes": [
+        "Flow Break is not simply about page speed or technical latency.",
+        "It describes structural failure in movement logic across the path.",
+        "This class is often underdiagnosed because it hides inside otherwise acceptable interfaces."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Flow Break",
+        "summary_sentence": "The path is not preserving momentum cleanly enough to carry intent into completion.",
+        "next_step_sentence": "The recommended first intervention is to restore continuity and remove discontinuity points before refining other layers."
+      }
+    },
+    {
+      "id": "LEAK-03",
+      "slug": "friction-overload",
+      "title": "Friction Overload",
+      "short_title": "Friction Overload",
+      "status": "active",
+      "class_order": 3,
+      "description": "The path imposes avoidable effort, complexity, or burden that suppresses movement and completion.",
+      "structural_definition": "Friction Overload occurs when the system demands more effort than the user should reasonably expend to continue. This may include unnecessary fields, mental load, confusing interactions, process heaviness, or decision fatigue introduced by the path itself.",
+      "primary_dimensions": [
+        "friction_containment"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity"
+      ],
+      "trigger_questions": [
+        "Q10",
+        "Q11",
+        "Q12"
+      ],
+      "indicative_signals": [
+        "avoidable effort within the path",
+        "complexity-driven drop-off",
+        "user burden exceeds decision readiness",
+        "interaction cost feels disproportionate",
+        "progress is obstructed by process heaviness"
+      ],
+      "likely_symptoms": [
+        "visitors stop because the path asks too much, not because they object",
+        "completion rates degrade during action-heavy steps",
+        "the path feels more demanding than necessary",
+        "drop-off occurs even where the offer remains attractive"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is losing users through process burden rather than lack of interest alone.",
+        "expanded": "This result suggests that the system is structurally heavier than the user's willingness to continue. The issue is not merely that users are unconvinced; it is that the path is demanding unnecessary effort or cognitive energy, causing intent to erode under operational burden."
+      },
+      "strategic_risk": {
+        "level": "high",
+        "statement": "When friction exceeds tolerance, the path destroys momentum faster than persuasion can recover it.",
+        "commercial_implication": "The system may appear logically complete while still leaking heavily because it costs too much effort to pass through."
+      },
+      "recommended_plug_classes": [
+        "PLUG-03"
+      ],
+      "priority_logic": {
+        "priority_level": "high",
+        "intervention_order": 2,
+        "reason": "Friction overload often works in conjunction with flow break but remains a distinct burden source requiring dedicated reduction."
+      },
+      "related_leaks": [
+        "LEAK-02",
+        "LEAK-04"
+      ],
+      "methodology_notes": [
+        "Friction is not synonymous with complexity in the offer itself; it refers to burden introduced by the path.",
+        "This class is especially important when conversion stalls despite interest and clarity.",
+        "The proper response is not always simplification everywhere, but strategic burden reduction."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Friction Overload",
+        "summary_sentence": "The path appears to be imposing more effort than the user should need to continue.",
+        "next_step_sentence": "The recommended first intervention is to reduce unnecessary burden and restore movement efficiency."
+      }
+    },
+    {
+      "id": "LEAK-04",
+      "slug": "decision-ambiguity",
+      "title": "Decision Ambiguity",
+      "short_title": "Decision Ambiguity",
+      "status": "active",
+      "class_order": 4,
+      "description": "The path fails to make the offer, choice, value, or next step sufficiently clear for confident decision-making.",
+      "structural_definition": "Decision Ambiguity occurs when the user lacks sufficient clarity to interpret the offer, understand the value, evaluate the commitment, or identify the right next action. The path may not feel broken, but it remains under-explained at the moment clarity is required.",
+      "primary_dimensions": [
+        "decision_clarity"
+      ],
+      "secondary_dimensions": [
+        "trust_integrity",
+        "flow_continuity"
+      ],
+      "trigger_questions": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q13",
+        "Q14",
+        "Q15",
+        "Q16"
+      ],
+      "indicative_signals": [
+        "weak value clarity",
+        "unclear next step",
+        "choice explanation feels underdeveloped",
+        "hesitation driven by ambiguity rather than resistance",
+        "the user must interpret too much alone"
+      ],
+      "likely_symptoms": [
+        "users linger without committing",
+        "the path feels understandable in parts but not in decision logic",
+        "the system creates uncertainty around what happens next",
+        "conversion is suppressed by interpretive weakness rather than outright objection"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is asking for a decision without enough clarity to support it.",
+        "expanded": "This result indicates that users are not receiving enough interpretive support to understand what is being chosen, why it matters now, or how to proceed confidently. The path may be visually coherent, but the decision logic remains under-expressed."
+      },
+      "strategic_risk": {
+        "level": "high",
+        "statement": "When clarity is weak, users do not always reject the offer; they often defer commitment because the path leaves too much unresolved.",
+        "commercial_implication": "A system with strong traffic and even strong trust can still underperform if the offer remains structurally underexplained."
+      },
+      "recommended_plug_classes": [
+        "PLUG-04"
+      ],
+      "priority_logic": {
+        "priority_level": "high",
+        "intervention_order": 1,
+        "reason": "Decision ambiguity directly suppresses conversion by weakening interpretation at the moment of choice."
+      },
+      "related_leaks": [
+        "LEAK-01",
+        "LEAK-02",
+        "LEAK-06"
+      ],
+      "methodology_notes": [
+        "Decision Ambiguity is not the same as poor copy in general; it is a structural failure in decision support.",
+        "This class can coexist with trust collapse, but the dominant issue here is interpretive insufficiency.",
+        "The right response is not noise or more content, but stronger guided clarity."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Decision Ambiguity",
+        "summary_sentence": "The path appears to be under-supporting the user's ability to interpret the offer and act confidently.",
+        "next_step_sentence": "The recommended first intervention is to strengthen decision guidance before pursuing heavier downstream optimization."
+      }
+    },
+    {
+      "id": "LEAK-05",
+      "slug": "recovery-absence",
+      "title": "Recovery Absence",
+      "short_title": "Recovery Absence",
+      "status": "active",
+      "class_order": 5,
+      "description": "The system lacks sufficient recovery infrastructure to restore intent after hesitation, interruption, or abandonment.",
+      "structural_definition": "Recovery Absence occurs when lost momentum is simply lost. The path has no meaningful continuation logic after interruption, no re-entry architecture, and no systematic attempt to restore intent once the primary flow is broken.",
+      "primary_dimensions": [
+        "recovery_readiness"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity",
+        "trust_integrity"
+      ],
+      "trigger_questions": [
+        "Q17",
+        "Q18",
+        "Q19",
+        "Q20"
+      ],
+      "indicative_signals": [
+        "no structured recovery path",
+        "weak or absent follow-up continuity",
+        "abandonment is final rather than recoverable",
+        "re-entry prompts are weak or missing",
+        "the system is not built to reclaim lost intent"
+      ],
+      "likely_symptoms": [
+        "drop-off becomes permanent too easily",
+        "hesitation is not met with continuation logic",
+        "users who pause are not meaningfully reactivated",
+        "the funnel depends too heavily on first-pass completion"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is losing interrupted intent because it has not built a serious recovery layer.",
+        "expanded": "This result suggests that the system may perform reasonably during a first-pass journey, but lacks the structural capacity to recover interrupted intent. Users who hesitate or leave are not guided back through a governed re-entry path, leaving recoverable demand unclaimed."
+      },
+      "strategic_risk": {
+        "level": "medium_high",
+        "statement": "When recovery is absent, every interruption becomes more expensive than it needs to be.",
+        "commercial_implication": "The system is likely surrendering salvageable demand because continuation logic ends too early."
+      },
+      "recommended_plug_classes": [
+        "PLUG-05"
+      ],
+      "priority_logic": {
+        "priority_level": "medium_high",
+        "intervention_order": 2,
+        "reason": "Recovery weakness matters most once core path clarity and trust are at least minimally viable."
+      },
+      "related_leaks": [
+        "LEAK-01",
+        "LEAK-02"
+      ],
+      "methodology_notes": [
+        "Recovery Absence is not identical to poor email follow-up; it is a structural absence of continuation logic.",
+        "This class becomes especially valuable in systems where intent is real but fragile.",
+        "The correct intervention is not generic retargeting, but governed recovery architecture."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Recovery Absence",
+        "summary_sentence": "The path appears to lose interrupted intent without a strong system for restoring it.",
+        "next_step_sentence": "The recommended first intervention is to build recovery systems that convert interruption into structured re-entry."
+      }
+    },
+    {
+      "id": "LEAK-06",
+      "slug": "message-path-misalignment",
+      "title": "Message-Path Misalignment",
+      "short_title": "Message-Path Misalignment",
+      "status": "active",
+      "class_order": 6,
+      "description": "The promise, context, and action path do not remain sufficiently aligned across the journey.",
+      "structural_definition": "Message-Path Misalignment occurs when what the user expects to continue is not what the path actually delivers or asks them to do. The path may look coherent internally, but it does not faithfully honor the promise and intent that created entry.",
+      "primary_dimensions": [
+        "decision_clarity"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity"
+      ],
+      "trigger_questions": [
+        "Q01",
+        "Q02",
+        "Q04"
+      ],
+      "indicative_signals": [
+        "promise-path discontinuity",
+        "landing path does not fully serve entry intent",
+        "the user is redirected into a structurally different ask",
+        "message and path logic diverge after click",
+        "the system violates expectation continuity"
+      ],
+      "likely_symptoms": [
+        "engagement begins but decays after arrival",
+        "the page may be strong in isolation but wrong in sequence",
+        "conversion is weakened because the path serves a different logic than the promise",
+        "users feel drift between why they came and what they are asked to do"
+      ],
+      "diagnostic_interpretation": {
+        "brief": "The path is not fully honoring the promise and intent that created entry.",
+        "expanded": "This result indicates that the system may be structurally coherent on its own terms, but misaligned relative to user expectation. The leak is not only inside the page; it lives in the discontinuity between what brought the visitor in and what the path actually continues."
+      },
+      "strategic_risk": {
+        "level": "high",
+        "statement": "When promise and path diverge, the system spends acquisition energy only to fracture continuity on arrival.",
+        "commercial_implication": "The funnel may lose relevance immediately after click, causing structural leakage before downstream layers can even matter."
+      },
+      "recommended_plug_classes": [
+        "PLUG-06"
+      ],
+      "priority_logic": {
+        "priority_level": "high",
+        "intervention_order": 1,
+        "reason": "Misalignment can corrupt the entire diagnostic chain by weakening relevance from the first structural moment."
+      },
+      "related_leaks": [
+        "LEAK-04",
+        "LEAK-02",
+        "LEAK-01"
+      ],
+      "methodology_notes": [
+        "This class is about continuity of intent, not just messaging quality.",
+        "A page can be well-designed and still be misaligned with the promise that generated the click.",
+        "The right intervention is re-alignment, not superficial persuasion."
+      ],
+      "output_templates": {
+        "headline": "Primary structural weakness detected: Message-Path Misalignment",
+        "summary_sentence": "The path appears to be breaking continuity between entry promise and on-page action logic.",
+        "next_step_sentence": "The recommended first intervention is to restore message-path alignment before refining local conversion layers."
+      }
+    }
+  ]
 }
