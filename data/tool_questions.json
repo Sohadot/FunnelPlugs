@@ -1,0 +1,17 @@
+{
+  "id": "Q05",
+  "module": "trust_integrity",
+  "label": "How credible does the page feel at the moment of decision?",
+  "type": "scale_1_to_5",
+  "choices": [
+    "Not at all",
+    "Weakly",
+    "Moderately",
+    "Strongly",
+    "Very strongly"
+  ],
+  "reverse_scored": false,
+  "dimensions": ["trust_integrity"],
+  "leak_classes": ["LEAK-01"],
+  "required": true
+}
