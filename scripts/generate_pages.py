@@ -1,4 +1,5 @@
 from __future__ import annotations
+from html import unescape
 
 import json
 import re
@@ -416,16 +417,45 @@ def validate_rendered_html(page: dict[str, Any], html: str) -> None:
                 f"Rendered page '{page['key']}' failed output validation: missing {label}."
             )
 
-    if page["description"] not in html:
+    title_match = TITLE_PATTERN.search(html)
+    description_match = DESCRIPTION_PATTERN.search(html)
+    canonical_match = CANONICAL_PATTERN.search(html)
+    h1_match = H1_PATTERN.search(html)
+
+    rendered_title = normalize_whitespace(unescape(title_match.group(1))) if title_match else ""
+    rendered_description = (
+        normalize_whitespace(unescape(description_match.group(1)))
+        if description_match else ""
+    )
+    rendered_canonical = canonical_match.group(1).strip() if canonical_match else ""
+    rendered_h1 = normalize_whitespace(unescape(h1_match.group(1))) if h1_match else ""
+
+    declared_title = normalize_whitespace(page["title"])
+    declared_description = normalize_whitespace(page["description"])
+    declared_canonical = page["canonical"].strip()
+
+    if rendered_title != declared_title:
         raise GenerationError(
-            f"Rendered page '{page['key']}' does not include its declared description."
+            f"Rendered page '{page['key']}' title mismatch. "
+            f"Rendered='{rendered_title}' Declared='{declared_title}'"
         )
 
-    if page["title"] not in html:
+    if rendered_description != declared_description:
         raise GenerationError(
-            f"Rendered page '{page['key']}' does not include its declared title."
+            f"Rendered page '{page['key']}' description mismatch. "
+            f"Rendered='{rendered_description}' Declared='{declared_description}'"
         )
 
+    if rendered_canonical != declared_canonical:
+        raise GenerationError(
+            f"Rendered page '{page['key']}' canonical mismatch. "
+            f"Rendered='{rendered_canonical}' Declared='{declared_canonical}'"
+        )
+
+    if not rendered_h1:
+        raise GenerationError(
+            f"Rendered page '{page['key']}' does not contain a valid H1."
+        )
 
 def post_render_integrity_check(written_files: list[Path]) -> None:
     """Perform final output sanity checks across the generated page set."""
