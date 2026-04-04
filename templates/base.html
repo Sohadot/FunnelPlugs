@@ -186,4 +186,48 @@
 
         {% if page.summary %}
         <section class="document-summary">
-          {% if page
+          {% if page.summary.title %}
+          <h2 class="section-title">{{ page.summary.title }}</h2>
+          {% endif %}
+          {% if page.summary.body %}
+          <div class="rich-text rich-text--summary">
+            {{ page.summary.body | safe }}
+          </div>
+          {% endif %}
+        </section>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+        <footer class="doc-footer">
+          <div class="doc-footer__seal">
+            <span class="spec-label">STATUS</span>
+            <span class="spec-value">STRUCTURAL_INTEGRITY_ACTIVE</span>
+          </div>
+          <div class="doc-footer__system">
+            <span class="spec-label">SYSTEM</span>
+            <span class="spec-value">{{ site.name }}</span>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" data-role="global-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__identity">
+        <p class="site-footer__name">{{ site.name }}</p>
+        <p class="site-footer__role">{{ brand.reference_role }}</p>
+      </div>
+
+      <div class="site-footer__statement">
+        <p>{{ brand.narrative }}</p>
+      </div>
+
+      <div class="site-footer__meta">
+        <p>© {{ page.year or "2026" }} {{ site.name }}</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
