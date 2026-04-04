@@ -1,8 +1,431 @@
 {
-  "id": "PLUG-01",
-  "slug": "trust-infrastructure",
-  "title": "Trust Infrastructure",
-  "description": "Intervention layers that restore confidence, legitimacy, reassurance, and proof at decision-critical moments.",
-  "intervention_purpose": "Reduce decision-stage hesitation caused by credibility weakness.",
-  "related_leaks": ["LEAK-01"]
+  "system_metadata": {
+    "uid": "FP-PLUG-TAXONOMY-RLDE-V1",
+    "version": "1.0.0",
+    "status": "production_foundation",
+    "engine": "Revenue Leak Diagnostic Engine",
+    "engine_version": "v1",
+    "taxonomy_class": "sovereign_intervention_plug_classification",
+    "determinism": "rule_based",
+    "auditable": true,
+    "indexable": false,
+    "last_reviewed": "2026-04-04"
+  },
+  "taxonomy": {
+    "id": "TAX-PLUG-001",
+    "slug": "plug-taxonomy",
+    "title": "Plug Taxonomy",
+    "description": "A governed intervention classification layer for identifying which structural plug class is required to restore trust, continuity, clarity, recovery, or alignment inside a digital conversion path.",
+    "positioning": "Sovereign intervention taxonomy",
+    "purpose": "To translate diagnosed leak classes into structured intervention logic without collapsing the system into generic software recommendations or decorative solution language.",
+    "methodology_note": "A plug class is not a product listing, template bundle, or software category. It is a structural intervention class that describes what must be restored for the path to recover integrity.",
+    "scope": [
+      "digital funnels",
+      "conversion systems",
+      "commercial paths",
+      "decision environments",
+      "post-click structures"
+    ],
+    "class_count": 6
+  },
+  "decision_framework": {
+    "primary_recommendation_rule": "The primary plug class should correspond to the primary diagnosed leak class unless a stronger upstream structural blocker overrides intervention order.",
+    "secondary_recommendation_rule": "A secondary plug class may be recommended when a second leak class remains materially meaningful and operationally adjacent.",
+    "intervention_order_rule": "Plug classes should be ordered by structural dependency, not by visual attractiveness or implementation convenience.",
+    "non_product_rule": "Plug taxonomy does not identify commercial tools directly in v1. It identifies intervention classes that can later map to systems, patterns, or implementation layers.",
+    "non_claim_rule": "Plug recommendation does not guarantee uplift. It guides structural remediation priority."
+  },
+  "plug_classes": [
+    {
+      "id": "PLUG-01",
+      "slug": "trust-infrastructure",
+      "title": "Trust Infrastructure",
+      "short_title": "Trust Infrastructure",
+      "status": "active",
+      "class_order": 1,
+      "description": "Intervention layers that restore confidence, legitimacy, reassurance, and proof at decision-critical moments.",
+      "structural_definition": "Trust Infrastructure is the plug class used when the path asks for commitment before it has built enough confidence to support that commitment. It reinforces the system's ability to feel credible, safe, legitimate, and decision-worthy.",
+      "intervention_purpose": "To reduce trust-based hesitation and strengthen confidence at conversion boundaries.",
+      "primary_dimensions": [
+        "trust_integrity"
+      ],
+      "secondary_dimensions": [
+        "decision_clarity"
+      ],
+      "response_to_leaks": [
+        "LEAK-01"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-04",
+        "LEAK-05",
+        "LEAK-06"
+      ],
+      "activation_signals": [
+        "weak proof visibility",
+        "low perceived credibility",
+        "hesitation near commitment",
+        "insufficient reassurance before action",
+        "confidence collapse at final step"
+      ],
+      "intervention_mechanisms": [
+        "reassurance layer insertion",
+        "proof architecture reinforcement",
+        "credibility signal elevation",
+        "risk-reduction framing",
+        "decision-stage trust support"
+      ],
+      "deployment_priority": {
+        "default_level": "high",
+        "intervention_order": 1,
+        "reason": "When trust is underbuilt, increased traffic or improved visuals rarely solve the real problem."
+      },
+      "application_surfaces": [
+        "landing pages",
+        "offer pages",
+        "checkout boundaries",
+        "lead capture transitions",
+        "decision steps"
+      ],
+      "strategic_effect": {
+        "primary": "Transforms fragile decision moments into confidence-supported commitment points.",
+        "secondary": "Reduces late-stage leakage caused by credibility weakness rather than offer irrelevance."
+      },
+      "methodology_notes": [
+        "Trust Infrastructure is not just design polish.",
+        "It should be deployed where decision confidence is required, not sprayed across the path indiscriminately.",
+        "This plug class becomes especially important when interest exists but completion stalls."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Trust Infrastructure",
+        "summary_sentence": "The path requires stronger confidence architecture before it can reliably convert intent into commitment.",
+        "next_step_sentence": "Reinforce proof, legitimacy, reassurance, and risk-reduction at decision-critical points."
+      }
+    },
+    {
+      "id": "PLUG-02",
+      "slug": "flow-continuity-layer",
+      "title": "Flow Continuity Layer",
+      "short_title": "Flow Continuity",
+      "status": "active",
+      "class_order": 2,
+      "description": "Intervention layers that preserve movement, reduce transition failure, and maintain continuity from entry to action.",
+      "structural_definition": "Flow Continuity Layer is the plug class used when intent is not being carried cleanly through the path. It restores momentum by reducing structural interruption, transition decay, and discontinuity between stages.",
+      "intervention_purpose": "To protect movement integrity and preserve conversion momentum across the path.",
+      "primary_dimensions": [
+        "flow_continuity"
+      ],
+      "secondary_dimensions": [
+        "friction_containment",
+        "decision_clarity"
+      ],
+      "response_to_leaks": [
+        "LEAK-02"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-03",
+        "LEAK-05",
+        "LEAK-06"
+      ],
+      "activation_signals": [
+        "movement stalls between stages",
+        "unexpected interruption points",
+        "users stop despite intent",
+        "progression feels segmented",
+        "transition logic is structurally weak"
+      ],
+      "intervention_mechanisms": [
+        "continuity restoration",
+        "path-transition simplification",
+        "movement guidance reinforcement",
+        "friction-aware sequencing",
+        "step coherence strengthening"
+      ],
+      "deployment_priority": {
+        "default_level": "high",
+        "intervention_order": 1,
+        "reason": "If the path cannot carry momentum, even strong demand and strong trust become structurally fragile."
+      },
+      "application_surfaces": [
+        "multi-step funnels",
+        "on-page progression paths",
+        "form sequences",
+        "checkout flows",
+        "post-click transitions"
+      ],
+      "strategic_effect": {
+        "primary": "Reduces leakage caused by momentum collapse before completion.",
+        "secondary": "Improves the system's ability to convert intent without demanding repeated re-orientation from the user."
+      },
+      "methodology_notes": [
+        "Flow Continuity is not merely about speed or aesthetics.",
+        "It should be deployed where movement logic is structurally interrupted.",
+        "This plug class often supports, but does not replace, friction reduction."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Flow Continuity Layer",
+        "summary_sentence": "The path requires stronger continuity architecture to carry intent from entry through action.",
+        "next_step_sentence": "Stabilize transitions, preserve momentum, and reduce interruption points across the journey."
+      }
+    },
+    {
+      "id": "PLUG-03",
+      "slug": "friction-reduction-layer",
+      "title": "Friction Reduction Layer",
+      "short_title": "Friction Reduction",
+      "status": "active",
+      "class_order": 3,
+      "description": "Intervention layers that reduce avoidable effort, process burden, and completion drag without degrading structural clarity.",
+      "structural_definition": "Friction Reduction Layer is the plug class used when the path demands more effort than necessary. It reduces operational burden, cognitive strain, and procedural heaviness that suppress movement or completion.",
+      "intervention_purpose": "To remove unnecessary burden so the system can convert with less effort expenditure from the user.",
+      "primary_dimensions": [
+        "friction_containment"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity"
+      ],
+      "response_to_leaks": [
+        "LEAK-03"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-02",
+        "LEAK-04"
+      ],
+      "activation_signals": [
+        "avoidable user effort",
+        "complexity-driven drop-off",
+        "heavy process burden",
+        "cognitive overload during progression",
+        "friction exceeds tolerance"
+      ],
+      "intervention_mechanisms": [
+        "burden reduction",
+        "step compression",
+        "decision-load reduction",
+        "input simplification",
+        "process-lightening logic"
+      ],
+      "deployment_priority": {
+        "default_level": "high",
+        "intervention_order": 2,
+        "reason": "Friction reduction becomes critical once continuity is weak enough to suppress intent through process burden."
+      },
+      "application_surfaces": [
+        "forms",
+        "checkout flows",
+        "appointment systems",
+        "lead capture systems",
+        "interactive conversion steps"
+      ],
+      "strategic_effect": {
+        "primary": "Reduces conversion loss caused by process heaviness rather than offer weakness.",
+        "secondary": "Increases the path's ability to preserve intent under procedural load."
+      },
+      "methodology_notes": [
+        "Friction Reduction should not create under-explained simplicity that harms decision clarity.",
+        "The objective is not minimalism for its own sake, but burden reduction with structural integrity preserved.",
+        "This plug class is most useful where effort is clearly disproportionate to user readiness."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Friction Reduction Layer",
+        "summary_sentence": "The path requires targeted burden reduction to prevent effort from overpowering intent.",
+        "next_step_sentence": "Reduce unnecessary complexity, compress avoidable effort, and restore movement efficiency."
+      }
+    },
+    {
+      "id": "PLUG-04",
+      "slug": "decision-guidance-layer",
+      "title": "Decision Guidance Layer",
+      "short_title": "Decision Guidance",
+      "status": "active",
+      "class_order": 4,
+      "description": "Intervention layers that improve interpretability, value clarity, choice comprehension, and next-step certainty.",
+      "structural_definition": "Decision Guidance Layer is the plug class used when the path does not provide enough interpretive support at the moment of choice. It clarifies what is being offered, why it matters, what happens next, and how the commitment should be understood.",
+      "intervention_purpose": "To reduce ambiguity and support confident decision-making.",
+      "primary_dimensions": [
+        "decision_clarity"
+      ],
+      "secondary_dimensions": [
+        "trust_integrity",
+        "flow_continuity"
+      ],
+      "response_to_leaks": [
+        "LEAK-04"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-01",
+        "LEAK-02",
+        "LEAK-06"
+      ],
+      "activation_signals": [
+        "unclear value proposition",
+        "weak explanation of commitment",
+        "uncertain next step",
+        "ambiguity-driven hesitation",
+        "users must interpret too much on their own"
+      ],
+      "intervention_mechanisms": [
+        "value clarification",
+        "decision-path explanation",
+        "choice architecture guidance",
+        "next-step legibility reinforcement",
+        "interpretive support strengthening"
+      ],
+      "deployment_priority": {
+        "default_level": "high",
+        "intervention_order": 1,
+        "reason": "If the user cannot confidently interpret the offer, the rest of the path loses conversion power."
+      },
+      "application_surfaces": [
+        "landing pages",
+        "pricing pages",
+        "offer pages",
+        "decision modules",
+        "commitment boundaries"
+      ],
+      "strategic_effect": {
+        "primary": "Transforms interpretive hesitation into actionable clarity.",
+        "secondary": "Improves the conversion path's ability to support choice without overloading the user."
+      },
+      "methodology_notes": [
+        "Decision Guidance is not just copy expansion.",
+        "Its purpose is to support interpretation, not simply add more text.",
+        "It becomes especially important when users are interested but structurally under-guided."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Decision Guidance Layer",
+        "summary_sentence": "The path requires stronger interpretive guidance so the user can understand and choose with confidence.",
+        "next_step_sentence": "Clarify the value, the commitment, and the next action before attempting more aggressive persuasion."
+      }
+    },
+    {
+      "id": "PLUG-05",
+      "slug": "recovery-systems-layer",
+      "title": "Recovery Systems Layer",
+      "short_title": "Recovery Systems",
+      "status": "active",
+      "class_order": 5,
+      "description": "Intervention layers that restore lost momentum after hesitation, interruption, or abandonment.",
+      "structural_definition": "Recovery Systems Layer is the plug class used when the path lacks meaningful re-entry architecture. It builds the continuation logic required to reclaim interrupted intent rather than surrender it permanently.",
+      "intervention_purpose": "To convert interruption into recoverable movement instead of terminal loss.",
+      "primary_dimensions": [
+        "recovery_readiness"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity",
+        "trust_integrity"
+      ],
+      "response_to_leaks": [
+        "LEAK-05"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-01",
+        "LEAK-02"
+      ],
+      "activation_signals": [
+        "no structured recovery path",
+        "abandonment remains unrecovered",
+        "follow-up continuity is weak",
+        "re-entry prompts are absent or ineffective",
+        "the system depends too heavily on first-pass completion"
+      ],
+      "intervention_mechanisms": [
+        "re-entry path construction",
+        "follow-up continuation design",
+        "intent reactivation logic",
+        "abandonment response layering",
+        "reassurance-driven recovery sequencing"
+      ],
+      "deployment_priority": {
+        "default_level": "medium_high",
+        "intervention_order": 2,
+        "reason": "Recovery systems matter most once the primary path has at least basic structural viability."
+      },
+      "application_surfaces": [
+        "abandonment flows",
+        "follow-up sequences",
+        "re-entry prompts",
+        "post-interruption experiences",
+        "continuation systems"
+      ],
+      "strategic_effect": {
+        "primary": "Recovers intent that would otherwise be lost after interruption.",
+        "secondary": "Expands the path from first-pass conversion logic into governed continuation logic."
+      },
+      "methodology_notes": [
+        "Recovery Systems are not generic reminders alone.",
+        "They should be structurally connected to the diagnosed interruption pattern.",
+        "This plug class becomes more valuable as funnel interruptions become more common but still recoverable."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Recovery Systems Layer",
+        "summary_sentence": "The path requires stronger continuation and re-entry logic after hesitation or abandonment.",
+        "next_step_sentence": "Build structured recovery paths that reclaim interrupted intent instead of letting it disappear."
+      }
+    },
+    {
+      "id": "PLUG-06",
+      "slug": "alignment-reinforcement-layer",
+      "title": "Alignment Reinforcement Layer",
+      "short_title": "Alignment Reinforcement",
+      "status": "active",
+      "class_order": 6,
+      "description": "Intervention layers that restore continuity between promise, context, intent, and path action logic.",
+      "structural_definition": "Alignment Reinforcement Layer is the plug class used when the path does not faithfully continue the expectation that created entry. It reinforces continuity between pre-click promise, on-page narrative, and action-path logic so the system remains structurally coherent from arrival to decision.",
+      "intervention_purpose": "To eliminate expectation drift and restore promise-path continuity.",
+      "primary_dimensions": [
+        "decision_clarity"
+      ],
+      "secondary_dimensions": [
+        "flow_continuity"
+      ],
+      "response_to_leaks": [
+        "LEAK-06"
+      ],
+      "secondary_fit_leaks": [
+        "LEAK-04",
+        "LEAK-02",
+        "LEAK-01"
+      ],
+      "activation_signals": [
+        "promise and page logic diverge",
+        "entry intent is not being structurally served",
+        "the path asks for something different than what was implied",
+        "the user arrives with one expectation but meets another path logic",
+        "conversion weakens because continuity of intent was broken at arrival"
+      ],
+      "intervention_mechanisms": [
+        "message-path continuity restoration",
+        "promise alignment reinforcement",
+        "intent preservation logic",
+        "entry-to-action coherence repair",
+        "contextual expectation support"
+      ],
+      "deployment_priority": {
+        "default_level": "high",
+        "intervention_order": 1,
+        "reason": "Misalignment can contaminate the entire path before local optimization layers have a chance to work."
+      },
+      "application_surfaces": [
+        "ads-to-landing transitions",
+        "email-to-page transitions",
+        "campaign entry paths",
+        "offer entry sequences",
+        "top-of-path decision environments"
+      ],
+      "strategic_effect": {
+        "primary": "Restores continuity between why the user entered and what the path actually asks them to do.",
+        "secondary": "Improves relevance retention and reduces leakage caused by expectation violation."
+      },
+      "methodology_notes": [
+        "Alignment Reinforcement is not generic messaging refinement alone.",
+        "It must repair continuity at the structural level, not just improve wording.",
+        "This plug class is especially important when traffic quality appears strong but arrival relevance decays immediately."
+      ],
+      "output_templates": {
+        "headline": "Recommended primary plug class: Alignment Reinforcement Layer",
+        "summary_sentence": "The path requires stronger continuity between the entry promise and the action logic that follows.",
+        "next_step_sentence": "Restore promise-path alignment before refining lower-path conversion details."
+      }
+    }
+  ]
 }
