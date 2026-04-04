@@ -74,6 +74,24 @@ PLACEHOLDER_PATTERNS = (
     re.compile(r"placeholder", re.IGNORECASE),
 )
 
+TITLE_PATTERN = re.compile(r"<title>(.+?)</title>", re.IGNORECASE | re.DOTALL)
+
+DESCRIPTION_PATTERN = re.compile(
+    r'<meta\s+name="description"\s+content="([^"]+)"',
+    re.IGNORECASE,
+)
+
+CANONICAL_PATTERN = re.compile(
+    r'<link\s+rel="canonical"\s+href="([^"]+)"',
+    re.IGNORECASE,
+)
+
+H1_PATTERN = re.compile(
+    r"<h1\b[^>]*>(.+?)</h1>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
 RENDER_VALIDATION_PATTERNS = {
     "title": re.compile(r"<title>.+?</title>", re.IGNORECASE | re.DOTALL),
     "description": re.compile(
