@@ -1,0 +1,8 @@
+{
+  "id": "PLUG-01",
+  "slug": "trust-infrastructure",
+  "title": "Trust Infrastructure",
+  "description": "Intervention layers that restore confidence, legitimacy, reassurance, and proof at decision-critical moments.",
+  "intervention_purpose": "Reduce decision-stage hesitation caused by credibility weakness.",
+  "related_leaks": ["LEAK-01"]
+}
