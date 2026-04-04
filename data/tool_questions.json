@@ -1,17 +1,583 @@
 {
-  "id": "Q05",
-  "module": "trust_integrity",
-  "label": "How credible does the page feel at the moment of decision?",
-  "type": "scale_1_to_5",
-  "choices": [
-    "Not at all",
-    "Weakly",
-    "Moderately",
-    "Strongly",
-    "Very strongly"
+  "system_metadata": {
+    "uid": "FP-TOOL-QUESTIONS-RLDE-V1",
+    "version": "1.0.0",
+    "status": "production_foundation",
+    "engine": "Revenue Leak Diagnostic Engine",
+    "engine_version": "v1",
+    "governance_class": "sovereign_reference_instrument",
+    "determinism": "rule_based",
+    "auditable": true,
+    "indexable": false,
+    "last_reviewed": "2026-04-04"
+  },
+  "tool": {
+    "id": "TOOL-001",
+    "slug": "revenue-leak-diagnostic-engine",
+    "title": "Revenue Leak Diagnostic Engine",
+    "short_title": "Leak Diagnostic Engine",
+    "description": "A governed diagnostic instrument for identifying structural revenue leakage across digital funnels and determining the intervention logic required to restore flow, trust, clarity, and recovery.",
+    "purpose": "To classify structural leakage, score funnel integrity dimensions, and recommend the appropriate plug classes without resorting to decorative metrics or unsupported financial claims.",
+    "positioning": "Sovereign structural diagnostic instrument",
+    "methodology_note": "This instrument is a structural diagnostic model. It does not produce financial forecasts, market benchmarks, or unsupported performance claims. It evaluates declared funnel conditions through governed scoring and decision logic.",
+    "estimated_completion_minutes": 4,
+    "question_count": 20,
+    "module_count": 5,
+    "output_model": "dimension_scores_plus_leak_classification_plus_plug_recommendation",
+    "confidence_model": "not_used_in_v1"
+  },
+  "answer_model": {
+    "id": "ANSWER-MODEL-001",
+    "type": "scale_1_to_5",
+    "normalization": {
+      "min_value": 1,
+      "max_value": 5,
+      "target_output_scale": "0_to_100"
+    },
+    "choice_sets": {
+      "scale_1_to_5_standard": [
+        {
+          "value": 1,
+          "label": "Not at all"
+        },
+        {
+          "value": 2,
+          "label": "Weakly"
+        },
+        {
+          "value": 3,
+          "label": "Moderately"
+        },
+        {
+          "value": 4,
+          "label": "Strongly"
+        },
+        {
+          "value": 5,
+          "label": "Very strongly"
+        }
+      ],
+      "scale_1_to_5_mismatch": [
+        {
+          "value": 1,
+          "label": "Severe mismatch"
+        },
+        {
+          "value": 2,
+          "label": "Significant mismatch"
+        },
+        {
+          "value": 3,
+          "label": "Some mismatch"
+        },
+        {
+          "value": 4,
+          "label": "Minor mismatch"
+        },
+        {
+          "value": 5,
+          "label": "No mismatch"
+        }
+      ]
+    }
+  },
+  "modules": [
+    {
+      "id": "MOD-01",
+      "slug": "message_and_intent_alignment",
+      "title": "Message and Intent Alignment",
+      "order": 1,
+      "description": "Evaluates whether pre-click promise, landing-page narrative, user intent, and next-step logic remain structurally aligned."
+    },
+    {
+      "id": "MOD-02",
+      "slug": "trust_integrity",
+      "title": "Trust Integrity",
+      "order": 2,
+      "description": "Evaluates whether the path sustains confidence, legitimacy, reassurance, and proof at decision-critical moments."
+    },
+    {
+      "id": "MOD-03",
+      "slug": "flow_and_friction",
+      "title": "Flow and Friction",
+      "order": 3,
+      "description": "Evaluates continuity of movement, interruption risk, and the extent of unnecessary effort within the path."
+    },
+    {
+      "id": "MOD-04",
+      "slug": "decision_clarity",
+      "title": "Decision Clarity",
+      "order": 4,
+      "description": "Evaluates whether the visitor can understand the offer, the value, the choice, and the next action without ambiguity."
+    },
+    {
+      "id": "MOD-05",
+      "slug": "recovery_and_continuation",
+      "title": "Recovery and Continuation",
+      "order": 5,
+      "description": "Evaluates whether the system is capable of restoring momentum after hesitation, interruption, or abandonment."
+    }
   ],
-  "reverse_scored": false,
-  "dimensions": ["trust_integrity"],
-  "leak_classes": ["LEAK-01"],
-  "required": true
+  "questions": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "module_id": "MOD-01",
+      "module_slug": "message_and_intent_alignment",
+      "label": "How clearly does your landing page continue the promise made before the click?",
+      "short_label": "Promise continuity after click",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-06"],
+      "weight": 1.0,
+      "rationale": "Measures continuity between pre-click intent and on-page structural fulfillment."
+    },
+    {
+      "id": "Q02",
+      "order": 2,
+      "module_id": "MOD-01",
+      "module_slug": "message_and_intent_alignment",
+      "label": "Does the visitor immediately understand what is being offered and for whom it is intended?",
+      "short_label": "Offer recognition clarity",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-04", "LEAK-06"],
+      "weight": 1.0,
+      "rationale": "Measures whether the path establishes immediate interpretive clarity."
+    },
+    {
+      "id": "Q03",
+      "order": 3,
+      "module_id": "MOD-01",
+      "module_slug": "message_and_intent_alignment",
+      "label": "Is the next step on the page obvious without requiring interpretation?",
+      "short_label": "Next-step obviousness",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity", "flow_continuity"],
+      "leak_classes": ["LEAK-04", "LEAK-02"],
+      "weight": 1.0,
+      "rationale": "Measures whether decision movement is structurally signposted."
+    },
+    {
+      "id": "Q04",
+      "order": 4,
+      "module_id": "MOD-01",
+      "module_slug": "message_and_intent_alignment",
+      "label": "Is there a visible mismatch between user intent and the action path offered on the page?",
+      "short_label": "Intent-path mismatch",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_mismatch",
+      "choices": [
+        { "value": 1, "label": "Severe mismatch" },
+        { "value": 2, "label": "Significant mismatch" },
+        { "value": 3, "label": "Some mismatch" },
+        { "value": 4, "label": "Minor mismatch" },
+        { "value": 5, "label": "No mismatch" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity", "flow_continuity"],
+      "leak_classes": ["LEAK-06"],
+      "weight": 1.2,
+      "rationale": "Measures whether the path structurally serves the intent that brought the visitor to it."
+    },
+    {
+      "id": "Q05",
+      "order": 5,
+      "module_id": "MOD-02",
+      "module_slug": "trust_integrity",
+      "label": "How credible does the page feel at the moment of decision?",
+      "short_label": "Decision-stage credibility",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["trust_integrity"],
+      "leak_classes": ["LEAK-01"],
+      "weight": 1.3,
+      "rationale": "Measures perceived legitimacy and trustworthiness at commitment boundary."
+    },
+    {
+      "id": "Q06",
+      "order": 6,
+      "module_id": "MOD-02",
+      "module_slug": "trust_integrity",
+      "label": "How visible are trust signals such as proof, reassurance, legitimacy, or risk reduction?",
+      "short_label": "Trust signal visibility",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["trust_integrity"],
+      "leak_classes": ["LEAK-01"],
+      "weight": 1.1,
+      "rationale": "Measures the presence of trust infrastructure visible to the user."
+    },
+    {
+      "id": "Q07",
+      "order": 7,
+      "module_id": "MOD-02",
+      "module_slug": "trust_integrity",
+      "label": "Does the visitor receive enough reassurance before committing to the next step?",
+      "short_label": "Pre-commit reassurance sufficiency",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["trust_integrity"],
+      "leak_classes": ["LEAK-01"],
+      "weight": 1.0,
+      "rationale": "Measures whether the path reduces hesitation before commitment."
+    },
+    {
+      "id": "Q08",
+      "order": 8,
+      "module_id": "MOD-02",
+      "module_slug": "trust_integrity",
+      "label": "How likely is hesitation caused by a lack of confidence in the page or offer?",
+      "short_label": "Confidence-driven hesitation risk",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": true,
+      "required": true,
+      "dimensions": ["trust_integrity"],
+      "leak_classes": ["LEAK-01"],
+      "weight": 1.2,
+      "rationale": "Measures whether the page introduces trust-related hesitation instead of removing it."
+    },
+    {
+      "id": "Q09",
+      "order": 9,
+      "module_id": "MOD-03",
+      "module_slug": "flow_and_friction",
+      "label": "How smooth is the progression from initial interest to action?",
+      "short_label": "Interest-to-action smoothness",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["flow_continuity"],
+      "leak_classes": ["LEAK-02"],
+      "weight": 1.2,
+      "rationale": "Measures structural continuity from intent to conversion action."
+    },
+    {
+      "id": "Q10",
+      "order": 10,
+      "module_id": "MOD-03",
+      "module_slug": "flow_and_friction",
+      "label": "How much unnecessary effort is required to continue through the path?",
+      "short_label": "Unnecessary effort burden",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": true,
+      "required": true,
+      "dimensions": ["flow_continuity", "friction_containment"],
+      "leak_classes": ["LEAK-02", "LEAK-03"],
+      "weight": 1.2,
+      "rationale": "Measures burden and drag introduced by avoidable process friction."
+    },
+    {
+      "id": "Q11",
+      "order": 11,
+      "module_id": "MOD-03",
+      "module_slug": "flow_and_friction",
+      "label": "Are there points where the user is forced to stop, think, or re-orient unexpectedly?",
+      "short_label": "Unexpected re-orientation points",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": true,
+      "required": true,
+      "dimensions": ["flow_continuity", "friction_containment"],
+      "leak_classes": ["LEAK-02", "LEAK-03"],
+      "weight": 1.1,
+      "rationale": "Measures whether continuity is interrupted by structural disorientation."
+    },
+    {
+      "id": "Q12",
+      "order": 12,
+      "module_id": "MOD-03",
+      "module_slug": "flow_and_friction",
+      "label": "How likely is drop-off caused by process complexity rather than offer weakness?",
+      "short_label": "Complexity-driven drop-off risk",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": true,
+      "required": true,
+      "dimensions": ["flow_continuity", "friction_containment"],
+      "leak_classes": ["LEAK-03", "LEAK-02"],
+      "weight": 1.3,
+      "rationale": "Measures whether process architecture itself is suppressing completion."
+    },
+    {
+      "id": "Q13",
+      "order": 13,
+      "module_id": "MOD-04",
+      "module_slug": "decision_clarity",
+      "label": "How clear is the value proposition at the decision point?",
+      "short_label": "Value proposition clarity",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-04"],
+      "weight": 1.2,
+      "rationale": "Measures whether the offer remains interpretable at the moment of commitment."
+    },
+    {
+      "id": "Q14",
+      "order": 14,
+      "module_id": "MOD-04",
+      "module_slug": "decision_clarity",
+      "label": "How easy is it to understand why this offer should be chosen now?",
+      "short_label": "Why-now clarity",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-04"],
+      "weight": 1.0,
+      "rationale": "Measures urgency and choice logic intelligibility."
+    },
+    {
+      "id": "Q15",
+      "order": 15,
+      "module_id": "MOD-04",
+      "module_slug": "decision_clarity",
+      "label": "How clearly are options, outcomes, or commitments explained?",
+      "short_label": "Commitment explanation clarity",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-04"],
+      "weight": 1.1,
+      "rationale": "Measures whether the commitment boundary is explained without ambiguity."
+    },
+    {
+      "id": "Q16",
+      "order": 16,
+      "module_id": "MOD-04",
+      "module_slug": "decision_clarity",
+      "label": "How likely is hesitation caused by ambiguity rather than resistance?",
+      "short_label": "Ambiguity-driven hesitation risk",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": true,
+      "required": true,
+      "dimensions": ["decision_clarity"],
+      "leak_classes": ["LEAK-04"],
+      "weight": 1.3,
+      "rationale": "Measures whether confusion, rather than objection, is suppressing movement."
+    },
+    {
+      "id": "Q17",
+      "order": 17,
+      "module_id": "MOD-05",
+      "module_slug": "recovery_and_continuation",
+      "label": "If a visitor hesitates or leaves, is there a structured recovery path in place?",
+      "short_label": "Structured recovery presence",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["recovery_readiness"],
+      "leak_classes": ["LEAK-05"],
+      "weight": 1.3,
+      "rationale": "Measures whether the system is structurally prepared to re-engage lost intent."
+    },
+    {
+      "id": "Q18",
+      "order": 18,
+      "module_id": "MOD-05",
+      "module_slug": "recovery_and_continuation",
+      "label": "How strong is your follow-up continuity after interruption?",
+      "short_label": "Follow-up continuity strength",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["recovery_readiness", "flow_continuity"],
+      "leak_classes": ["LEAK-05", "LEAK-02"],
+      "weight": 1.0,
+      "rationale": "Measures whether interruption leads to structural continuity or silent decay."
+    },
+    {
+      "id": "Q19",
+      "order": 19,
+      "module_id": "MOD-05",
+      "module_slug": "recovery_and_continuation",
+      "label": "Do visitors receive re-entry prompts, reminders, or reassurance after abandonment?",
+      "short_label": "Re-entry prompting presence",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["recovery_readiness"],
+      "leak_classes": ["LEAK-05"],
+      "weight": 1.1,
+      "rationale": "Measures whether the system attempts structured reactivation after abandonment."
+    },
+    {
+      "id": "Q20",
+      "order": 20,
+      "module_id": "MOD-05",
+      "module_slug": "recovery_and_continuation",
+      "label": "How prepared is the system to restore lost intent rather than simply lose it?",
+      "short_label": "Intent restoration preparedness",
+      "type": "scale_1_to_5",
+      "choice_set": "scale_1_to_5_standard",
+      "choices": [
+        { "value": 1, "label": "Not at all" },
+        { "value": 2, "label": "Weakly" },
+        { "value": 3, "label": "Moderately" },
+        { "value": 4, "label": "Strongly" },
+        { "value": 5, "label": "Very strongly" }
+      ],
+      "reverse_scored": false,
+      "required": true,
+      "dimensions": ["recovery_readiness"],
+      "leak_classes": ["LEAK-05"],
+      "weight": 1.2,
+      "rationale": "Measures whether recovery is a built system property rather than an absence zone."
+    }
+  ]
 }
