@@ -1,37 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% if page.summary %}
-  <section class="content-section content-section--summary">
-    <div class="section-card section-card--summary">
-      {% if page.summary.title %}
-      <header class="section-header">
-        <h2 class="section-title">{{ page.summary.title }}</h2>
-      </header>
-      {% endif %}
-
-      {% if page.summary.body %}
-      <div class="rich-text rich-text--lead">
-        {{ page.summary.body | safe }}
-      </div>
-      {% endif %}
-    </div>
-  </section>
-  {% endif %}
-
   {% if page.metrics %}
   <section class="content-section content-section--metrics" aria-label="Key metrics">
-    <div class="metrics-grid">
+    <div class="metric-grid">
       {% for metric in page.metrics %}
       <article class="metric-card">
         {% if metric.label %}
         <p class="metric-card__label">{{ metric.label }}</p>
         {% endif %}
-
         {% if metric.value %}
         <p class="metric-card__value">{{ metric.value }}</p>
         {% endif %}
-
         {% if metric.note %}
         <p class="metric-card__note">{{ metric.note }}</p>
         {% endif %}
@@ -48,17 +28,15 @@
       {% if section.id %}id="{{ section.id }}"{% endif %}
       {% if section.aria_label %}aria-label="{{ section.aria_label }}"{% endif %}>
 
-      <div class="section-card {% if section.emphasis %}section-card--emphasis{% endif %}">
+      <div class="section-block {% if section.emphasis %}section-block--emphasis{% endif %}">
         {% if section.kicker or section.title or section.subtitle %}
-        <header class="section-header">
+        <header class="section-head">
           {% if section.kicker %}
           <p class="section-kicker">{{ section.kicker }}</p>
           {% endif %}
-
           {% if section.title %}
           <h2 class="section-title">{{ section.title }}</h2>
           {% endif %}
-
           {% if section.subtitle %}
           <p class="section-subtitle">{{ section.subtitle }}</p>
           {% endif %}
@@ -71,13 +49,13 @@
             {{ section.body | safe }}
           </div>
           {% endif %}
+
         {% elif section.type == "list" %}
           {% if section.intro %}
           <div class="rich-text">
             {{ section.intro | safe }}
           </div>
           {% endif %}
-
           {% if section.items %}
           <ul class="structured-list">
             {% for item in section.items %}
@@ -85,7 +63,6 @@
               {% if item.title %}
               <h3 class="structured-list__title">{{ item.title }}</h3>
               {% endif %}
-
               {% if item.body %}
               <div class="structured-list__body rich-text">
                 {{ item.body | safe }}
@@ -95,13 +72,13 @@
             {% endfor %}
           </ul>
           {% endif %}
+
         {% elif section.type == "cards" %}
           {% if section.intro %}
           <div class="rich-text">
             {{ section.intro | safe }}
           </div>
           {% endif %}
-
           {% if section.cards %}
           <div class="card-grid {% if section.columns %}card-grid--{{ section.columns }}{% endif %}">
             {% for card in section.cards %}
@@ -109,17 +86,14 @@
               {% if card.eyebrow %}
               <p class="info-card__eyebrow">{{ card.eyebrow }}</p>
               {% endif %}
-
               {% if card.title %}
               <h3 class="info-card__title">{{ card.title }}</h3>
               {% endif %}
-
               {% if card.body %}
               <div class="info-card__body rich-text">
                 {{ card.body | safe }}
               </div>
               {% endif %}
-
               {% if card.link %}
               <p class="info-card__action">
                 <a class="text-link" href="{{ card.link.href }}">{{ card.link.label }}</a>
@@ -129,9 +103,10 @@
             {% endfor %}
           </div>
           {% endif %}
+
         {% elif section.type == "matrix" %}
           {% if section.rows %}
-          <div class="matrix-table-wrap">
+          <div class="matrix-wrap">
             <table class="matrix-table">
               {% if section.columns %}
               <thead>
@@ -154,16 +129,17 @@
             </table>
           </div>
           {% endif %}
+
         {% elif section.type == "quote" %}
           <blockquote class="reference-quote">
             {% if section.body %}
             <p class="reference-quote__body">{{ section.body }}</p>
             {% endif %}
-
             {% if section.attribution %}
             <footer class="reference-quote__footer">{{ section.attribution }}</footer>
             {% endif %}
           </blockquote>
+
         {% elif section.type == "callout" %}
           <aside class="callout callout--{{ section.variant or 'default' }}">
             {% if section.body %}
@@ -172,6 +148,7 @@
             </div>
             {% endif %}
           </aside>
+
         {% elif section.type == "cta" %}
           <div class="cta-block">
             {% if section.body %}
@@ -179,7 +156,6 @@
               {{ section.body | safe }}
             </div>
             {% endif %}
-
             {% if section.actions %}
             <div class="cta-block__actions">
               {% for action in section.actions %}
@@ -192,6 +168,7 @@
             </div>
             {% endif %}
           </div>
+
         {% else %}
           {% if section.body %}
           <div class="rich-text">
@@ -204,7 +181,7 @@
     {% endfor %}
   {% elif page.body %}
   <section class="content-section">
-    <div class="section-card">
+    <div class="section-block">
       <div class="rich-text">
         {{ page.body | safe }}
       </div>
@@ -212,9 +189,9 @@
   </section>
   {% else %}
   <section class="content-section">
-    <div class="section-card">
+    <div class="section-block">
       <h2 class="section-title">Structured page shell active</h2>
-      <p class="section-body">
+      <p class="section-subtitle">
         This page is connected to the sovereign rendering system and is ready to receive validated structured content.
       </p>
     </div>
@@ -223,23 +200,21 @@
 
   {% if page.related_pages %}
   <section class="content-section content-section--related" aria-label="Related pages">
-    <div class="section-card">
-      <header class="section-header">
+    <div class="section-block">
+      <header class="section-head">
         <p class="section-kicker">Related structure</p>
         <h2 class="section-title">Continue through the system</h2>
       </header>
 
       <div class="card-grid card-grid--3">
         {% for item in page.related_pages %}
-        <article class="info-card info-card--link">
+        <article class="info-card info-card--linked">
           {% if item.eyebrow %}
           <p class="info-card__eyebrow">{{ item.eyebrow }}</p>
           {% endif %}
-
           <h3 class="info-card__title">
             <a class="text-link text-link--block" href="{{ item.href }}">{{ item.label }}</a>
           </h3>
-
           {% if item.description %}
           <p class="info-card__body-text">{{ item.description }}</p>
           {% endif %}
