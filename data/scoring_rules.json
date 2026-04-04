@@ -1,0 +1,414 @@
+{
+  "system_metadata": {
+    "uid": "FP-SCORING-RULES-RLDE-V1",
+    "version": "1.0.0",
+    "status": "production_foundation",
+    "engine": "Revenue Leak Diagnostic Engine",
+    "engine_version": "v1",
+    "rule_class": "sovereign_structural_scoring_framework",
+    "determinism": "rule_based",
+    "auditable": true,
+    "indexable": false,
+    "last_reviewed": "2026-04-04"
+  },
+  "framework": {
+    "id": "SCORING-FRAMEWORK-001",
+    "slug": "revenue-leak-diagnostic-engine-scoring-framework",
+    "title": "Revenue Leak Diagnostic Engine Scoring Framework",
+    "description": "A governed scoring framework that converts questionnaire responses into dimension scores, leak signals, integrity bands, and intervention priority without relying on unsupported financial forecasts or black-box inference.",
+    "positioning": "Sovereign scoring and diagnostic ruleset",
+    "methodology_note": "All outputs in v1 are derived from declared questionnaire inputs, governed weights, reverse-scoring rules, and deterministic aggregation logic. No predictive claims, market comparisons, or hidden model behavior are used.",
+    "output_model": "dimension_scores_plus_leak_signal_scores_plus_integrity_status_plus_intervention_priority"
+  },
+  "answer_model": {
+    "type": "scale_1_to_5",
+    "raw_value_range": {
+      "min": 1,
+      "max": 5
+    },
+    "normalized_score_formula": {
+      "standard": "((value - 1) / 4) * 100",
+      "reverse_scored": "((5 - value) / 4) * 100"
+    },
+    "normalized_score_examples": {
+      "standard": {
+        "1": 0,
+        "2": 25,
+        "3": 50,
+        "4": 75,
+        "5": 100
+      },
+      "reverse_scored": {
+        "1": 100,
+        "2": 75,
+        "3": 50,
+        "4": 25,
+        "5": 0
+      }
+    },
+    "missing_answer_policy": {
+      "required_questions_block_output": true,
+      "allow_partial_scoring": false,
+      "reason": "v1 does not permit structural diagnostics from incomplete declared conditions."
+    }
+  },
+  "dimension_scoring": {
+    "dimensions": [
+      {
+        "id": "DIM-01",
+        "slug": "trust_integrity",
+        "title": "Trust Integrity",
+        "description": "Measures the extent to which the path sustains confidence, legitimacy, reassurance, and decision-stage trust.",
+        "scoring_model": "weighted_average_of_question_scores",
+        "normalization_target": "0_to_100",
+        "questions": [
+          { "id": "Q05", "weight": 1.3, "reverse_scored": false },
+          { "id": "Q06", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q07", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q08", "weight": 1.2, "reverse_scored": true }
+        ],
+        "score_formula": "sum(question_score * weight) / sum(weights)",
+        "interpretation_note": "Lower scores indicate that confidence architecture is weaker than the commitment being requested."
+      },
+      {
+        "id": "DIM-02",
+        "slug": "flow_continuity",
+        "title": "Flow Continuity",
+        "description": "Measures continuity of movement from entry through action without interruption, disorientation, or transition decay.",
+        "scoring_model": "weighted_average_of_question_scores",
+        "normalization_target": "0_to_100",
+        "questions": [
+          { "id": "Q03", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q09", "weight": 1.2, "reverse_scored": false },
+          { "id": "Q10", "weight": 1.2, "reverse_scored": true },
+          { "id": "Q11", "weight": 1.1, "reverse_scored": true },
+          { "id": "Q12", "weight": 1.3, "reverse_scored": true },
+          { "id": "Q18", "weight": 1.0, "reverse_scored": false }
+        ],
+        "score_formula": "sum(question_score * weight) / sum(weights)",
+        "interpretation_note": "Lower scores indicate structural interruption or movement failure across the path."
+      },
+      {
+        "id": "DIM-03",
+        "slug": "decision_clarity",
+        "title": "Decision Clarity",
+        "description": "Measures how clearly the offer, value, commitment, and next step are expressed at decision-relevant moments.",
+        "scoring_model": "weighted_average_of_question_scores",
+        "normalization_target": "0_to_100",
+        "questions": [
+          { "id": "Q01", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q02", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q03", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q04", "weight": 1.2, "reverse_scored": false },
+          { "id": "Q13", "weight": 1.2, "reverse_scored": false },
+          { "id": "Q14", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q15", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q16", "weight": 1.3, "reverse_scored": true }
+        ],
+        "score_formula": "sum(question_score * weight) / sum(weights)",
+        "interpretation_note": "Lower scores indicate that users are being asked to decide without enough interpretive support."
+      },
+      {
+        "id": "DIM-04",
+        "slug": "friction_containment",
+        "title": "Friction Containment",
+        "description": "Measures how effectively the path avoids avoidable effort, complexity, and burden during progression.",
+        "scoring_model": "weighted_average_of_question_scores",
+        "normalization_target": "0_to_100",
+        "questions": [
+          { "id": "Q10", "weight": 1.2, "reverse_scored": true },
+          { "id": "Q11", "weight": 1.1, "reverse_scored": true },
+          { "id": "Q12", "weight": 1.3, "reverse_scored": true }
+        ],
+        "score_formula": "sum(question_score * weight) / sum(weights)",
+        "interpretation_note": "Lower scores indicate that the path is introducing more burden than the user should need to absorb."
+      },
+      {
+        "id": "DIM-05",
+        "slug": "recovery_readiness",
+        "title": "Recovery Readiness",
+        "description": "Measures the system's ability to restore intent after hesitation, interruption, or abandonment.",
+        "scoring_model": "weighted_average_of_question_scores",
+        "normalization_target": "0_to_100",
+        "questions": [
+          { "id": "Q17", "weight": 1.3, "reverse_scored": false },
+          { "id": "Q18", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q19", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q20", "weight": 1.2, "reverse_scored": false }
+        ],
+        "score_formula": "sum(question_score * weight) / sum(weights)",
+        "interpretation_note": "Lower scores indicate that interrupted intent is likely being abandoned instead of reclaimed."
+      }
+    ],
+    "total_integrity_score": {
+      "id": "TOTAL-001",
+      "slug": "total_funnel_integrity_score",
+      "title": "Total Funnel Integrity Score",
+      "description": "The governed aggregate score representing the structural integrity of the path across the five primary dimensions.",
+      "aggregation_model": "equal_weighted_average_of_dimension_scores",
+      "dimension_weights": {
+        "trust_integrity": 1.0,
+        "flow_continuity": 1.0,
+        "decision_clarity": 1.0,
+        "friction_containment": 1.0,
+        "recovery_readiness": 1.0
+      },
+      "formula": "(trust_integrity + flow_continuity + decision_clarity + friction_containment + recovery_readiness) / 5",
+      "normalization_target": "0_to_100",
+      "methodology_note": "v1 uses equal weighting across the five structural dimensions to preserve interpretability and avoid artificial prioritization at the aggregate layer."
+    }
+  },
+  "integrity_bands": [
+    {
+      "id": "BAND-01",
+      "slug": "structurally-sound",
+      "title": "Structurally Sound",
+      "min_score_inclusive": 85,
+      "max_score_inclusive": 100,
+      "interpretation": "The path appears structurally stable across the primary integrity dimensions, though local refinement may still be valuable."
+    },
+    {
+      "id": "BAND-02",
+      "slug": "minor-leakage",
+      "title": "Minor Leakage",
+      "min_score_inclusive": 70,
+      "max_score_inclusive": 84,
+      "interpretation": "The path remains fundamentally viable but exhibits meaningful leakage in one or more dimensions."
+    },
+    {
+      "id": "BAND-03",
+      "slug": "moderate-weakness",
+      "title": "Moderate Weakness",
+      "min_score_inclusive": 55,
+      "max_score_inclusive": 69,
+      "interpretation": "The path shows significant structural weakness that is likely suppressing conversion performance."
+    },
+    {
+      "id": "BAND-04",
+      "slug": "serious-leakage",
+      "title": "Serious Leakage",
+      "min_score_inclusive": 40,
+      "max_score_inclusive": 54,
+      "interpretation": "The path contains major structural failures that materially degrade continuity, clarity, trust, or recovery."
+    },
+    {
+      "id": "BAND-05",
+      "slug": "critical-integrity-failure",
+      "title": "Critical Integrity Failure",
+      "min_score_inclusive": 0,
+      "max_score_inclusive": 39,
+      "interpretation": "The path is structurally compromised to the point that meaningful conversion integrity cannot be assumed."
+    }
+  ],
+  "leak_signal_scoring": {
+    "model": "weighted_average_of_trigger_question_scores",
+    "normalization_target": "0_to_100",
+    "selection_logic": {
+      "primary_leak_class_rule": "The lowest normalized leak-class signal score becomes the primary leak class when it is materially distinct.",
+      "secondary_leak_class_rule": "The second-lowest normalized leak-class signal score becomes the secondary leak class when it remains diagnostically meaningful.",
+      "material_distinction_threshold": 5,
+      "secondary_meaningfulness_threshold": 60,
+      "tie_handling_threshold": 3,
+      "tie_handling_rule": "If the difference between the two lowest class scores is less than or equal to 3 points, dual-state interpretation is permitted.",
+      "upstream_override_rule": "If Message-Path Misalignment is severe and its score is within 5 points of the lowest class, it may take strategic priority because it contaminates downstream interpretation."
+    },
+    "leak_classes": [
+      {
+        "id": "LEAK-01",
+        "slug": "trust-collapse",
+        "title": "Trust Collapse",
+        "questions": [
+          { "id": "Q05", "weight": 1.3, "reverse_scored": false },
+          { "id": "Q06", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q07", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q08", "weight": 1.2, "reverse_scored": true }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that commitment is being requested without sufficient confidence support."
+      },
+      {
+        "id": "LEAK-02",
+        "slug": "flow-break",
+        "title": "Flow Break",
+        "questions": [
+          { "id": "Q03", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q09", "weight": 1.2, "reverse_scored": false },
+          { "id": "Q10", "weight": 1.2, "reverse_scored": true },
+          { "id": "Q11", "weight": 1.1, "reverse_scored": true },
+          { "id": "Q12", "weight": 1.3, "reverse_scored": true },
+          { "id": "Q18", "weight": 1.0, "reverse_scored": false }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that intent is not being carried through the path with adequate continuity."
+      },
+      {
+        "id": "LEAK-03",
+        "slug": "friction-overload",
+        "title": "Friction Overload",
+        "questions": [
+          { "id": "Q10", "weight": 1.2, "reverse_scored": true },
+          { "id": "Q11", "weight": 1.1, "reverse_scored": true },
+          { "id": "Q12", "weight": 1.3, "reverse_scored": true }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that burden and procedural heaviness are structurally suppressing movement."
+      },
+      {
+        "id": "LEAK-04",
+        "slug": "decision-ambiguity",
+        "title": "Decision Ambiguity",
+        "questions": [
+          { "id": "Q01", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q02", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q03", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q13", "weight": 1.2, "reverse_scored": false },
+          { "id": "Q14", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q15", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q16", "weight": 1.3, "reverse_scored": true }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that users are under-supported in understanding the offer and acting on it."
+      },
+      {
+        "id": "LEAK-05",
+        "slug": "recovery-absence",
+        "title": "Recovery Absence",
+        "questions": [
+          { "id": "Q17", "weight": 1.3, "reverse_scored": false },
+          { "id": "Q18", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q19", "weight": 1.1, "reverse_scored": false },
+          { "id": "Q20", "weight": 1.2, "reverse_scored": false }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that lost intent is not being structurally recovered."
+      },
+      {
+        "id": "LEAK-06",
+        "slug": "message-path-misalignment",
+        "title": "Message-Path Misalignment",
+        "questions": [
+          { "id": "Q01", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q02", "weight": 1.0, "reverse_scored": false },
+          { "id": "Q04", "weight": 1.2, "reverse_scored": false }
+        ],
+        "formula": "sum(question_score * weight) / sum(weights)",
+        "methodology_note": "Lower scores indicate that the path is not maintaining continuity between entry promise and action logic."
+      }
+    ]
+  },
+  "diagnostic_priority": {
+    "priority_model": "governed_structural_ordering",
+    "rules": [
+      {
+        "id": "PRIO-01",
+        "condition": "primary_leak_class == LEAK-06",
+        "priority_rank": 1,
+        "reason": "Alignment failure corrupts interpretation before downstream remediation can be trusted."
+      },
+      {
+        "id": "PRIO-02",
+        "condition": "primary_leak_class == LEAK-01",
+        "priority_rank": 1,
+        "reason": "Trust deficits often block commitment even when other dimensions are partially functional."
+      },
+      {
+        "id": "PRIO-03",
+        "condition": "primary_leak_class == LEAK-04",
+        "priority_rank": 1,
+        "reason": "If the user cannot interpret the decision clearly, downstream interventions lose leverage."
+      },
+      {
+        "id": "PRIO-04",
+        "condition": "primary_leak_class == LEAK-02",
+        "priority_rank": 1,
+        "reason": "Flow failure disrupts movement itself and can neutralize otherwise viable demand."
+      },
+      {
+        "id": "PRIO-05",
+        "condition": "primary_leak_class == LEAK-03",
+        "priority_rank": 2,
+        "reason": "Friction reduction is critical but should be ordered in relation to continuity and clarity."
+      },
+      {
+        "id": "PRIO-06",
+        "condition": "primary_leak_class == LEAK-05",
+        "priority_rank": 2,
+        "reason": "Recovery systems become more valuable once the core path is at least minimally viable."
+      }
+    ],
+    "secondary_priority_logic": {
+      "allow_secondary_recommendation": true,
+      "max_secondary_recommendations": 1,
+      "selection_rule": "The secondary leak class may produce a secondary plug class when its signal score remains below the secondary meaningfulness threshold and is not redundant with the primary class.",
+      "redundancy_rule": "If the secondary plug class is structurally identical to the primary recommendation, collapse into a single recommendation."
+    }
+  },
+  "plug_recommendation_mapping": {
+    "mapping_model": "primary_leak_to_primary_plug_plus_optional_secondary",
+    "mappings": [
+      {
+        "leak_class": "LEAK-01",
+        "primary_plug_class": "PLUG-01",
+        "secondary_candidates": ["PLUG-04", "PLUG-05", "PLUG-06"]
+      },
+      {
+        "leak_class": "LEAK-02",
+        "primary_plug_class": "PLUG-02",
+        "secondary_candidates": ["PLUG-03", "PLUG-05", "PLUG-06"]
+      },
+      {
+        "leak_class": "LEAK-03",
+        "primary_plug_class": "PLUG-03",
+        "secondary_candidates": ["PLUG-02", "PLUG-04"]
+      },
+      {
+        "leak_class": "LEAK-04",
+        "primary_plug_class": "PLUG-04",
+        "secondary_candidates": ["PLUG-01", "PLUG-02", "PLUG-06"]
+      },
+      {
+        "leak_class": "LEAK-05",
+        "primary_plug_class": "PLUG-05",
+        "secondary_candidates": ["PLUG-01", "PLUG-02"]
+      },
+      {
+        "leak_class": "LEAK-06",
+        "primary_plug_class": "PLUG-06",
+        "secondary_candidates": ["PLUG-04", "PLUG-02", "PLUG-01"]
+      }
+    ]
+  },
+  "output_constraints": {
+    "financial_forecasts_allowed": false,
+    "market_benchmarks_allowed": false,
+    "percentile_claims_allowed": false,
+    "confidence_scores_allowed": false,
+    "unsupported_uplift_claims_allowed": false,
+    "methodology_visibility_required": true,
+    "result_interpretation_required": true,
+    "primary_and_secondary_explanation_required": true
+  },
+  "reporting_rules": {
+    "result_layers_required": [
+      "integrity_status",
+      "total_integrity_score",
+      "dimension_breakdown",
+      "primary_leak_class",
+      "secondary_leak_class_if_meaningful",
+      "primary_plug_class",
+      "secondary_plug_class_if_meaningful",
+      "strategic_interpretation",
+      "methodology_note"
+    ],
+    "rounding_policy": {
+      "dimension_scores_decimal_places": 0,
+      "total_score_decimal_places": 0,
+      "leak_signal_scores_decimal_places": 0
+    },
+    "language_policy": {
+      "default_language": "en",
+      "tone": "institutional_precise_controlled",
+      "style": "diagnostic_not_promotional"
+    }
+  }
+}
