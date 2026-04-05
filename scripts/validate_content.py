@@ -74,6 +74,7 @@ INLINE_SCRIPT_PATTERN = re.compile(
 
 ALLOWED_SCRIPT_SRCS = {
     "/assets/js/main.js",
+    "/assets/js/engine.js",
 }
 
 SITE_CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
