@@ -155,7 +155,7 @@ def load_site_data() -> dict[str, Any]:
 
     return data
     
-    def load_json_object(path: Path, label: str) -> dict[str, Any]:
+   def load_json_object(path: Path, label: str) -> dict[str, Any]:
     """Load a governed JSON object from disk."""
     if not path.exists():
         raise GenerationError(f"Missing required {label} file: {path}")
