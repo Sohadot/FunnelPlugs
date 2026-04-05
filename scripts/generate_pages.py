@@ -127,7 +127,6 @@ def dataclass_to_dict(value: Any) -> Any:
         return asdict(value)
     return value
 
-
 def normalize_whitespace(value: str) -> str:
     """Normalize whitespace for reliable comparisons."""
     return " ".join(value.split())
@@ -171,7 +170,6 @@ def load_site_data() -> dict[str, Any]:
 
     return data
 
-
 def load_tool_datasets() -> dict[str, dict[str, Any]]:
     """Load all governed datasets required by the diagnostic engine."""
     tool_questions_data = load_json_object(TOOL_QUESTIONS_FILE, "tool_questions.json")
@@ -212,11 +210,9 @@ def load_tool_datasets() -> dict[str, dict[str, Any]]:
         "decision_logic_data": decision_logic_data,
     }
 
-
 def is_tool_page(page: dict[str, Any]) -> bool:
     """Return True if the page should render as the governed diagnostic tool."""
     return page.get("key") == "engine" or page.get("template") == "tool.html"
-
 
 def build_tool_page_context(
     page: dict[str, Any],
