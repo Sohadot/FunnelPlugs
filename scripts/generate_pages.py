@@ -153,8 +153,9 @@ def load_site_data() -> dict[str, Any]:
         raise GenerationError("site.json must include a non-empty 'core_pages' array.")
 
     return data
-    
-   def load_json_object(path: Path, label: str) -> dict[str, Any]:
+
+
+def load_json_object(path: Path, label: str) -> dict[str, Any]:
     """Load a governed JSON object from disk."""
     if not path.exists():
         raise GenerationError(f"Missing required {label} file: {path}")
@@ -588,8 +589,8 @@ def validate_rendered_html(page: dict[str, Any], html: str) -> None:
         raise GenerationError(
             f"Rendered page '{page['key']}' does not contain a valid H1."
         )
-        
-        if is_tool_page(page):
+
+    if is_tool_page(page):
         for script_id in TOOL_JSON_SCRIPT_IDS:
             if f'id="{script_id}"' not in html and f"id='{script_id}'" not in html:
                 raise GenerationError(
