@@ -31,6 +31,19 @@ TEMPLATES_DIR = CONFIG.paths.templates_dir
 OUTPUT_DIR = CONFIG.paths.output_dir
 
 SITE_DATA_FILE = DATA_DIR / "site.json"
+TOOL_QUESTIONS_FILE = DATA_DIR / "tool_questions.json"
+LEAK_TAXONOMY_FILE = DATA_DIR / "leak_taxonomy.json"
+PLUG_TAXONOMY_FILE = DATA_DIR / "plug_taxonomy.json"
+SCORING_RULES_FILE = DATA_DIR / "scoring_rules.json"
+DECISION_LOGIC_FILE = DATA_DIR / "decision_logic.json"
+
+TOOL_JSON_SCRIPT_IDS = (
+    "tool-questions-json",
+    "leak-taxonomy-json",
+    "plug-taxonomy-json",
+    "scoring-rules-json",
+    "decision-logic-json",
+)
 
 REQUIRED_TOP_LEVEL_KEYS = (
     "site",
@@ -141,6 +154,93 @@ def load_site_data() -> dict[str, Any]:
         raise GenerationError("site.json must include a non-empty 'core_pages' array.")
 
     return data
+    def load_json_object(path: Path, label: str) -> dict[str, Any]:
+    """Load a governed JSON object from disk."""
+    if not path.exists():
+        raise GenerationError(f"Missing required {label} file: {path}")
+
+    try:
+        raw = path.read_text(encoding="utf-8")
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise GenerationError(f"Invalid JSON in {label}: {exc}") from exc
+
+    if not isinstance(data, dict):
+        raise GenerationError(f"{label} must contain a top-level JSON object.")
+
+    return data
+
+
+def load_tool_datasets() -> dict[str, dict[str, Any]]:
+    """Load all governed datasets required by the diagnostic engine."""
+    tool_questions_data = load_json_object(TOOL_QUESTIONS_FILE, "tool_questions.json")
+    leak_taxonomy_data = load_json_object(LEAK_TAXONOMY_FILE, "leak_taxonomy.json")
+    plug_taxonomy_data = load_json_object(PLUG_TAXONOMY_FILE, "plug_taxonomy.json")
+    scoring_rules_data = load_json_object(SCORING_RULES_FILE, "scoring_rules.json")
+    decision_logic_data = load_json_object(DECISION_LOGIC_FILE, "decision_logic.json")
+
+    if not isinstance(tool_questions_data.get("modules"), list) or not tool_questions_data.get("modules"):
+        raise GenerationError("tool_questions.json must define a non-empty 'modules' list.")
+
+    if not isinstance(tool_questions_data.get("questions"), list) or not tool_questions_data.get("questions"):
+        raise GenerationError("tool_questions.json must define a non-empty 'questions' list.")
+
+    if not isinstance(leak_taxonomy_data.get("leak_classes"), list) or not leak_taxonomy_data.get("leak_classes"):
+        raise GenerationError("leak_taxonomy.json must define a non-empty 'leak_classes' list.")
+
+    if not isinstance(plug_taxonomy_data.get("plug_classes"), list) or not plug_taxonomy_data.get("plug_classes"):
+        raise GenerationError("plug_taxonomy.json must define a non-empty 'plug_classes' list.")
+
+    if not isinstance(scoring_rules_data.get("integrity_bands"), list) or not scoring_rules_data.get("integrity_bands"):
+        raise GenerationError("scoring_rules.json must define a non-empty 'integrity_bands' list.")
+
+    if not scoring_rules_data.get("dimension_scoring", {}).get("dimensions"):
+        raise GenerationError("scoring_rules.json must define 'dimension_scoring.dimensions'.")
+
+    if not scoring_rules_data.get("leak_signal_scoring", {}).get("leak_classes"):
+        raise GenerationError("scoring_rules.json must define 'leak_signal_scoring.leak_classes'.")
+
+    if not decision_logic_data.get("diagnostic_resolution"):
+        raise GenerationError("decision_logic.json must define 'diagnostic_resolution'.")
+
+    return {
+        "tool_questions_data": tool_questions_data,
+        "leak_taxonomy_data": leak_taxonomy_data,
+        "plug_taxonomy_data": plug_taxonomy_data,
+        "scoring_rules_data": scoring_rules_data,
+        "decision_logic_data": decision_logic_data,
+    }
+
+
+def is_tool_page(page: dict[str, Any]) -> bool:
+    """Return True if the page should render as the governed diagnostic tool."""
+    return page.get("key") == "engine" or page.get("template") == "tool.html"
+
+
+def build_tool_page_context(
+    page: dict[str, Any],
+    tool_datasets: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    """Inject governed tool data into the engine page context."""
+    page_context = deepcopy(page)
+    tool_questions_data = tool_datasets["tool_questions_data"]
+
+    embedded_tool = dict(tool_questions_data.get("tool", {}))
+    embedded_tool.update(page_context.get("tool", {}))
+    embedded_tool["modules"] = tool_questions_data.get("modules", [])
+    embedded_tool["questions"] = tool_questions_data.get("questions", [])
+    embedded_tool["question_count"] = len(embedded_tool["questions"])
+    embedded_tool["module_count"] = len(embedded_tool["modules"])
+
+    page_context["template"] = "tool.html"
+    page_context["tool"] = embedded_tool
+    page_context["tool_questions_data"] = tool_datasets["tool_questions_data"]
+    page_context["leak_taxonomy_data"] = tool_datasets["leak_taxonomy_data"]
+    page_context["plug_taxonomy_data"] = tool_datasets["plug_taxonomy_data"]
+    page_context["scoring_rules_data"] = tool_datasets["scoring_rules_data"]
+    page_context["decision_logic_data"] = tool_datasets["decision_logic_data"]
+
+    return page_context
 
 
 def validate_top_level_data(data: dict[str, Any]) -> None:
@@ -392,22 +492,35 @@ def build_global_context(data: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def render_pages(pages: list[dict[str, Any]], global_context: dict[str, Any]) -> list[Path]:
+def render_pages(
+    pages: list[dict[str, Any]],
+    global_context: dict[str, Any],
+    tool_datasets: dict[str, dict[str, Any]] | None = None,
+) -> list[Path]:
     """Render each sovereign page into the live root structure."""
     env = build_jinja_environment()
     written_files: list[Path] = []
 
     for page in pages:
-        template = env.get_template(page["template"])
+        page_context = deepcopy(page)
+
+        if is_tool_page(page_context):
+            if tool_datasets is None:
+                raise GenerationError(
+                    f"Tool page '{page_context['key']}' requires governed tool datasets."
+                )
+            page_context = build_tool_page_context(page_context, tool_datasets)
+
+        template = env.get_template(page_context["template"])
         context = {
             **global_context,
-            "page": page,
+            "page": page_context,
         }
 
         rendered = template.render(**context)
-        validate_rendered_html(page, rendered)
+        validate_rendered_html(page_context, rendered)
 
-        output_path = safe_output_path(page["file"])
+        output_path = safe_output_path(page_context["file"])
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(rendered, encoding="utf-8", newline="\n")
         written_files.append(output_path)
@@ -478,6 +591,13 @@ def validate_rendered_html(page: dict[str, Any], html: str) -> None:
         raise GenerationError(
             f"Rendered page '{page['key']}' does not contain a valid H1."
         )
+        
+        if is_tool_page(page):
+        for script_id in TOOL_JSON_SCRIPT_IDS:
+            if f'id="{script_id}"' not in html and f"id='{script_id}'" not in html:
+                raise GenerationError(
+                    f"Rendered tool page '{page['key']}' is missing embedded JSON block: '{script_id}'."
+                )
 
 def post_render_integrity_check(written_files: list[Path]) -> None:
     """Perform final output sanity checks across the generated page set."""
@@ -496,7 +616,10 @@ def main() -> None:
     validate_top_level_data(data)
     pages = validate_page_definitions(data)
     global_context = build_global_context(data)
-    written_files = render_pages(pages, global_context)
+
+    tool_datasets = load_tool_datasets() if any(is_tool_page(page) for page in pages) else None
+
+    written_files = render_pages(pages, global_context, tool_datasets)
     post_render_integrity_check(written_files)
 
     print("Sovereign page generation completed successfully.")
