@@ -476,24 +476,24 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
     inspector = inspect_rendered_html(html)
 
     for match in re.finditer(r"<\s*script\b[^>]*>", html, re.IGNORECASE):
-    script_tag = match.group(0)
+        script_tag = match.group(0)
 
-    has_src = re.search(r"\bsrc\s*=", script_tag, re.IGNORECASE) is not None
-    is_json_data = re.search(
-        r'\btype\s*=\s*["\']application/json["\']',
-        script_tag,
-        re.IGNORECASE,
-    ) is not None
+        has_src = re.search(r"\bsrc\s*=", script_tag, re.IGNORECASE) is not None
+        is_json_data = re.search(
+            r'\btype\s*=\s*["\']application/json["\']',
+            script_tag,
+            re.IGNORECASE,
+        ) is not None
 
-    if not has_src and not is_json_data:
-        issues.append(
-            Issue(
-                "ERROR",
-                scope,
-                f"Rendered page contains inline script markup, which is not permitted. Tag: {script_tag}",
+        if not has_src and not is_json_data:
+            issues.append(
+                Issue(
+                    "ERROR",
+                    scope,
+                    f"Rendered page contains inline script markup, which is not permitted. Tag: {script_tag}",
+                )
             )
-        )
-        break
+            break
 
     for src in inspector.script_srcs:
         if src not in ALLOWED_SCRIPT_SRCS:
@@ -501,7 +501,7 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
                 Issue(
                     "ERROR",
                     scope,
-                    f"Rendered page references a non-approved script source: '{src}'",
+                    f"Rendered page references a non-approved script source: '{src}'.",
                 )
             )
 
@@ -513,7 +513,7 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
                     scope,
                     "Rendered page contains unsafe markup patterns.",
                 )
-            )
+            )    
 
 
 def resolve_internal_href(href: str, current_file: Path) -> Path | None:
