@@ -475,14 +475,25 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
     """Allow only approved external scripts and forbid inline scripts."""
     inspector = inspect_rendered_html(html)
 
-    if inspector.inline_script_detected:
+    for match in re.finditer(r"<\s*script\b[^>]*>", html, re.IGNORECASE):
+    script_tag = match.group(0)
+
+    has_src = re.search(r"\bsrc\s*=", script_tag, re.IGNORECASE) is not None
+    is_json_data = re.search(
+        r'\btype\s*=\s*["\']application/json["\']',
+        script_tag,
+        re.IGNORECASE,
+    ) is not None
+
+    if not has_src and not is_json_data:
         issues.append(
             Issue(
                 "ERROR",
                 scope,
-                "Rendered page contains inline script markup, which is not permitted.",
+                f"Rendered page contains inline script markup, which is not permitted. Tag: {script_tag}",
             )
         )
+        break
 
     for src in inspector.script_srcs:
         if src not in ALLOWED_SCRIPT_SRCS:
