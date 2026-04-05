@@ -154,6 +154,7 @@ def load_site_data() -> dict[str, Any]:
         raise GenerationError("site.json must include a non-empty 'core_pages' array.")
 
     return data
+    
     def load_json_object(path: Path, label: str) -> dict[str, Any]:
     """Load a governed JSON object from disk."""
     if not path.exists():
