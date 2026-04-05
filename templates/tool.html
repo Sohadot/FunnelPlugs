@@ -6,6 +6,20 @@
 {% set methodology = tool.get('methodology', {}) %}
 {% set result_contract = tool.get('result_contract', {}) %}
 {% set related_pages = page.get('related_pages', []) %}
+{% set tool_questions_data = page.get('tool_questions_data') or {
+  'system_metadata': {
+    'uid': 'FP-TOOL-QUESTIONS-EMBEDDED-V1',
+    'version': '1.0.0',
+    'status': 'embedded_fallback'
+  },
+  'tool': tool,
+  'modules': modules,
+  'questions': questions
+} %}
+{% set leak_taxonomy_data = page.get('leak_taxonomy_data', {}) %}
+{% set plug_taxonomy_data = page.get('plug_taxonomy_data', {}) %}
+{% set scoring_rules_data = page.get('scoring_rules_data', {}) %}
+{% set decision_logic_data = page.get('decision_logic_data', {}) %}
 
 {% block content %}
 <section class="content-section content-section--tool-intro" aria-label="Tool introduction">
@@ -419,6 +433,26 @@
   </div>
 </section>
 {% endif %}
+
+<script id="tool-questions-json" type="application/json">
+{{ tool_questions_data | tojson(indent=2) }}
+</script>
+
+<script id="leak-taxonomy-json" type="application/json">
+{{ leak_taxonomy_data | tojson(indent=2) }}
+</script>
+
+<script id="plug-taxonomy-json" type="application/json">
+{{ plug_taxonomy_data | tojson(indent=2) }}
+</script>
+
+<script id="scoring-rules-json" type="application/json">
+{{ scoring_rules_data | tojson(indent=2) }}
+</script>
+
+<script id="decision-logic-json" type="application/json">
+{{ decision_logic_data | tojson(indent=2) }}
+</script>
 
 <noscript>
   <section class="content-section" aria-label="JavaScript notice">
