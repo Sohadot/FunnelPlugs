@@ -1,0 +1,432 @@
+{% extends "base.html" %}
+
+{% set tool = page.get('tool', {}) %}
+{% set modules = tool.get('modules', []) %}
+{% set questions = tool.get('questions', []) %}
+{% set methodology = tool.get('methodology', {}) %}
+{% set result_contract = tool.get('result_contract', {}) %}
+{% set related_pages = page.get('related_pages', []) %}
+
+{% block content %}
+<section class="content-section content-section--tool-intro" aria-label="Tool introduction">
+  <div class="section-block section-block--emphasis">
+    <header class="section-head">
+      <p class="section-kicker">Governed Instrument</p>
+      <h2 class="section-title">{{ tool.get('title') or 'Revenue Leak Diagnostic Engine' }}</h2>
+      <p class="section-subtitle">
+        {{ tool.get('description') or 'A structural diagnostic instrument for identifying leakage across digital conversion paths and determining the intervention logic required to restore integrity.' }}
+      </p>
+    </header>
+
+    <div class="card-grid card-grid--3">
+      <article class="info-card">
+        <p class="info-card__eyebrow">Purpose</p>
+        <h3 class="info-card__title">Structural Diagnosis</h3>
+        <p class="info-card__body-text">
+          {{ tool.get('purpose') or 'This instrument classifies structural revenue leakage, scores integrity dimensions, and recommends governed plug classes without decorative metrics or unsupported claims.' }}
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Method</p>
+        <h3 class="info-card__title">Rule-Based / Auditable</h3>
+        <p class="info-card__body-text">
+          {{ tool.get('methodology_note') or 'All outputs are produced through declared questions, explicit weights, reverse-scoring rules, and deterministic interpretation logic.' }}
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Time</p>
+        <h3 class="info-card__title">{{ tool.get('estimated_completion_minutes') or 4 }} Minutes</h3>
+        <p class="info-card__body-text">
+          {{ tool.get('question_count') or 20 }} governed questions across {{ tool.get('module_count') or 5 }} diagnostic modules.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--tool-boundaries" aria-label="Method boundaries">
+  <div class="section-block">
+    <header class="section-head">
+      <p class="section-kicker">Method Boundaries</p>
+      <h2 class="section-title">What This Instrument Does — And Does Not Do</h2>
+    </header>
+
+    <div class="card-grid card-grid--2">
+      <article class="info-card">
+        <p class="info-card__eyebrow">It Does</p>
+        <div class="info-card__body rich-text">
+          <ul class="structured-list">
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">Classify structural leakage</h3>
+              <div class="structured-list__body rich-text">
+                <p>Identify the dominant and secondary leak classes through governed scoring and explicit resolution rules.</p>
+              </div>
+            </li>
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">Score integrity dimensions</h3>
+              <div class="structured-list__body rich-text">
+                <p>Measure trust, continuity, clarity, friction containment, and recovery readiness in a reviewable form.</p>
+              </div>
+            </li>
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">Recommend intervention classes</h3>
+              <div class="structured-list__body rich-text">
+                <p>Map diagnosed structural weakness to governed plug classes without collapsing the result into shallow product recommendations.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">It Does Not</p>
+        <div class="info-card__body rich-text">
+          <ul class="structured-list">
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">No financial forecasting</h3>
+              <div class="structured-list__body rich-text">
+                <p>This instrument does not estimate revenue loss in absolute monetary terms in v1.</p>
+              </div>
+            </li>
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">No market benchmarking</h3>
+              <div class="structured-list__body rich-text">
+                <p>This instrument does not compare your path against industry percentiles, market averages, or external performance datasets.</p>
+              </div>
+            </li>
+            <li class="structured-list__item">
+              <h3 class="structured-list__title">No black-box inference</h3>
+              <div class="structured-list__body rich-text">
+                <p>The output is governed by explicit rules. It is not generated through undocumented AI reasoning.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--tool-interface" aria-label="Diagnostic interface">
+  <div
+    class="section-block section-block--emphasis"
+    data-tool-root
+    data-tool-id="{{ tool.get('id') or 'TOOL-001' }}"
+    data-tool-slug="{{ tool.get('slug') or 'revenue-leak-diagnostic-engine' }}"
+    data-tool-question-count="{{ tool.get('question_count') or questions|length }}"
+    data-tool-module-count="{{ tool.get('module_count') or modules|length }}">
+
+    <header class="section-head">
+      <p class="section-kicker">Diagnostic Session</p>
+      <h2 class="section-title">Evaluate the Path</h2>
+      <p class="section-subtitle">
+        Answer each module from the perspective of the actual path under review, not from aspirational intent.
+      </p>
+    </header>
+
+    <div class="metric-grid" aria-label="Session status">
+      <article class="metric-card">
+        <p class="metric-card__label">Status</p>
+        <p class="metric-card__value" data-tool-status>Ready</p>
+        <p class="metric-card__note">The instrument is prepared to receive declared conditions.</p>
+      </article>
+
+      <article class="metric-card">
+        <p class="metric-card__label">Current Module</p>
+        <p class="metric-card__value" data-tool-current-module>1 / {{ modules|length or 5 }}</p>
+        <p class="metric-card__note">Progress updates will remain bound to the diagnostic sequence.</p>
+      </article>
+
+      <article class="metric-card">
+        <p class="metric-card__label">Completion</p>
+        <p class="metric-card__value" data-tool-progress>0%</p>
+        <p class="metric-card__note">All required questions must be answered before report generation.</p>
+      </article>
+    </div>
+
+    <div class="content-section" data-tool-modules>
+      {% for module in modules %}
+      <section
+        class="section-block tool-module"
+        data-module-id="{{ module.get('id') }}"
+        data-module-slug="{{ module.get('slug') }}"
+        data-module-order="{{ module.get('order') }}"
+        aria-label="{{ module.get('title') }}">
+
+        <header class="section-head">
+          <p class="section-kicker">Module {{ module.get('order') }}</p>
+          <h3 class="section-title">{{ module.get('title') }}</h3>
+          <p class="section-subtitle">{{ module.get('description') }}</p>
+        </header>
+
+        <div class="structured-list">
+          {% for question in questions if question.get('module_id') == module.get('id') %}
+          <article
+            class="structured-list__item tool-question"
+            data-question-id="{{ question.get('id') }}"
+            data-question-order="{{ question.get('order') }}"
+            data-question-type="{{ question.get('type') }}"
+            data-question-required="{{ 'true' if question.get('required') else 'false' }}"
+            data-question-reverse="{{ 'true' if question.get('reverse_scored') else 'false' }}"
+            data-dimensions="{{ question.get('dimensions', []) | join(',') }}"
+            data-leak-classes="{{ question.get('leak_classes', []) | join(',') }}"
+            data-weight="{{ question.get('weight') }}">
+
+            <div class="rich-text">
+              <p class="section-kicker">{{ question.get('id') }}</p>
+              <h4 class="structured-list__title">{{ question.get('label') }}</h4>
+              {% if question.get('rationale') %}
+              <p class="section-subtitle">{{ question.get('rationale') }}</p>
+              {% endif %}
+            </div>
+
+            <div class="tool-choices" role="radiogroup" aria-label="{{ question.get('label') }}">
+              {% for choice in question.get('choices', []) %}
+              <label class="spec-node tool-choice">
+                <input
+                  type="radio"
+                  name="{{ question.get('id') }}"
+                  value="{{ choice.get('value') }}"
+                  data-choice-label="{{ choice.get('label') }}"
+                  data-question-input
+                  class="tool-choice__input">
+                <span class="spec-label">{{ choice.get('value') }}</span>
+                <span class="spec-value">{{ choice.get('label') }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+
+    <div class="content-section">
+      <div class="cta-block">
+        <div class="cta-block__actions">
+          <button type="button" class="button button--secondary" data-tool-reset>
+            Reset Responses
+          </button>
+          <button type="button" class="button button--primary" data-tool-submit>
+            Generate Diagnostic Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--tool-results" aria-label="Diagnostic results">
+  <div class="section-block" data-tool-results>
+    <header class="section-head">
+      <p class="section-kicker">Report Output</p>
+      <h2 class="section-title">Diagnostic Report State</h2>
+      <p class="section-subtitle">
+        The report below is the governed interpretive output of the instrument once all required conditions are declared.
+      </p>
+    </header>
+
+    <div class="card-grid card-grid--2">
+      <article class="info-card">
+        <p class="info-card__eyebrow">Integrity Status</p>
+        <h3 class="info-card__title" data-result-integrity-status>Awaiting declared conditions</h3>
+        <p class="info-card__body-text" data-result-executive-summary>
+          Complete the diagnostic sequence to produce the structural report.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Total Funnel Integrity Score</p>
+        <h3 class="info-card__title" data-result-total-score>—</h3>
+        <p class="info-card__body-text" data-result-band>
+          The score band will be resolved through the governed scoring framework.
+        </p>
+      </article>
+    </div>
+
+    <div class="content-section">
+      <div class="section-block">
+        <header class="section-head">
+          <p class="section-kicker">Dimension Breakdown</p>
+          <h3 class="section-title">Structural Integrity Dimensions</h3>
+        </header>
+
+        <div class="metric-grid">
+          <article class="metric-card">
+            <p class="metric-card__label">Trust Integrity</p>
+            <p class="metric-card__value" data-dimension-score="trust_integrity">—</p>
+            <p class="metric-card__note">Confidence, legitimacy, reassurance</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-card__label">Flow Continuity</p>
+            <p class="metric-card__value" data-dimension-score="flow_continuity">—</p>
+            <p class="metric-card__note">Continuity, movement, progression stability</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-card__label">Decision Clarity</p>
+            <p class="metric-card__value" data-dimension-score="decision_clarity">—</p>
+            <p class="metric-card__note">Offer interpretation, next-step certainty</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-card__label">Friction Containment</p>
+            <p class="metric-card__value" data-dimension-score="friction_containment">—</p>
+            <p class="metric-card__note">Burden, complexity, process heaviness</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-card__label">Recovery Readiness</p>
+            <p class="metric-card__value" data-dimension-score="recovery_readiness">—</p>
+            <p class="metric-card__note">Re-entry, continuation, interruption recovery</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid card-grid--3">
+      <article class="info-card">
+        <p class="info-card__eyebrow">Primary Leak Class</p>
+        <h3 class="info-card__title" data-result-primary-leak>—</h3>
+        <p class="info-card__body-text" data-result-primary-leak-summary>
+          The dominant structural weakness will appear here.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Secondary Leak Class</p>
+        <h3 class="info-card__title" data-result-secondary-leak>—</h3>
+        <p class="info-card__body-text" data-result-secondary-leak-summary>
+          A secondary class will appear only when diagnostically meaningful.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Weakest Dimension</p>
+        <h3 class="info-card__title" data-result-weakest-dimension>—</h3>
+        <p class="info-card__body-text" data-result-weakest-dimension-summary>
+          The weakest structural dimension will be resolved after scoring.
+        </p>
+      </article>
+    </div>
+
+    <div class="card-grid card-grid--2">
+      <article class="info-card">
+        <p class="info-card__eyebrow">Primary Plug Class</p>
+        <h3 class="info-card__title" data-result-primary-plug>—</h3>
+        <p class="info-card__body-text" data-result-primary-plug-summary>
+          The primary intervention class will appear here.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Secondary Plug Class</p>
+        <h3 class="info-card__title" data-result-secondary-plug>—</h3>
+        <p class="info-card__body-text" data-result-secondary-plug-summary>
+          A secondary intervention class will appear only if it is materially meaningful and non-redundant.
+        </p>
+      </article>
+    </div>
+
+    <div class="content-section">
+      <div class="section-block section-block--emphasis">
+        <header class="section-head">
+          <p class="section-kicker">Strategic Interpretation</p>
+          <h3 class="section-title">Interpretive Summary</h3>
+        </header>
+        <div class="rich-text">
+          <p data-result-interpretation>
+            The interpretive summary will be generated through the governed decision layer once the declared conditions are complete.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="callout callout--default">
+        <div class="rich-text">
+          <p><strong>Method boundary:</strong> This result is a structural diagnostic, not a financial forecast.</p>
+          <p><strong>Evidence boundary:</strong> The result is based on declared funnel conditions rather than observed behavioral telemetry.</p>
+          <p><strong>Action boundary:</strong> The output is intended to guide intervention priority, not guarantee uplift.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--tool-governance" aria-label="Tool governance">
+  <div class="section-block">
+    <header class="section-head">
+      <p class="section-kicker">Governance Layer</p>
+      <h2 class="section-title">Instrument Integrity Notes</h2>
+    </header>
+
+    <div class="card-grid card-grid--3">
+      <article class="info-card">
+        <p class="info-card__eyebrow">Determinism</p>
+        <h3 class="info-card__title">Rule-Based Resolution</h3>
+        <p class="info-card__body-text">
+          All outputs are derived from declared questions, explicit weights, reverse scoring, and governed interpretation rules.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Auditability</p>
+        <h3 class="info-card__title">Reviewable Logic</h3>
+        <p class="info-card__body-text">
+          The instrument is designed so that the relationship between inputs, scores, leak classes, and plug classes can be externally reviewed.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="info-card__eyebrow">Boundary Discipline</p>
+        <h3 class="info-card__title">No Decorative Claims</h3>
+        <p class="info-card__body-text">
+          The engine does not simulate market benchmarks, hidden AI confidence, or unsupported revenue forecasts in v1.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% if related_pages %}
+<section class="content-section content-section--related" aria-label="Related pages">
+  <div class="section-block">
+    <header class="section-head">
+      <p class="section-kicker">Related Structure</p>
+      <h2 class="section-title">Continue Through the System</h2>
+    </header>
+
+    <div class="card-grid card-grid--3">
+      {% for item in related_pages %}
+      <article class="info-card info-card--linked">
+        {% if item.get('eyebrow') %}
+        <p class="info-card__eyebrow">{{ item.get('eyebrow') }}</p>
+        {% endif %}
+        <h3 class="info-card__title">
+          <a class="text-link text-link--block" href="{{ item.get('href') }}">{{ item.get('label') }}</a>
+        </h3>
+        {% if item.get('description') %}
+        <p class="info-card__body-text">{{ item.get('description') }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<noscript>
+  <section class="content-section" aria-label="JavaScript notice">
+    <div class="callout callout--default">
+      <div class="rich-text">
+        <p>This diagnostic instrument requires JavaScript to process declared responses and generate the governed report state.</p>
+      </div>
+    </div>
+  </section>
+</noscript>
+{% endblock %}
