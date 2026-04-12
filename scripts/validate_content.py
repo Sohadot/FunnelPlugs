@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from config import get_config
+from site_data_loader import SiteDataLoadError, load_site_data as load_site_bundle
 
 
 class ValidationError(Exception):
@@ -61,11 +62,15 @@ SHELL_WEAKNESS_PATTERNS = (
     re.compile(r"\bpending\b", re.IGNORECASE),
 )
 
-UNSAFE_CONTENT_PATTERNS = (
+UNSAFE_URL_AND_HANDLER_PATTERNS = (
     re.compile(r"javascript\s*:", re.IGNORECASE),
     re.compile(r"\bon\w+\s*=", re.IGNORECASE),
-    re.compile(r"<\s*iframe\b", re.IGNORECASE),
 )
+
+IFRAME_MARKUP_PATTERN = re.compile(r"<\s*iframe\b", re.IGNORECASE)
+
+# Declared JSON content must not embed iframes; rendered HTML may include the GTM noscript iframe only.
+UNSAFE_DECLARED_CONTENT_PATTERNS = UNSAFE_URL_AND_HANDLER_PATTERNS + (IFRAME_MARKUP_PATTERN,)
 
 INLINE_SCRIPT_PATTERN = re.compile(
     r'<\s*script\b(?![^>]*\bsrc=)(?![^>]*\btype=["\']application/json["\'])[^>]*>',
@@ -75,6 +80,7 @@ INLINE_SCRIPT_PATTERN = re.compile(
 ALLOWED_SCRIPT_SRCS = {
     "/assets/js/main.js",
     "/assets/js/engine.js",
+    "/assets/js/gtm.js",
 }
 
 SITE_CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
@@ -121,16 +127,10 @@ class HTMLInspector(HTMLParser):
 
 def load_site_data() -> dict[str, Any]:
     """Load the sovereign site data source."""
-    if not SITE_DATA_FILE.exists():
-        raise ValidationError(f"Missing required data file: {SITE_DATA_FILE}")
-
     try:
-        data = json.loads(SITE_DATA_FILE.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise ValidationError(f"Invalid JSON in {SITE_DATA_FILE}: {exc}") from exc
-
-    if not isinstance(data, dict):
-        raise ValidationError("site.json must contain a top-level JSON object.")
+        data = load_site_bundle()
+    except SiteDataLoadError as exc:
+        raise ValidationError(str(exc)) from exc
 
     if "core_pages" not in data or not isinstance(data["core_pages"], list):
         raise ValidationError("site.json must define a 'core_pages' list.")
@@ -373,7 +373,7 @@ def scan_nested_content_for_patterns(node: Any, scope: str, issues: list[Issue],
                     )
                 )
 
-        for pattern in UNSAFE_CONTENT_PATTERNS:
+        for pattern in UNSAFE_DECLARED_CONTENT_PATTERNS:
             if pattern.search(node):
                 issues.append(
                     Issue(
@@ -505,7 +505,7 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
                 )
             )
 
-    for pattern in UNSAFE_CONTENT_PATTERNS:
+    for pattern in UNSAFE_URL_AND_HANDLER_PATTERNS:
         if pattern.search(html):
             issues.append(
                 Issue(
@@ -513,7 +513,29 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
                     scope,
                     "Rendered page contains unsafe markup patterns.",
                 )
-            )    
+            )
+
+    validate_iframe_security(scope, html, issues)
+
+
+GTM_NS_IFRAME_PATH = "https://www.googletagmanager.com/ns.html?id=GTM-56J99S4F"
+
+
+def validate_iframe_security(scope: str, html: str, issues: list[Issue]) -> None:
+    """Allow only the Google Tag Manager noscript iframe used for this site."""
+    for match in re.finditer(r"<\s*iframe\b[^>]*>", html, re.IGNORECASE):
+        tag = match.group(0)
+        normalized = tag.replace("'", '"').lower()
+        if GTM_NS_IFRAME_PATH.lower() in normalized:
+            continue
+        issues.append(
+            Issue(
+                "ERROR",
+                scope,
+                "Rendered page contains a forbidden iframe (only the GTM noscript fallback is permitted).",
+            )
+        )
+        return
 
 
 def resolve_internal_href(href: str, current_file: Path) -> Path | None:

@@ -9,6 +9,7 @@ from typing import Any
 from xml.etree import ElementTree as ET
 
 from config import get_config
+from site_data_loader import SiteDataLoadError, load_site_data as load_site_bundle
 
 
 CONFIG = get_config()
@@ -27,6 +28,7 @@ FAVICON_FILE = OUTPUT_DIR / "favicon.ico"
 
 REQUIRED_SCRIPT_FILES = (
     "config.py",
+    "site_data_loader.py",
     "generate_pages.py",
     "generate_sitemap.py",
     "validate_content.py",
@@ -105,19 +107,10 @@ class QualityGateError(Exception):
 
 def load_site_data() -> dict[str, Any]:
     """Load the sovereign site data source."""
-    if not SITE_DATA_FILE.exists():
-        raise QualityGateError(f"Missing required site data file: {SITE_DATA_FILE}")
-
     try:
-        raw = SITE_DATA_FILE.read_text(encoding="utf-8")
-        data = json.loads(raw)
-    except json.JSONDecodeError as exc:
-        raise QualityGateError(f"Invalid JSON in {SITE_DATA_FILE}: {exc}") from exc
-
-    if not isinstance(data, dict):
-        raise QualityGateError("site.json must contain a top-level JSON object.")
-
-    return data
+        return load_site_bundle()
+    except SiteDataLoadError as exc:
+        raise QualityGateError(str(exc)) from exc
 
 
 def require_foundation_inputs(result: GateResult, site_data: dict[str, Any]) -> None:

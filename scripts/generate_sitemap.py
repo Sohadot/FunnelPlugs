@@ -9,6 +9,7 @@ from xml.dom import minidom
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 from config import get_config
+from site_data_loader import SiteDataLoadError, load_site_data as load_site_bundle
 
 
 class SitemapError(Exception):
@@ -59,16 +60,10 @@ CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
 
 def load_site_data() -> dict[str, Any]:
     """Load the sovereign site data source."""
-    if not SITE_DATA_FILE.exists():
-        raise SitemapError(f"Missing required data file: {SITE_DATA_FILE}")
-
     try:
-        data = json.loads(SITE_DATA_FILE.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise SitemapError(f"Invalid JSON in {SITE_DATA_FILE}: {exc}") from exc
-
-    if not isinstance(data, dict):
-        raise SitemapError("site.json must contain a top-level JSON object.")
+        data = load_site_bundle()
+    except SiteDataLoadError as exc:
+        raise SitemapError(str(exc)) from exc
 
     if "core_pages" not in data or not isinstance(data["core_pages"], list):
         raise SitemapError("site.json must define a 'core_pages' array.")
@@ -260,7 +255,12 @@ def write_sitemap(xml_content: str) -> None:
 
 
 def main() -> None:
-    """Run the sovereign sitemap generation pipeline."""
+    """
+    Run the sovereign sitemap generation pipeline.
+
+    Every indexable *.html file under the live root is scanned; URLs must match
+    declared registry entries in site.json plus optional data/extra_core_pages.json.
+    """
     site_data = load_site_data()
     declared_pages = declared_pages_by_file(site_data)
 

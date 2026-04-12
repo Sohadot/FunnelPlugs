@@ -10,6 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  {% if seo.get('google_site_verification') %}
+  <meta name="google-site-verification" content="{{ seo.get('google_site_verification') }}">
+  {% endif %}
+
+  <script src="/assets/js/gtm.js"></script>
+
   <title>{{ page.get('title') or site.get('title_default') }}</title>
   <meta name="description" content="{{ page.get('description') or site.get('description_default') }}">
   <meta name="robots" content="{{ page.get('robots') or seo.get('robots_default') }}">
@@ -47,6 +53,7 @@
   {% endif %}
 </head>
 <body class="fp-shell page-{{ page.get('key') or 'unknown' }} page-type-{{ page.get('page_type') or 'generic' }}">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56J99S4F" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <div class="site-grid" aria-hidden="true"></div>

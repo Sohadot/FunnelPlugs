@@ -18,6 +18,7 @@ except ImportError as exc:
     ) from exc
 
 from config import get_config
+from site_data_loader import SiteDataLoadError, load_site_data as load_site_bundle
 
 
 class GenerationError(Exception):
@@ -133,17 +134,10 @@ def normalize_whitespace(value: str) -> str:
 
 def load_site_data() -> dict[str, Any]:
     """Load and validate the sovereign site data source."""
-    if not SITE_DATA_FILE.exists():
-        raise GenerationError(f"Missing required data file: {SITE_DATA_FILE}")
-
     try:
-        raw = SITE_DATA_FILE.read_text(encoding="utf-8")
-        data = json.loads(raw)
-    except json.JSONDecodeError as exc:
-        raise GenerationError(f"Invalid JSON in {SITE_DATA_FILE}: {exc}") from exc
-
-    if not isinstance(data, dict):
-        raise GenerationError("site.json must contain a top-level JSON object.")
+        data = load_site_bundle()
+    except SiteDataLoadError as exc:
+        raise GenerationError(str(exc)) from exc
 
     for key in REQUIRED_TOP_LEVEL_KEYS:
         if key not in data:

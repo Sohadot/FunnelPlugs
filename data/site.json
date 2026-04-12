@@ -73,7 +73,8 @@
     "sitemap_filename": "sitemap.xml",
     "sitemap_include_lastmod": true,
     "trailing_slash_policy": "no_trailing_slash_canonical",
-    "preferred_protocol": "https"
+    "preferred_protocol": "https",
+    "google_site_verification": ""
   },
   "navigation": {
     "header": [
@@ -96,6 +97,11 @@
         "label": "Registry",
         "href": "/registry.html",
         "key": "registry"
+      },
+      {
+        "label": "Reference",
+        "href": "/reference.html",
+        "key": "reference"
       },
       {
         "label": "Engine",
@@ -179,6 +185,15 @@
               "link": {
                 "label": "Open engine",
                 "href": "/engine.html"
+              }
+            },
+            {
+              "eyebrow": "Index",
+              "title": "Reference",
+              "body": "<p>Leak classes, plug classes, and concept papers in one governed index for discovery and internal linking.</p>",
+              "link": {
+                "label": "Open reference index",
+                "href": "/reference.html"
               }
             }
           ]
@@ -411,6 +426,40 @@
               "eyebrow": "CAT-003",
               "title": "Recovery Systems",
               "body": "<p>Mechanisms that restore momentum after drop-off, hesitation, or abandonment.</p>"
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Structural reference hub",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Index",
+              "title": "Reference index",
+              "body": "<p>All governed leak classes, plug classes, and concept papers linked for crawl paths and human navigation.</p>",
+              "link": {
+                "label": "Browse the index",
+                "href": "/reference.html"
+              }
+            },
+            {
+              "eyebrow": "Taxonomy",
+              "title": "Leak class pages",
+              "body": "<p>Each structural leak class has a dedicated page aligned with the Revenue Leak Diagnostic Engine taxonomy.</p>",
+              "link": {
+                "label": "Start with Trust Collapse",
+                "href": "/trust-collapse.html"
+              }
+            },
+            {
+              "eyebrow": "Taxonomy",
+              "title": "Plug class pages",
+              "body": "<p>Intervention classes describe what must be restored, not product SKUs, keeping recommendations structurally honest.</p>",
+              "link": {
+                "label": "Start with Trust Infrastructure",
+                "href": "/trust-infrastructure.html"
+              }
             }
           ]
         }

@@ -19,6 +19,7 @@ SCRIPTS_DIR = CONFIG.paths.scripts_dir
 
 REQUIRED_SCRIPT_FILES = (
     "config.py",
+    "site_data_loader.py",
     "generate_pages.py",
     "generate_sitemap.py",
     "validate_content.py",

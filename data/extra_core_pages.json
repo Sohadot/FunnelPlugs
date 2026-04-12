@@ -1,0 +1,1494 @@
+{
+  "pages": [
+    {
+      "key": "reference",
+      "file": "reference.html",
+      "slug": "reference",
+      "url": "https://funnelplugs.com/reference.html",
+      "template": "page.html",
+      "title": "Reference Index — Leak Classes, Plug Classes & Concepts",
+      "description": "Governed index of Funnelplugs leak classes, plug classes, and conceptual papers. Central hub for structural reference material.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/reference.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "reference",
+      "hero": {
+        "title": "Reference index",
+        "lead": "Structured entry points into leak taxonomy, plug taxonomy, and conceptual foundations used across the sovereign system."
+      },
+      "summary": {
+        "title": "How to use this index",
+        "body": "<p>Start from a leak class to understand failure mode language, or from a plug class to understand intervention language. Concept pages explain governing ideas that cut across both taxonomies.</p>"
+      },
+      "sections": [
+        {
+          "type": "cards",
+          "title": "Leak classes",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Leak class",
+              "title": "Trust Collapse",
+              "body": "<p>Structural weakness when decision-stage confidence is under-supported by proof, reassurance, and legitimacy.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/trust-collapse.html"
+              }
+            },
+            {
+              "eyebrow": "Leak class",
+              "title": "Flow Break",
+              "body": "<p>Continuity loss between stages: interruption, disorientation, or movement failure before completion.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/flow-break.html"
+              }
+            },
+            {
+              "eyebrow": "Leak class",
+              "title": "Friction Overload",
+              "body": "<p>Avoidable effort, complexity, or burden suppresses movement and completion.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/friction-overload.html"
+              }
+            },
+            {
+              "eyebrow": "Leak class",
+              "title": "Decision Ambiguity",
+              "body": "<p>Insufficient clarity on value, choice, or next step at the moment a decision is required.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/decision-ambiguity.html"
+              }
+            },
+            {
+              "eyebrow": "Leak class",
+              "title": "Recovery Absence",
+              "body": "<p>Missing recovery infrastructure after hesitation, interruption, or abandonment.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/recovery-absence.html"
+              }
+            },
+            {
+              "eyebrow": "Leak class",
+              "title": "Message-Path Misalignment",
+              "body": "<p>Promise, context, and on-path action logic diverge across the journey.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/message-path-misalignment.html"
+              }
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Plug classes",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Plug class",
+              "title": "Trust Infrastructure",
+              "body": "<p>Intervention layers that restore confidence, legitimacy, reassurance, and proof at decision-critical moments.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/trust-infrastructure.html"
+              }
+            },
+            {
+              "eyebrow": "Plug class",
+              "title": "Flow Continuity Layer",
+              "body": "<p>Preserves movement, reduces transition failure, and maintains continuity from entry to action.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/flow-continuity-layer.html"
+              }
+            },
+            {
+              "eyebrow": "Plug class",
+              "title": "Friction Reduction Layer",
+              "body": "<p>Reduces avoidable effort and completion drag without degrading structural clarity.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/friction-reduction-layer.html"
+              }
+            },
+            {
+              "eyebrow": "Plug class",
+              "title": "Decision Guidance Layer",
+              "body": "<p>Improves interpretability, value clarity, and next-step certainty at choice points.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/decision-guidance-layer.html"
+              }
+            },
+            {
+              "eyebrow": "Plug class",
+              "title": "Recovery Systems Layer",
+              "body": "<p>Builds continuation logic after hesitation, interruption, or abandonment.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/recovery-systems-layer.html"
+              }
+            },
+            {
+              "eyebrow": "Plug class",
+              "title": "Alignment Reinforcement Layer",
+              "body": "<p>Restores continuity between promise, context, and on-path action logic.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/alignment-reinforcement-layer.html"
+              }
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Concept papers",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Concept",
+              "title": "Structural Revenue Leakage",
+              "body": "<p>Revenue loss interpreted as missing structural layers in the commercial path rather than traffic shortage alone.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/structural-revenue-leakage.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Commercial Path Continuity",
+              "body": "<p>The requirement that intent can move through stages without unjustified interruption or discontinuity.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/commercial-path-continuity.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Decision-Stage Integrity",
+              "body": "<p>The path must support confident interpretation whenever a commitment or meaningful choice is required.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/decision-stage-integrity.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Intervention Architecture",
+              "body": "<p>The ordered set of structural plugs required to restore integrity after diagnosis.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/intervention-architecture.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Diagnostic Signal Layers",
+              "body": "<p>How observable behavior and structured questions map into leak and plug classes.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/diagnostic-signal-layers.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Abandonment & Recovery Logic",
+              "body": "<p>Why interruption should trigger continuation design instead of treating users as permanently lost.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/abandonment-recovery-logic.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Canonical URL Governance",
+              "body": "<p>Self-referencing canonical URLs keep indexing signals coherent for static sovereign output.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/canonical-url-governance.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Integrity Band Interpretation",
+              "body": "<p>How scored integrity bands summarize overall path strength without pretending precision is prophecy.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/integrity-band-interpretation.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Dimensional Weakness Mapping",
+              "body": "<p>Mapping friction, trust, clarity, recovery, and related dimensions to structural diagnoses.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/dimensional-weakness-mapping.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Plug Class Prioritization",
+              "body": "<p>Choosing primary and secondary plug classes based on structural dependency and diagnosed leaks.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/plug-class-prioritization.html"
+              }
+            },
+            {
+              "eyebrow": "Concept",
+              "title": "Leak-to-Plug Mapping",
+              "body": "<p>How each leak class connects to recommended plug classes inside the governed taxonomies.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/leak-plug-mapping.html"
+              }
+            }
+          ]
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        },
+        {
+          "eyebrow": "Utility",
+          "label": "Revenue Leak Engine",
+          "href": "/engine.html",
+          "description": "Apply diagnostic logic to live paths."
+        }
+      ]
+    },
+    {
+      "key": "leak-trust-collapse",
+      "file": "trust-collapse.html",
+      "slug": "trust-collapse",
+      "url": "https://funnelplugs.com/trust-collapse.html",
+      "template": "page.html",
+      "title": "Trust Collapse — Revenue Leak Class",
+      "description": "Structural weakness when decision-stage confidence is under-supported by proof, reassurance, and legitimacy.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/trust-collapse.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Trust Collapse",
+        "lead": "Confidence fails at the commitment boundary even when basic interest exists."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This leak class describes trust architecture that is too weak for the decision the path is asking the user to make.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>Trust Collapse means the path reaches a decision point without enough confidence infrastructure to sustain commitment.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Late-stage abandonment with lingering interest often traces here before creative or traffic fixes.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "leak-flow-break",
+      "file": "flow-break.html",
+      "slug": "flow-break",
+      "url": "https://funnelplugs.com/flow-break.html",
+      "template": "page.html",
+      "title": "Flow Break — Revenue Leak Class",
+      "description": "Continuity loss between stages: interruption, disorientation, or movement failure before completion.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/flow-break.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Flow Break",
+        "lead": "Momentum is lost across transitions even when individual screens look acceptable."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Flow Break isolates structural discontinuity rather than blaming isolated UX polish.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>The visitor cannot move through the path with stable continuity.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Drop-off clusters around transitions, steps, or hand-offs rather than the offer itself.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "leak-friction-overload",
+      "file": "friction-overload.html",
+      "slug": "friction-overload",
+      "url": "https://funnelplugs.com/friction-overload.html",
+      "template": "page.html",
+      "title": "Friction Overload — Revenue Leak Class",
+      "description": "Avoidable effort, complexity, or burden suppresses movement and completion.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/friction-overload.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Friction Overload",
+        "lead": "The system demands more operational or cognitive work than the user should need to continue."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Friction Overload separates burden created by the path from simple offer rejection.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>Process heaviness erodes intent that would otherwise continue.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Completion falls during action-heavy sequences despite continued relevance.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "leak-decision-ambiguity",
+      "file": "decision-ambiguity.html",
+      "slug": "decision-ambiguity",
+      "url": "https://funnelplugs.com/decision-ambiguity.html",
+      "template": "page.html",
+      "title": "Decision Ambiguity — Revenue Leak Class",
+      "description": "Insufficient clarity on value, choice, or next step at the moment a decision is required.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/decision-ambiguity.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Decision Ambiguity",
+        "lead": "The user cannot interpret the commitment confidently even when curiosity remains."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This class targets interpretive weakness at choice points, not generic copy weakness everywhere.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>The path under-explains what is being chosen and what happens next.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Hesitation without strong objection; users pause instead of advancing.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "leak-recovery-absence",
+      "file": "recovery-absence.html",
+      "slug": "recovery-absence",
+      "url": "https://funnelplugs.com/recovery-absence.html",
+      "template": "page.html",
+      "title": "Recovery Absence — Revenue Leak Class",
+      "description": "Missing recovery infrastructure after hesitation, interruption, or abandonment.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/recovery-absence.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Recovery Absence",
+        "lead": "Interrupted intent is treated as terminal instead of recoverable."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Recovery Absence highlights absent continuation logic, not a single email tactic.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>The path surrenders momentum once the primary flow is broken.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Strong first-pass interest but weak return paths after pause or exit.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "leak-message-path-misalignment",
+      "file": "message-path-misalignment.html",
+      "slug": "message-path-misalignment",
+      "url": "https://funnelplugs.com/message-path-misalignment.html",
+      "template": "page.html",
+      "title": "Message-Path Misalignment — Revenue Leak Class",
+      "description": "Promise, context, and on-path action logic diverge across the journey.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/message-path-misalignment.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Message-Path Misalignment",
+        "lead": "Entry intent is not structurally honored by what the path asks next."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Misalignment contaminates the journey before local optimizations can compensate.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Structural read",
+          "body": "<p>Expectation created upstream is not what the path continues to serve.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Operational signal",
+          "body": "<p>Engagement starts then decays after arrival despite competent isolated pages.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        }
+      ]
+    },
+    {
+      "key": "plug-trust-infrastructure",
+      "file": "trust-infrastructure.html",
+      "slug": "trust-infrastructure",
+      "url": "https://funnelplugs.com/trust-infrastructure.html",
+      "template": "page.html",
+      "title": "Trust Infrastructure — Plug Class",
+      "description": "Intervention layers that restore confidence, legitimacy, reassurance, and proof at decision-critical moments.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/trust-infrastructure.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Trust Infrastructure",
+        "lead": "Reinforce credibility and safety where commitment is required."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Trust Infrastructure is deployed where the path asks for commitment before confidence is structurally supported.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Reduce trust-based hesitation at conversion boundaries.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Often pairs with Trust Collapse and late-stage hesitation patterns.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "plug-flow-continuity-layer",
+      "file": "flow-continuity-layer.html",
+      "slug": "flow-continuity-layer",
+      "url": "https://funnelplugs.com/flow-continuity-layer.html",
+      "template": "page.html",
+      "title": "Flow Continuity Layer — Plug Class",
+      "description": "Preserves movement, reduces transition failure, and maintains continuity from entry to action.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/flow-continuity-layer.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Flow Continuity Layer",
+        "lead": "Carry intent through stages without structural interruption."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This plug class targets discontinuity and momentum loss rather than surface aesthetics alone.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Stabilize transitions and protect progression logic.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Aligns with Flow Break and certain friction-adjacent failures.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "plug-friction-reduction-layer",
+      "file": "friction-reduction-layer.html",
+      "slug": "friction-reduction-layer",
+      "url": "https://funnelplugs.com/friction-reduction-layer.html",
+      "template": "page.html",
+      "title": "Friction Reduction Layer — Plug Class",
+      "description": "Reduces avoidable effort and completion drag without degrading structural clarity.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/friction-reduction-layer.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Friction Reduction Layer",
+        "lead": "Lighten procedural burden so intent is not spent on the wrong work."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Friction reduction must preserve interpretive integrity; it is not blind simplification.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Remove unnecessary cognitive and operational load.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Primary response to Friction Overload and some Flow Break cases.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "plug-decision-guidance-layer",
+      "file": "decision-guidance-layer.html",
+      "slug": "decision-guidance-layer",
+      "url": "https://funnelplugs.com/decision-guidance-layer.html",
+      "template": "page.html",
+      "title": "Decision Guidance Layer — Plug Class",
+      "description": "Improves interpretability, value clarity, and next-step certainty at choice points.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/decision-guidance-layer.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Decision Guidance Layer",
+        "lead": "Help users understand what they are choosing and why it matters now."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Guidance strengthens interpretation without dumping unstructured noise.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Make commitment legible at the moment of decision.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Primary response to Decision Ambiguity and adjacent trust issues.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "plug-recovery-systems-layer",
+      "file": "recovery-systems-layer.html",
+      "slug": "recovery-systems-layer",
+      "url": "https://funnelplugs.com/recovery-systems-layer.html",
+      "template": "page.html",
+      "title": "Recovery Systems Layer — Plug Class",
+      "description": "Builds continuation logic after hesitation, interruption, or abandonment.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/recovery-systems-layer.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Recovery Systems Layer",
+        "lead": "Convert interruption into governed re-entry instead of permanent loss."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Recovery systems are structural paths, not generic reminder spam.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Reclaim recoverable intent with coherent continuation design.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Primary response to Recovery Absence.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "plug-alignment-reinforcement-layer",
+      "file": "alignment-reinforcement-layer.html",
+      "slug": "alignment-reinforcement-layer",
+      "url": "https://funnelplugs.com/alignment-reinforcement-layer.html",
+      "template": "page.html",
+      "title": "Alignment Reinforcement Layer — Plug Class",
+      "description": "Restores continuity between promise, context, and on-path action logic.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/alignment-reinforcement-layer.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "taxonomy",
+      "hero": {
+        "title": "Alignment Reinforcement Layer",
+        "lead": "Keep entry intent and path logic structurally coherent."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Alignment work prevents expectation drift from poisoning downstream optimization.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Purpose",
+          "body": "<p>Repair promise-to-path coherence from arrival forward.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Fit",
+          "body": "<p>Primary response to Message-Path Misalignment.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Reference",
+          "label": "Plug Registry",
+          "href": "/registry.html",
+          "description": "High-level intervention categories."
+        },
+        {
+          "eyebrow": "Standard",
+          "label": "Funnel Integrity Standard",
+          "href": "/standard.html",
+          "description": "Formal conditions for a sound commercial path."
+        }
+      ]
+    },
+    {
+      "key": "doc-structural-revenue-leakage",
+      "file": "structural-revenue-leakage.html",
+      "slug": "structural-revenue-leakage",
+      "url": "https://funnelplugs.com/structural-revenue-leakage.html",
+      "template": "page.html",
+      "title": "Structural Revenue Leakage — Funnelplugs",
+      "description": "Revenue loss interpreted as missing structural layers in the commercial path rather than traffic shortage alone.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/structural-revenue-leakage.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Structural revenue leakage",
+        "lead": "Leakage is read as incompleteness in the journey architecture, not only campaign volume."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This concept anchors how Funnelplugs interprets underperformance without collapsing it into generic marketing failure.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Structural leakage appears when required intervention layers are absent or weak at critical boundaries.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Fixes prioritize architecture before incremental creative tweaks.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-commercial-path-continuity",
+      "file": "commercial-path-continuity.html",
+      "slug": "commercial-path-continuity",
+      "url": "https://funnelplugs.com/commercial-path-continuity.html",
+      "template": "page.html",
+      "title": "Commercial Path Continuity — Funnelplugs",
+      "description": "The requirement that intent can move through stages without unjustified interruption or discontinuity.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/commercial-path-continuity.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Commercial path continuity",
+        "lead": "Continuity means stable progression logic, not merely fast pages."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Continuity is one of the governing dimensions behind Flow Break and Flow Continuity interventions.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Continuity is present when transitions preserve momentum and orientation.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Broken hand-offs are treated as structural defects, not cosmetic issues.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-decision-stage-integrity",
+      "file": "decision-stage-integrity.html",
+      "slug": "decision-stage-integrity",
+      "url": "https://funnelplugs.com/decision-stage-integrity.html",
+      "template": "page.html",
+      "title": "Decision-Stage Integrity — Funnelplugs",
+      "description": "The path must support confident interpretation whenever a commitment or meaningful choice is required.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/decision-stage-integrity.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Decision-stage integrity",
+        "lead": "Integrity at the decision boundary requires clarity and trust working together."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This concept links Decision Ambiguity to governed guidance rather than louder persuasion.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Decision integrity fails when users must guess value, risk, or next steps.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Clarify commitment logic before scaling traffic or incentives.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-intervention-architecture",
+      "file": "intervention-architecture.html",
+      "slug": "intervention-architecture",
+      "url": "https://funnelplugs.com/intervention-architecture.html",
+      "template": "page.html",
+      "title": "Intervention Architecture — Funnelplugs",
+      "description": "The ordered set of structural plugs required to restore integrity after diagnosis.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/intervention-architecture.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Intervention architecture",
+        "lead": "Interventions are classes of restoration, not random tool additions."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Architecture thinking keeps plug selection aligned with leak class and dependency order.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>An intervention architecture specifies what must be fixed first and why.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Prevents stacking tactics that ignore the primary structural blocker.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-diagnostic-signal-layers",
+      "file": "diagnostic-signal-layers.html",
+      "slug": "diagnostic-signal-layers",
+      "url": "https://funnelplugs.com/diagnostic-signal-layers.html",
+      "template": "page.html",
+      "title": "Diagnostic Signal Layers — Funnelplugs",
+      "description": "How observable behavior and structured questions map into leak and plug classes.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/diagnostic-signal-layers.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Diagnostic signal layers",
+        "lead": "Signals are interpreted through governed rules, not anecdotal opinion."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This concept supports the Revenue Leak Engine as a decision-support layer.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Signals aggregate into interpretable classes with explicit methodology.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Diagnostics remain auditable and repeatable across pages and teams.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-abandonment-recovery-logic",
+      "file": "abandonment-recovery-logic.html",
+      "slug": "abandonment-recovery-logic",
+      "url": "https://funnelplugs.com/abandonment-recovery-logic.html",
+      "template": "page.html",
+      "title": "Abandonment & Recovery Logic — Funnelplugs",
+      "description": "Why interruption should trigger continuation design instead of treating users as permanently lost.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/abandonment-recovery-logic.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Abandonment and recovery logic",
+        "lead": "Recovery converts salvageable demand into structured re-entry."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Grounds the Recovery Absence leak and Recovery Systems plug in operational terms.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Recovery logic defines how intent is invited back without breaking trust.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Build re-entry paths proportional to the diagnosed interruption pattern.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-canonical-url-governance",
+      "file": "canonical-url-governance.html",
+      "slug": "canonical-url-governance",
+      "url": "https://funnelplugs.com/canonical-url-governance.html",
+      "template": "page.html",
+      "title": "Canonical URL Governance — Funnelplugs",
+      "description": "Self-referencing canonical URLs keep indexing signals coherent for static sovereign output.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/canonical-url-governance.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Canonical URL governance",
+        "lead": "Each indexable page should declare one HTTPS canonical under the site root."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Governance reduces duplicate signals and clarifies which URL represents each document.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Canonical policy ties each HTML file to a single preferred URL.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Sitemap entries should match canonical declarations on the live pages.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-integrity-band-interpretation",
+      "file": "integrity-band-interpretation.html",
+      "slug": "integrity-band-interpretation",
+      "url": "https://funnelplugs.com/integrity-band-interpretation.html",
+      "template": "page.html",
+      "title": "Integrity Band Interpretation — Funnelplugs",
+      "description": "How scored integrity bands summarize overall path strength without pretending precision is prophecy.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/integrity-band-interpretation.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Integrity band interpretation",
+        "lead": "Bands compress multidimensional weakness into prioritized action framing."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Connects engine scoring outputs to strategic sequencing.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Bands group similar risk postures for communication and prioritization.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Use bands to order plug work, not to imply guaranteed revenue outcomes.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-dimensional-weakness-mapping",
+      "file": "dimensional-weakness-mapping.html",
+      "slug": "dimensional-weakness-mapping",
+      "url": "https://funnelplugs.com/dimensional-weakness-mapping.html",
+      "template": "page.html",
+      "title": "Dimensional Weakness Mapping — Funnelplugs",
+      "description": "Mapping friction, trust, clarity, recovery, and related dimensions to structural diagnoses.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/dimensional-weakness-mapping.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Dimensional weakness mapping",
+        "lead": "Dimensions reveal where the path fails even when funnels look complete."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Supports cross-checking between leak classes and standard dimensions.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Each dimension highlights a distinct failure mode in the journey.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Multiple weak dimensions may require sequenced interventions.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-plug-class-prioritization",
+      "file": "plug-class-prioritization.html",
+      "slug": "plug-class-prioritization",
+      "url": "https://funnelplugs.com/plug-class-prioritization.html",
+      "template": "page.html",
+      "title": "Plug Class Prioritization — Funnelplugs",
+      "description": "Choosing primary and secondary plug classes based on structural dependency and diagnosed leaks.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/plug-class-prioritization.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Plug class prioritization",
+        "lead": "Order interventions by dependency, not by ease of installation."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>Keeps remediation aligned with the plug taxonomy decision framework.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Primary plug class tracks the dominant structural blocker.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Secondary plugs follow when materially adjacent and operationally justified.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    },
+    {
+      "key": "doc-leak-plug-mapping",
+      "file": "leak-plug-mapping.html",
+      "slug": "leak-plug-mapping",
+      "url": "https://funnelplugs.com/leak-plug-mapping.html",
+      "template": "page.html",
+      "title": "Leak-to-Plug Mapping — Funnelplugs",
+      "description": "How each leak class connects to recommended plug classes inside the governed taxonomies.",
+      "indexable": true,
+      "canonical": "https://funnelplugs.com/leak-plug-mapping.html",
+      "og_image": "/assets/img/og-default.jpg",
+      "page_type": "concept",
+      "hero": {
+        "title": "Leak-to-plug mapping",
+        "lead": "Mapping is explicit so recommendations stay interpretable."
+      },
+      "summary": {
+        "title": "Scope",
+        "body": "<p>This concept bridges diagnostic language and intervention language without collapsing them.</p>"
+      },
+      "sections": [
+        {
+          "type": "narrative",
+          "title": "Definition",
+          "body": "<p>Each leak class points to plug classes that restore the missing layer.</p>"
+        },
+        {
+          "type": "narrative",
+          "title": "Implication",
+          "body": "<p>Avoid recommending plugs that ignore the diagnosed primary leak.</p>"
+        }
+      ],
+      "related_pages": [
+        {
+          "eyebrow": "Hub",
+          "label": "Reference index",
+          "href": "/reference.html",
+          "description": "Browse all governed reference pages."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "Manifesto",
+          "href": "/manifesto.html",
+          "description": "Founding position on the missing plug."
+        },
+        {
+          "eyebrow": "Method",
+          "label": "Protocol",
+          "href": "/protocol.html",
+          "description": "How leakage is classified and addressed."
+        }
+      ]
+    }
+  ]
+}
