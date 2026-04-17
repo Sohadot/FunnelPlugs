@@ -186,6 +186,17 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD024` for repeated changelog subsection headings used by design.
+- Updated `docs/DECISION_LOG.md` with `DECISION-015` to formalize the policy extension.
+
+#### Refined
+- Removed remaining markdownlint false blockers tied to intentional repeated heading labels in `docs/CHANGELOG.md`.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

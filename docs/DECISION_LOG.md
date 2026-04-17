@@ -506,6 +506,33 @@ Repository markdownlint policy now explicitly disables `MD032` and `MD036` in `.
 
 ---
 
+## DECISION-015
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Disable markdownlint rule `MD024` for sovereign changelog and doctrine heading patterns.
+
+### Context
+Required CI checks continued to fail due to repeated section labels (such as Added/Changed/Fixed/Refined) used intentionally across dated changelog entries.
+
+### Rationale
+The repository uses a structured repeatable changelog format where repeated subsection names are expected behavior, not an authoring defect.
+Disabling `MD024` removes false blockers while preserving governance integrity controls.
+
+### Alternatives Rejected
+- Rewrite changelog taxonomy to unique per-entry heading names — rejected because it hurts readability and deviates from established operating format.
+- Keep default `MD024` and accept recurring check failures — rejected because it breaks required check reliability.
+
+### Strategic Impact
+Improves CI signal quality by preventing non-material lint failures from blocking governed delivery.
+
+### Operational Consequence
+Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD024`.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.
