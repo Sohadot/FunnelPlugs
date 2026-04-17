@@ -175,6 +175,17 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD032` and `MD036` for compatibility with sovereign doctrine-style documents.
+- Updated `docs/DECISION_LOG.md` with `DECISION-014` to formalize the policy extension.
+
+#### Refined
+- Eliminated remaining markdownlint false blockers affecting `docs/ASSET_THESIS.md` in required CI checks.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

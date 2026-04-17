@@ -480,6 +480,32 @@ Markdownlint now runs with a repository-level policy baseline defined in `.markd
 
 ---
 
+## DECISION-014
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Extend the markdownlint policy baseline to disable `MD032` and `MD036` for doctrine-style strategic docs.
+
+### Context
+After baseline lint policy adoption, required checks still failed on legacy doctrine documents due to strict list-spacing and emphasis-as-heading rules that conflict with established repository writing style.
+
+### Rationale
+This adjustment removes formatting-only false blockers while maintaining governance and quality enforcement where it matters operationally.
+
+### Alternatives Rejected
+- Rewrite all doctrine files to satisfy strict default markdown style immediately — rejected due to high noise and low strategic value.
+- Keep failing checks and bypass manually — rejected because branch protection forbids this and it weakens process reliability.
+
+### Strategic Impact
+Stabilizes required CI checks and keeps review attention on substantive quality, governance, and security signals.
+
+### Operational Consequence
+Repository markdownlint policy now explicitly disables `MD032` and `MD036` in `.markdownlint-cli2.yaml`.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.
