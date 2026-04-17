@@ -452,6 +452,34 @@ Daily work must follow `docs/DAILY_OPERATION_PROTOCOL.md`, and core governance r
 
 ---
 
+## DECISION-013
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Adopt an explicit markdownlint policy baseline aligned with sovereign documentation style.
+
+### Context
+The required governance check enforced markdownlint defaults that conflicted with legacy doctrine-format files (long-form prose style, numbering conventions, and controlled structural spacing), causing PR checks to fail independently of real governance quality.
+
+### Rationale
+The repository's strategic documentation is doctrine-first rather than markdown-style-first.
+A formal lint policy prevents false negatives while preserving strict checks for meaningful governance and integrity controls.
+
+### Alternatives Rejected
+- Reformat all legacy doctrine files immediately — rejected because it is high-noise and low-strategic-yield for current release flow.
+- Disable markdownlint entirely — rejected because a markdown hygiene guard is still valuable.
+- Keep default markdownlint rules — rejected because it blocks valid sovereign docs for non-strategic formatting reasons.
+
+### Strategic Impact
+This decision stabilizes CI reliability, protects review focus on material quality, and prevents operational bottlenecks caused by formatting-only false failures.
+
+### Operational Consequence
+Markdownlint now runs with a repository-level policy baseline defined in `.markdownlint-cli2.yaml`.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.

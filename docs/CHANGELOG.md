@@ -162,6 +162,19 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Added
+- Added `.markdownlint-cli2.yaml` to define a repository-level markdownlint policy baseline compatible with sovereign doctrine documentation style.
+
+#### Changed
+- Updated `docs/DECISION_LOG.md` with `DECISION-013` to formalize markdownlint policy governance and CI reliability alignment.
+
+#### Refined
+- Reduced markdown formatting false-failure noise in required checks while preserving governance and quality enforcement intent.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

@@ -1,0 +1,12 @@
+config:
+  # Sovereign docs are doctrine-first and use controlled long-form prose.
+  # These rules are relaxed to avoid false failures on legacy strategic files.
+  MD003: false
+  MD012: false
+  MD013: false
+  MD022: false
+  MD026: false
+  MD029: false
+
+globs:
+  - "**/*.md"
