@@ -28,3 +28,14 @@
 - [ ] No new secrets or credentials introduced
 - [ ] No undocumented publishing path introduced
 - [ ] No quality gate bypass introduced
+
+## Solo self-review gate (when no second reviewer exists)
+
+- [ ] CI required check passed.
+- [ ] Branch is up to date with `main`.
+- [ ] I posted a self-review comment confirming:
+  - [ ] scope clarity and traceability
+  - [ ] governance checks completed
+  - [ ] no hidden changes or output noise
+  - [ ] no secrets and no policy bypass
+
