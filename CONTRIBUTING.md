@@ -11,6 +11,7 @@ Read before contributing:
 - `docs/QUALITY_GATE.md`
 - `docs/SECURITY_POLICY.md`
 - `docs/ARCHITECTURE.md`
+- `docs/DAILY_OPERATION_PROTOCOL.md`
 
 ## Required Workflow
 
@@ -30,6 +31,23 @@ Read before contributing:
 - Do not add secrets, tokens, credentials, or private keys.
 - Do not bypass quality gates.
 - If you change governance-critical files, include a clear decision rationale.
+
+## Solo Professional Mode
+
+If the repository is operated by a single maintainer (no second reviewer),
+use strict PR + checks flow with mandatory self-review before merge.
+
+Required solo merge gate:
+
+1. Required CI check passes.
+2. Branch is up to date with `main`.
+3. Self-review comment is posted in the PR and confirms:
+   - scope clarity,
+   - governance-check completion,
+   - no hidden changes or output noise,
+   - no secrets or policy bypass.
+
+This is the approved professional alternative when dual-review is unavailable.
 
 ## Governance-Critical Change Rule
 

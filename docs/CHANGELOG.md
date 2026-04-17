@@ -147,6 +147,67 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Added
+- Added `docs/DAILY_OPERATION_PROTOCOL.md` as a mandatory daily sovereign operating path.
+
+#### Changed
+- Updated `CONTRIBUTING.md` to require reading `docs/DAILY_OPERATION_PROTOCOL.md`.
+- Updated `docs/PROJECT_DOCTRINE.md` to make the daily execution protocol part of governed routine operation.
+- Updated `docs/DECISION_LOG.md` with `DECISION-012` to formally adopt daily sovereign execution controls.
+
+#### Refined
+- Converted daily execution guidance from informal checklist into a full operating protocol covering pre-commit hygiene, output-noise control, visual smoke tests, and commit-message discipline.
+
+---
+
+### [2026-04-17]
+
+#### Added
+- Added `.markdownlint-cli2.yaml` to define a repository-level markdownlint policy baseline compatible with sovereign doctrine documentation style.
+
+#### Changed
+- Updated `docs/DECISION_LOG.md` with `DECISION-013` to formalize markdownlint policy governance and CI reliability alignment.
+
+#### Refined
+- Reduced markdown formatting false-failure noise in required checks while preserving governance and quality enforcement intent.
+
+---
+
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD032` and `MD036` for compatibility with sovereign doctrine-style documents.
+- Updated `docs/DECISION_LOG.md` with `DECISION-014` to formalize the policy extension.
+
+#### Refined
+- Eliminated remaining markdownlint false blockers affecting `docs/ASSET_THESIS.md` in required CI checks.
+
+---
+
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD024` for repeated changelog subsection headings used by design.
+- Updated `docs/DECISION_LOG.md` with `DECISION-015` to formalize the policy extension.
+
+#### Refined
+- Removed remaining markdownlint false blockers tied to intentional repeated heading labels in `docs/CHANGELOG.md`.
+
+---
+
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD041` for legacy doctrine-file title marker format.
+- Updated `docs/DECISION_LOG.md` with `DECISION-016` to formalize the policy extension.
+
+#### Refined
+- Removed remaining markdownlint false blockers tied to first-line title-marker formatting in sovereign documentation files.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

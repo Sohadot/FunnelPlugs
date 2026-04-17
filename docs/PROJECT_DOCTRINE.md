@@ -164,3 +164,13 @@ Its long-term ambition is to evolve from:
 
 That is the project path.
 That is the operating standard.
+
+---
+
+## 11) Daily Execution Protocol
+
+Daily execution must follow the sovereign operating path defined in:
+
+- `docs/DAILY_OPERATION_PROTOCOL.md`
+
+This protocol is mandatory for routine implementation, verification, cleanup discipline, output-noise control, and PR governance continuity.
