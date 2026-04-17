@@ -1,0 +1,8 @@
+* @Sohadot
+
+# Governance-critical files
+/.github/workflows/* @Sohadot
+/docs/PROJECT_DOCTRINE.md @Sohadot
+/docs/FOUNDATION_DOCTRINE.md @Sohadot
+/docs/SECURITY_POLICY.md @Sohadot
+/scripts/quality_gate.py @Sohadot

@@ -1,0 +1,38 @@
+name: Governance Integrity
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    name: Governance, Security, and Markdown Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Markdown style lint
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: |
+            **/*.md
+
+      - name: Governance guard
+        run: python scripts/governance_guard.py --base-ref origin/main
+
+      - name: Markdown relative link integrity
+        run: python scripts/check_markdown_links.py
