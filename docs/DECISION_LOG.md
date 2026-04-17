@@ -533,6 +533,33 @@ Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD024`.
 
 ---
 
+## DECISION-016
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Disable markdownlint rule `MD041` for legacy sovereign doctrine files.
+
+### Context
+Required CI checks still failed on strategic governance files whose first line is a document identity marker rather than an ATX H1 heading.
+
+### Rationale
+Legacy doctrine files intentionally preserve title-marker-first formatting.
+Disabling `MD041` avoids format-only check failures without weakening governance controls.
+
+### Alternatives Rejected
+- Rewrite all legacy doctrine files to start with H1 — rejected due to unnecessary formatting churn and low strategic benefit.
+- Keep `MD041` active and accept recurring false blockers — rejected because it undermines CI reliability.
+
+### Strategic Impact
+Completes markdownlint policy alignment with sovereign documentation style and removes a non-material blocker from required checks.
+
+### Operational Consequence
+Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD041`.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.

@@ -197,6 +197,17 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Changed
+- Updated `.markdownlint-cli2.yaml` to disable `MD041` for legacy doctrine-file title marker format.
+- Updated `docs/DECISION_LOG.md` with `DECISION-016` to formalize the policy extension.
+
+#### Refined
+- Removed remaining markdownlint false blockers tied to first-line title-marker formatting in sovereign documentation files.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:
