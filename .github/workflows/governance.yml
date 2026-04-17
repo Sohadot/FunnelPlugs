@@ -36,3 +36,6 @@ jobs:
 
       - name: Markdown relative link integrity
         run: python scripts/check_markdown_links.py
+
+      - name: Sovereign strict standards guard
+        run: python scripts/sovereign_standards_guard.py

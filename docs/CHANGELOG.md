@@ -126,6 +126,27 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Added
+- Added `SECURITY.md` at repository root for standardized vulnerability disclosure and response expectations.
+- Added `CODEOWNERS` to enforce ownership on governance-critical files.
+- Added `CONTRIBUTING.md` and `.github/pull_request_template.md` with strict sovereign contribution requirements.
+- Added `.github/workflows/governance.yml` for governance, markdown, and strict standards CI checks.
+- Added `scripts/governance_guard.py` to block governance-critical changes without `docs/DECISION_LOG.md` updates.
+- Added `scripts/check_markdown_links.py` to block broken relative markdown links.
+- Added `scripts/sovereign_standards_guard.py` to enforce strict baseline doctrine-governance document presence.
+- Added `docs/THREAT_MODEL.md`, `docs/INCIDENT_RESPONSE.md`, `docs/DESIGN_RATIONALE.md`, and `docs/PUBLICATION_GATE_CHECKLIST.md`.
+
+#### Changed
+- Updated contribution and PR validation flows to include strict sovereign standards checks.
+- Extended governance CI to run sovereign strict standards guard in addition to existing checks.
+
+#### Refined
+- Strengthened doctrine-to-execution enforceability by converting governance expectations into auditable automation controls.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

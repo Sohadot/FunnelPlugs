@@ -20,6 +20,7 @@ Read before contributing:
    - `python scripts/quality_gate.py`
    - `python scripts/governance_guard.py`
    - `python scripts/check_markdown_links.py`
+   - `python scripts/sovereign_standards_guard.py`
 4. Open a PR using the provided PR template.
 
 ## Governance Rules

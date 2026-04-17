@@ -14,6 +14,7 @@
 - [ ] `python scripts/quality_gate.py`
 - [ ] `python scripts/governance_guard.py`
 - [ ] `python scripts/check_markdown_links.py`
+- [ ] `python scripts/sovereign_standards_guard.py`
 
 ## Governance-critical change declaration
 

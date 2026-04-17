@@ -396,6 +396,34 @@ Major decisions must continue to be recorded here as the project evolves.
 
 ---
 
+## DECISION-011
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Adopt a strict sovereign standards enforcement layer in repository governance.
+
+### Context
+Core doctrine and quality rules were strong, but enforcement needed stricter operational guarantees to reduce governance drift risk as the asset evolves.
+
+### Rationale
+A sovereign-grade asset requires mandatory controls, not advisory-only guidance.
+Enforcement now includes stricter standards checks plus dedicated doctrine-adjacent documents for threat modeling, incident response, publication gate execution, and design rationale continuity.
+
+### Alternatives Rejected
+- Governance by documentation only — rejected because it relies too heavily on memory and manual discipline.
+- Security-only hardening without doctrine controls — rejected because it leaves strategic integrity exposed.
+- Deferred strict governance to later phase — rejected because early drift compounds quickly.
+
+### Strategic Impact
+This decision improves defensibility, trust continuity, and acquisition readability by proving that doctrine-to-execution controls are active and auditable.
+
+### Operational Consequence
+Pull requests and CI must now satisfy sovereign strict standards checks, and governance baseline documents must remain present and complete.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.
