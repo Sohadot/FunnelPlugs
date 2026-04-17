@@ -38,4 +38,3 @@
   - [ ] governance checks completed
   - [ ] no hidden changes or output noise
   - [ ] no secrets and no policy bypass
-

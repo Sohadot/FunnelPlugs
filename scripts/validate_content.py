@@ -84,6 +84,23 @@ ALLOWED_SCRIPT_SRCS = {
 }
 
 SITE_CANONICAL_ROOT = CONFIG.site.canonical_url.rstrip("/")
+GTM_CONTAINER_ID = "GTM-56J99S4F"
+GTM_NS_IFRAME_PATH = f"https://www.googletagmanager.com/ns.html?id={GTM_CONTAINER_ID}"
+
+INLINE_SCRIPT_BLOCK_PATTERN = re.compile(
+    r"<\s*script\b(?P<attrs>[^>]*)>(?P<body>.*?)<\s*/\s*script\s*>",
+    re.IGNORECASE | re.DOTALL,
+)
+INLINE_SCRIPT_TYPE_JSON_PATTERN = re.compile(
+    r'\btype\s*=\s*["\']application/json["\']',
+    re.IGNORECASE,
+)
+GTM_INLINE_REQUIRED_MARKERS = (
+    "window,document,'script','datalayer'",
+    "window, document, 'script', 'datalayer'",
+    "window,document,\"script\",\"datalayer\"",
+    "window, document, \"script\", \"datalayer\"",
+)
 
 
 @dataclass
@@ -475,17 +492,14 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
     """Allow only approved external scripts and forbid inline scripts."""
     inspector = inspect_rendered_html(html)
 
-    for match in re.finditer(r"<\s*script\b[^>]*>", html, re.IGNORECASE):
+    for match in INLINE_SCRIPT_BLOCK_PATTERN.finditer(html):
+        script_attrs = match.group("attrs") or ""
+        script_body = (match.group("body") or "").strip()
         script_tag = match.group(0)
+        has_src = re.search(r"\bsrc\s*=", script_attrs, re.IGNORECASE) is not None
+        is_json_data = INLINE_SCRIPT_TYPE_JSON_PATTERN.search(script_attrs) is not None
 
-        has_src = re.search(r"\bsrc\s*=", script_tag, re.IGNORECASE) is not None
-        is_json_data = re.search(
-            r'\btype\s*=\s*["\']application/json["\']',
-            script_tag,
-            re.IGNORECASE,
-        ) is not None
-
-        if not has_src and not is_json_data:
+        if not has_src and not is_json_data and not is_allowed_gtm_inline_script(script_body):
             issues.append(
                 Issue(
                     "ERROR",
@@ -518,7 +532,18 @@ def validate_script_security(scope: str, html: str, issues: list[Issue]) -> None
     validate_iframe_security(scope, html, issues)
 
 
-GTM_NS_IFRAME_PATH = "https://www.googletagmanager.com/ns.html?id=GTM-56J99S4F"
+def is_allowed_gtm_inline_script(script_body: str) -> bool:
+    """Allow only the constrained GTM inline bootstrap snippet."""
+    if not script_body:
+        return False
+
+    normalized = re.sub(r"\s+", " ", script_body).strip().lower()
+    has_gtm_loader = "googletagmanager.com/gtm.js?id=" in normalized
+    has_container_id = GTM_CONTAINER_ID.lower() in normalized
+    has_data_layer_start = "gtm.start" in normalized and "event" in normalized and "gtm.js" in normalized
+    has_bootstrap_signature = any(marker in normalized for marker in GTM_INLINE_REQUIRED_MARKERS)
+
+    return has_gtm_loader and has_container_id and has_data_layer_start and has_bootstrap_signature
 
 
 def validate_iframe_security(scope: str, html: str, issues: list[Issue]) -> None:
