@@ -11,6 +11,7 @@ Read before contributing:
 - `docs/QUALITY_GATE.md`
 - `docs/SECURITY_POLICY.md`
 - `docs/ARCHITECTURE.md`
+- `docs/DAILY_OPERATION_PROTOCOL.md`
 
 ## Required Workflow
 

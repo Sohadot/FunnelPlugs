@@ -424,6 +424,34 @@ Pull requests and CI must now satisfy sovereign strict standards checks, and gov
 
 ---
 
+## DECISION-012
+
+**Date:** 2026-04-17  
+**Status:** Accepted
+
+### Decision
+Adopt a mandatory daily sovereign execution protocol and make it part of governed project operation.
+
+### Context
+Existing governance controls were strong, but daily execution needed a complete operating path that explicitly covers pre-commit cleanup, source-versus-output policy, visual smoke testing, and commit message discipline.
+
+### Rationale
+Without a strict daily path, technically valid work can still introduce output noise, weak traceability, or operational ambiguity.
+The daily protocol closes these gaps and keeps future execution aligned with sovereign standards under branch protection.
+
+### Alternatives Rejected
+- Keep guidance only in chat or memory — rejected because it is non-transferable and fragile.
+- Keep CONTRIBUTING as the only execution reference — rejected because it is too brief for full sovereign daily operation.
+- Enforce technical checks only — rejected because visual and output-governance controls are also required.
+
+### Strategic Impact
+This decision strengthens repeatability, reduces drift risk, and improves long-horizon operating reliability for maintainers and future acquirers.
+
+### Operational Consequence
+Daily work must follow `docs/DAILY_OPERATION_PROTOCOL.md`, and core governance references now explicitly point to that protocol.
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.

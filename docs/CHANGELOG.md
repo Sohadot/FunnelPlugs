@@ -147,6 +147,21 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-17]
+
+#### Added
+- Added `docs/DAILY_OPERATION_PROTOCOL.md` as a mandatory daily sovereign operating path.
+
+#### Changed
+- Updated `CONTRIBUTING.md` to require reading `docs/DAILY_OPERATION_PROTOCOL.md`.
+- Updated `docs/PROJECT_DOCTRINE.md` to make the daily execution protocol part of governed routine operation.
+- Updated `docs/DECISION_LOG.md` with `DECISION-012` to formally adopt daily sovereign execution controls.
+
+#### Refined
+- Converted daily execution guidance from informal checklist into a full operating protocol covering pre-commit hygiene, output-noise control, visual smoke tests, and commit-message discipline.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:
