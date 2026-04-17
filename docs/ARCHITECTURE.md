@@ -1,10 +1,11 @@
-ARCHITECTURE.md
+# Architecture
 
-1) Purpose
+## 1) Purpose
 
 This document defines the structural architecture of Funnelplugs.com.
 
-Its role is to translate the Foundation Doctrine into a disciplined build system. It governs:
+Its role is to translate the Foundation Doctrine into a disciplined
+build system. It governs:
 
 page architecture,
 
@@ -19,14 +20,13 @@ internal linking logic,
 and controlled future expansion.
 
 
-Funnelplugs must not be built as a loose collection of pages. It must be built as a coherent strategic asset with a clear structural spine.
-
-
+Funnelplugs must not be built as a loose collection of pages.
+It must be built as a coherent strategic asset with a clear structural spine.
 ---
+## 2) Architectural Principle
 
-2) Architectural Principle
-
-The architecture of Funnelplugs must reflect its role as a reference system for funnel integrity.
+The architecture of Funnelplugs must reflect its role as a reference
+system for funnel integrity.
 
 That means:
 
@@ -41,8 +41,8 @@ utility must emerge from doctrine,
 and expansion must remain governed.
 
 
-Architecture is not layout alone. It is the organizational expression of the asset’s conceptual authority.
-
+Architecture is not layout alone.
+It is the organizational expression of the asset's conceptual authority.
 
 ---
 
