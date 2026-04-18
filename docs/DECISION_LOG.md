@@ -1,610 +1,354 @@
 # DECISION_LOG.md
 
-## 1) Purpose
+## Status
+Active governance record.
 
-This file records the major strategic, structural, technical, and operational decisions behind Funnelplugs.com.
+## Purpose
+This file records material decisions that affect the structure, doctrine, governance, deployment posture, measurement posture, indexation workflow, security posture, and sovereign integrity of FunnelPlugs.com.
 
-It exists to preserve decision traceability.
+This is not a changelog.
+This is not a scratchpad.
+This is not a discussion archive.
 
-Funnelplugs is not being built as random output.
-It is being built as a deliberate strategic asset.
-That means key decisions must be documented with clarity.
+This file exists to preserve decision memory at the level of institutional consequence.
 
-This log is part of the asset’s transfer value.
-A future operator, partner, or acquirer should be able to understand:
-- what was decided,
-- why it was decided,
-- what alternatives were rejected,
-- and how the decision supports long-term asset value.
+If a decision changes how the asset is built, governed, published, secured, measured, or interpreted, it belongs here.
 
 ---
 
-## 2) Logging Rule
+## Decision Standard
 
-Not every small change belongs here.
+A decision must be logged here if it affects any of the following:
 
-This file is for high-value decisions, including decisions related to:
-- strategic positioning,
-- architecture,
-- infrastructure,
-- SEO,
-- monetization,
-- security,
-- governance,
-- standards,
-- taxonomy,
-- and asset valuation logic.
+- repository governance
+- source-of-truth doctrine
+- deployment architecture
+- external production systems
+- measurement architecture
+- search/indexation workflow
+- security posture
+- canonical or redirect behavior
+- content generation model
+- sovereign asset positioning
+- monetization boundaries
+- operational discipline
 
-Small edits belong in `CHANGELOG.md`.
-High-level decisions belong here.
-
----
-
-## 3) Entry Format
-
-Every decision entry should follow this structure:
-
-### Decision ID
-A unique identifier for the decision.
-
-### Date
-The date the decision was made.
-
-### Decision
-A clear statement of what was decided.
-
-### Context
-What problem, need, or strategic condition led to the decision.
-
-### Rationale
-Why this decision was selected.
-
-### Alternatives Rejected
-What other paths were considered and why they were rejected.
-
-### Strategic Impact
-How this decision strengthens the asset.
-
-### Operational Consequence
-What changes in execution, structure, process, or workflow follow from this decision.
-
-### Status
-Accepted / Revised / Deprecated / Superseded
+Purely cosmetic edits, copy corrections, and minor layout tweaks do not belong here unless they carry structural consequences.
 
 ---
 
-## 4) Decision Entry Template
+## Logging Discipline
 
-Use the following structure for all future entries:
+Each entry must be:
 
-    ## DECISION-000
-    
-    **Date:** YYYY-MM-DD  
-    **Status:** Accepted
-    
-    ### Decision
-    [Insert the decision clearly.]
-    
-    ### Context
-    [Explain the strategic or technical context.]
-    
-    ### Rationale
-    [Explain why this path was chosen.]
-    
-    ### Alternatives Rejected
-    - [Alternative 1] — [Reason rejected]
-    - [Alternative 2] — [Reason rejected]
-    
-    ### Strategic Impact
-    [Explain how this strengthens authority, trust, valuation, governance, or clarity.]
-    
-    ### Operational Consequence
-    [Explain what must now happen in the project because of this decision.]
+- decision-level, not task-level
+- concise, but not vague
+- operationally legible
+- written in institutional language
+- tied to actual live or repository-level consequences
+
+Each entry should make clear:
+
+- what was decided
+- why it was decided
+- what it now governs
+- what must remain true afterward
 
 ---
 
-## 5) Initial Recorded Decisions
+## Entry Format
 
-## DECISION-001
+Each decision entry should follow this structure:
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+### [YYYY-MM-DD] Decision Title
+**Status**  
+Approved | Active | Superseded
 
-### Decision
-Funnelplugs.com will be built as a sovereign-grade strategic digital asset, not as a conventional website.
+**Decision**  
+What was decided.
 
-### Context
-The domain has conceptual potential far beyond a normal content or affiliate site.
-The project goal is long-term value creation, recurring revenue, and eventual high-value acquisition positioning.
+**Rationale**  
+Why the decision was necessary.
 
-### Rationale
-A conventional website model would underuse the domain’s conceptual strength and reduce the project to ordinary execution.
-A sovereign asset model allows the domain to accumulate authority, structure, and transfer value over time.
+**Operational Effect**  
+What now changes in the repository, production system, or governance model.
 
-### Alternatives Rejected
-- Generic content website — rejected because it weakens differentiation.
-- Affiliate-first review site — rejected because it lowers trust and long-term valuation.
-- Trend-driven SEO build — rejected because it creates fragile, low-grade growth.
-
-### Strategic Impact
-This decision defines the project at the highest level.
-It protects the asset from strategic drift and aligns all future work with long-term value creation.
-
-### Operational Consequence
-All future architecture, SEO, monetization, and design decisions must be evaluated against sovereign asset standards.
+**Constraint**  
+What must not be violated after this decision.
 
 ---
 
-## DECISION-002
+## Decision Register
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+### [2026-04-18] External production systems brought under repository governance
+**Status**  
+Approved | Active
 
-### Decision
-The core narrative of Funnelplugs will be:
+**Decision**  
+Production-relevant external systems are now formally documented in-repo through `docs/EXTERNAL_SYSTEMS.md`.
 
-**The Logic of the Missing Plug**
+The following systems are explicitly brought under repository governance visibility:
+- Google Tag Manager
+- Google Analytics 4
+- Cloudflare
+- Google Search Console
 
-### Context
-The project required a conceptual foundation strong enough to elevate the domain beyond utility-only positioning.
+**Rationale**  
+A governance gap existed between live operational reality and the sovereign source-of-truth doctrine.
 
-### Rationale
-This narrative explains revenue leakage as structural incompleteness inside funnels.
-It gives Funnelplugs an owned interpretive frame rather than a generic optimization angle.
+The asset was already materially influenced by external systems affecting:
+- measurement
+- DNS and proxy behavior
+- HTTPS enforcement
+- redirects
+- TLS behavior
+- sitemap handling
+- indexation monitoring
 
-### Alternatives Rejected
-- Generic “conversion optimization” framing — rejected because it is too common and weakly differentiated.
-- Tool-discovery framing — rejected because it reduces the asset to a directory.
-- Broad marketing-performance framing — rejected because it lacks conceptual sharpness.
+These systems could not be treated as invisible simply because they lived outside GitHub.
 
-### Strategic Impact
-This decision establishes the intellectual center of the asset.
-It strengthens brand distinction, valuation logic, and future standard-setting potential.
+**Operational Effect**  
+`docs/EXTERNAL_SYSTEMS.md` is now part of the formal governance surface of the asset.
 
-### Operational Consequence
-Pages, vocabulary, design, registry logic, and utility tools must all align with this narrative.
+Any material change to GTM, GA4, Cloudflare, or Search Console must be reflected in-repo.
 
----
+External production infrastructure is no longer permitted to remain undocumented.
 
-## DECISION-003
-
-**Date:** 2026-04-03  
-**Status:** Accepted
-
-### Decision
-GitHub will be the single source of truth for all development, updates, and publishing workflow.
-
-### Context
-The project required a controlled, transferable, versioned system for building a strategic asset without scattered operational logic.
-
-### Rationale
-GitHub provides clear history, disciplined structure, automation compatibility, and acquisition readability.
-This reduces operational ambiguity and increases long-term trust in the build system.
-
-### Alternatives Rejected
-- Mixed publishing across multiple platforms — rejected because it creates chaos and weakens transferability.
-- Cloudflare-centered publishing workflow — rejected because Cloudflare should remain a perimeter layer, not the source of truth.
-- Manual patch-based workflow — rejected because it weakens governance and traceability.
-
-### Strategic Impact
-This decision strengthens structural control, clarity, and future asset transfer value.
-
-### Operational Consequence
-All code, content, architecture, automation, and deployment logic must remain GitHub-centered.
+**Constraint**  
+External systems may exist outside the repository.  
+They may not exist outside governance.
 
 ---
 
-## DECISION-004
+### [2026-04-18] GitHub retained as sovereign source of truth for documentation and operational visibility
+**Status**  
+Approved | Active
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+**Decision**  
+GitHub remains the sovereign source of truth for FunnelPlugs documentation, decision memory, operational visibility, and change discipline.
 
-### Decision
-The publishing chain will follow this sequence:
+This principle remains in force even where some production systems necessarily live outside the repository.
 
-**Local Python generation/update → GitHub Desktop commit/push → GitHub repository → GitHub Actions validation/build/deployment**
+**Rationale**  
+Without a governing source of truth, the asset fragments into undocumented operational islands, weakening control, continuity, auditability, and institutional readability.
 
-### Context
-The project required a strict operational model that keeps local generation, source control, and deployment aligned.
+**Operational Effect**  
+Repository documentation must reflect the live state of production-relevant systems and decisions.
 
-### Rationale
-This sequence preserves order:
-Python handles generation,
-GitHub Desktop handles disciplined transfer,
-GitHub stores truth,
-and GitHub Actions handles automation.
+If production behavior changes and repository documentation does not reflect that change, the asset is considered governance-incomplete.
 
-### Alternatives Rejected
-- Direct manual file editing in production — rejected because it breaks governance.
-- Cloudflare API-based publishing — rejected because it adds unnecessary complexity and violates publishing clarity.
-- Multi-path deployment methods — rejected because they reduce operational coherence.
-
-### Strategic Impact
-This decision creates a disciplined operational chain and reduces structural risk.
-
-### Operational Consequence
-All updates must follow this path.
-No bypass is allowed.
+**Constraint**  
+No shadow publishing logic.  
+No undocumented production control surfaces.  
+No silent divergence between live infrastructure and repository documentation.
 
 ---
 
-## DECISION-005
+### [2026-04-18] GTM retained as controlled measurement orchestration layer
+**Status**  
+Approved | Active
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+**Decision**  
+Google Tag Manager remains the controlled orchestration layer for measurement delivery.
 
-### Decision
-Cloudflare will be used only as the DNS, TLS, security, and edge-control layer after nameserver delegation.
+GA4 measurement is governed through GTM rather than duplicated through parallel direct page-level implementations.
 
-### Context
-The project needed stronger perimeter control without turning Cloudflare into the publishing engine.
+**Rationale**  
+A duplicated or loosely governed measurement path introduces operational ambiguity, inflates reporting risk, and weakens traceability.
 
-### Rationale
-Cloudflare is highly valuable for DNS, protection, and performance, but it should not become the development or publishing center of the asset.
+A single governed orchestration path is cleaner and more legible.
 
-### Alternatives Rejected
-- Using Cloudflare as a hidden content workflow layer — rejected because it weakens GitHub sovereignty.
-- Depending on Cloudflare API tokens in publishing — rejected because it adds unnecessary coupling and risk.
-- Avoiding Cloudflare entirely — rejected because perimeter protection and DNS control are strategically valuable.
+**Operational Effect**  
+GTM is treated as the authoritative delivery layer for measurement tags.
+GA4 receives data through the governed GTM path.
+Measurement configuration changes must be documented in `docs/EXTERNAL_SYSTEMS.md`.
 
-### Strategic Impact
-This decision preserves publishing clarity while adding strong network control and security posture.
-
-### Operational Consequence
-Cloudflare changes are limited to DNS, TLS, security, and edge configuration.
-Asset development remains outside Cloudflare.
+**Constraint**  
+Duplicate direct tagging must not be introduced casually in templates or page-level markup.
 
 ---
 
-## DECISION-006
+### [2026-04-18] Cloudflare recognized as active edge control plane requiring explicit documentation
+**Status**  
+Approved | Active
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+**Decision**  
+Cloudflare is formally recognized as an active edge control plane affecting FunnelPlugs.com production behavior and therefore requiring explicit repository-level documentation.
 
-### Decision
-The first-release structural spine of Funnelplugs will be built around five primary layers:
-Manifesto, Protocol, Funnel Integrity Standard, Plug Registry, and Revenue Leak Engine.
+**Rationale**  
+Cloudflare materially affects:
+- DNS resolution
+- HTTPS enforcement
+- redirect logic
+- TLS behavior
+- proxy behavior
+- edge security posture
 
-### Context
-The project required a controlled first-release structure that expresses authority without bloated launch behavior.
+This makes it structurally significant, not peripheral.
 
-### Rationale
-These five layers cover doctrine, method, standard, governed reference, and practical utility.
-Together they form a strong sovereign spine.
+**Operational Effect**  
+Cloudflare rules, settings, and edge behaviors that affect the public asset must be tracked as governed operational state, not treated as informal admin-side configuration.
 
-### Alternatives Rejected
-- Large article-heavy launch — rejected because it dilutes conceptual clarity.
-- Tool-list-first launch — rejected because it weakens authority.
-- Minimal brochure-style launch — rejected because it underbuilds the asset.
-
-### Strategic Impact
-This decision protects structural clarity and keeps the early asset high-density and high-signal.
-
-### Operational Consequence
-All first-release work should reinforce one of these five layers.
+**Constraint**  
+Cloudflare must not become an undocumented parallel architecture.
 
 ---
 
-## DECISION-007
+### [2026-04-18] Search Console operational state recognized as part of indexation governance
+**Status**  
+Approved | Active
 
-**Date:** 2026-04-03  
-**Status:** Accepted
+**Decision**  
+Google Search Console is recognized as part of the governed indexation workflow of the asset.
 
-### Decision
-The asset will follow a strict quality gate policy before deployment.
+Its verified property state, sitemap submission state, and material indexation observations are now considered operationally relevant.
 
-### Context
-A strategic asset cannot be allowed to degrade through broken pages, weak metadata, or structurally careless output.
+**Rationale**  
+Search visibility is not produced by code alone.
+It is also shaped by submission state, validation state, crawl observations, and canonical enforcement outcomes.
 
-### Rationale
-A successful compile is not enough.
-Publication must be governed by quality, trust, and structural integrity.
+Ignoring Search Console would leave indexation governance incomplete.
 
-### Alternatives Rejected
-- Deploy-on-build-success only — rejected because it ignores strategic quality.
-- Manual visual checking alone — rejected because it is insufficient and non-scalable.
-- SEO-only validation — rejected because the asset requires broader integrity checks.
+**Operational Effect**  
+Material Search Console changes and notable indexation-state developments should be reflected in this decision log when they affect live search posture or repository decisions.
 
-### Strategic Impact
-This decision protects trust, consistency, and acquisition-grade readiness.
-
-### Operational Consequence
-Validation scripts and blocking rules must remain part of the publishing pipeline.
+**Constraint**  
+Search Console may monitor indexation externally, but its operational consequences must remain legible in-repo.
 
 ---
 
-## DECISION-008
-
-**Date:** 2026-04-03  
-**Status:** Accepted
-
-### Decision
-Funnelplugs will pursue sovereign SEO, not cheap search growth.
-
-### Context
-The project requires search visibility, but low-grade SEO would weaken its authority and conceptual value.
-
-### Rationale
-Search must strengthen discoverability without damaging trust or turning the asset into a spam-adjacent property.
-
-### Alternatives Rejected
-- Keyword-stuffing growth model — rejected because it weakens quality signals.
-- Thin-page scale tactics — rejected because they undermine long-term authority.
-- SEO as the primary identity of the asset — rejected because SEO is a support system, not the core identity.
-
-### Strategic Impact
-This decision aligns search growth with trust, authority, and valuation logic.
-
-### Operational Consequence
-Only strategically strong, index-worthy, high-quality pages should be allowed into the SEO surface.
-
----
-
-## DECISION-009
-
-**Date:** 2026-04-03  
-**Status:** Accepted
-
-### Decision
-The sitemap must be generated automatically and must reflect newly created or updated valid pages.
-
-### Context
-A sovereign asset requires a trustworthy indexing map that remains current without manual fragility.
-
-### Rationale
-Manual sitemap maintenance is error-prone and weakens structural reliability.
-Automation preserves freshness and consistency.
-
-### Alternatives Rejected
-- Manual sitemap editing — rejected because it does not scale and invites errors.
-- Including every generated page by default — rejected because it creates low-value noise.
-- Ignoring `lastmod` integrity — rejected because false freshness weakens trust.
-
-### Strategic Impact
-This decision strengthens crawl clarity, search trust, and structural coherence.
-
-### Operational Consequence
-Sitemap generation must be part of the controlled build flow and tied to validation logic.
-
----
-
-## DECISION-010
-
-**Date:** 2026-04-03  
-**Status:** Accepted
-
-### Decision
-Meta-documentation is part of the asset’s valuation architecture.
-
-### Context
-The project is being built for long-term transferability, readability, and acquisition-grade credibility.
-
-### Rationale
-Documenting why decisions were made transforms the asset from output into system.
-That increases strategic legibility and transfer value.
-
-### Alternatives Rejected
-- No decision archive — rejected because it weakens continuity and acquisition clarity.
-- Only technical changelogs — rejected because they record what changed, not why.
-- Memory-based governance — rejected because it does not scale and is not transferable.
-
-### Strategic Impact
-This decision increases the asset’s intellectual and operational readability.
-
-### Operational Consequence
-Major decisions must continue to be recorded here as the project evolves.
-
----
-
-## DECISION-011
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Adopt a strict sovereign standards enforcement layer in repository governance.
-
-### Context
-Core doctrine and quality rules were strong, but enforcement needed stricter operational guarantees to reduce governance drift risk as the asset evolves.
-
-### Rationale
-A sovereign-grade asset requires mandatory controls, not advisory-only guidance.
-Enforcement now includes stricter standards checks plus dedicated doctrine-adjacent documents for threat modeling, incident response, publication gate execution, and design rationale continuity.
-
-### Alternatives Rejected
-- Governance by documentation only — rejected because it relies too heavily on memory and manual discipline.
-- Security-only hardening without doctrine controls — rejected because it leaves strategic integrity exposed.
-- Deferred strict governance to later phase — rejected because early drift compounds quickly.
-
-### Strategic Impact
-This decision improves defensibility, trust continuity, and acquisition readability by proving that doctrine-to-execution controls are active and auditable.
-
-### Operational Consequence
-Pull requests and CI must now satisfy sovereign strict standards checks, and governance baseline documents must remain present and complete.
-
----
-
-## DECISION-012
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Adopt a mandatory daily sovereign execution protocol and make it part of governed project operation.
-
-### Context
-Existing governance controls were strong, but daily execution needed a complete operating path that explicitly covers pre-commit cleanup, source-versus-output policy, visual smoke testing, and commit message discipline.
-
-### Rationale
-Without a strict daily path, technically valid work can still introduce output noise, weak traceability, or operational ambiguity.
-The daily protocol closes these gaps and keeps future execution aligned with sovereign standards under branch protection.
-
-### Alternatives Rejected
-- Keep guidance only in chat or memory — rejected because it is non-transferable and fragile.
-- Keep CONTRIBUTING as the only execution reference — rejected because it is too brief for full sovereign daily operation.
-- Enforce technical checks only — rejected because visual and output-governance controls are also required.
-
-### Strategic Impact
-This decision strengthens repeatability, reduces drift risk, and improves long-horizon operating reliability for maintainers and future acquirers.
-
-### Operational Consequence
-Daily work must follow `docs/DAILY_OPERATION_PROTOCOL.md`, and core governance references now explicitly point to that protocol.
-
----
-
-## DECISION-013
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Adopt an explicit markdownlint policy baseline aligned with sovereign documentation style.
-
-### Context
-The required governance check enforced markdownlint defaults that conflicted with legacy doctrine-format files (long-form prose style, numbering conventions, and controlled structural spacing), causing PR checks to fail independently of real governance quality.
-
-### Rationale
-The repository's strategic documentation is doctrine-first rather than markdown-style-first.
-A formal lint policy prevents false negatives while preserving strict checks for meaningful governance and integrity controls.
-
-### Alternatives Rejected
-- Reformat all legacy doctrine files immediately — rejected because it is high-noise and low-strategic-yield for current release flow.
-- Disable markdownlint entirely — rejected because a markdown hygiene guard is still valuable.
-- Keep default markdownlint rules — rejected because it blocks valid sovereign docs for non-strategic formatting reasons.
-
-### Strategic Impact
-This decision stabilizes CI reliability, protects review focus on material quality, and prevents operational bottlenecks caused by formatting-only false failures.
-
-### Operational Consequence
-Markdownlint now runs with a repository-level policy baseline defined in `.markdownlint-cli2.yaml`.
-
----
-
-## DECISION-014
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Extend the markdownlint policy baseline to disable `MD032` and `MD036` for doctrine-style strategic docs.
-
-### Context
-After baseline lint policy adoption, required checks still failed on legacy doctrine documents due to strict list-spacing and emphasis-as-heading rules that conflict with established repository writing style.
-
-### Rationale
-This adjustment removes formatting-only false blockers while maintaining governance and quality enforcement where it matters operationally.
-
-### Alternatives Rejected
-- Rewrite all doctrine files to satisfy strict default markdown style immediately — rejected due to high noise and low strategic value.
-- Keep failing checks and bypass manually — rejected because branch protection forbids this and it weakens process reliability.
-
-### Strategic Impact
-Stabilizes required CI checks and keeps review attention on substantive quality, governance, and security signals.
-
-### Operational Consequence
-Repository markdownlint policy now explicitly disables `MD032` and `MD036` in `.markdownlint-cli2.yaml`.
-
----
-
-## DECISION-015
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Disable markdownlint rule `MD024` for sovereign changelog and doctrine heading patterns.
-
-### Context
-Required CI checks continued to fail due to repeated section labels (such as Added/Changed/Fixed/Refined) used intentionally across dated changelog entries.
-
-### Rationale
-The repository uses a structured repeatable changelog format where repeated subsection names are expected behavior, not an authoring defect.
-Disabling `MD024` removes false blockers while preserving governance integrity controls.
-
-### Alternatives Rejected
-- Rewrite changelog taxonomy to unique per-entry heading names — rejected because it hurts readability and deviates from established operating format.
-- Keep default `MD024` and accept recurring check failures — rejected because it breaks required check reliability.
-
-### Strategic Impact
-Improves CI signal quality by preventing non-material lint failures from blocking governed delivery.
-
-### Operational Consequence
-Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD024`.
-
----
-
-## DECISION-016
-
-**Date:** 2026-04-17  
-**Status:** Accepted
-
-### Decision
-Disable markdownlint rule `MD041` for legacy sovereign doctrine files.
-
-### Context
-Required CI checks still failed on strategic governance files whose first line is a document identity marker rather than an ATX H1 heading.
-
-### Rationale
-Legacy doctrine files intentionally preserve title-marker-first formatting.
-Disabling `MD041` avoids format-only check failures without weakening governance controls.
-
-### Alternatives Rejected
-- Rewrite all legacy doctrine files to start with H1 — rejected due to unnecessary formatting churn and low strategic benefit.
-- Keep `MD041` active and accept recurring false blockers — rejected because it undermines CI reliability.
-
-### Strategic Impact
-Completes markdownlint policy alignment with sovereign documentation style and removes a non-material blocker from required checks.
-
-### Operational Consequence
-Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD041`.
-
----
-
-## DECISION-017
-
-**Date:** 2026-04-18  
-**Status:** Accepted
-
-### Decision
+### [2026-04-18] Sovereign remediation program adopted with staged security enforcement
+**Status**  
+Approved | Active
+
+**Decision**  
 Adopt a formal **sovereign remediation program** documented in `docs/REMEDIATION_PLAN.md`, and require external production systems to remain visible through `docs/EXTERNAL_SYSTEMS.md`.
 
-### Context
+**Rationale**  
 The asset is no longer a thin static presence. It now depends on governed external systems (measurement, edge proxy, indexation visibility) and must harden against supply-chain, injection, and operational drift risks without collapsing work into undifferentiated batches.
 
-### Rationale
-Sequenced remediation preserves reviewability, keeps security-first ordering intact, and prevents “aesthetic” or reference-layer expansion from masking foundational weaknesses.
+Sequenced remediation preserves reviewability, keeps security-first ordering intact, and prevents reference-layer expansion from masking foundational weaknesses.
 
-### Alternatives Rejected
-- Ad-hoc fixes without a sequencing doctrine — rejected because it weakens traceability and repeats historical governance noise.
-- Documentation-only closure — rejected because the asset requires executable gates and staged enforcement (for example CSP Report-Only before enforce).
+**Operational Effect**  
+`docs/EXTERNAL_SYSTEMS.md` and `docs/REMEDIATION_PLAN.md` are now part of the governed documentation surface.
 
-### Strategic Impact
-Strengthens institutional legibility: external reality is mapped in-repo, and repair work is staged by severity rather than convenience.
+Deploy workflows must surface governance and quality steps explicitly.
 
-### Operational Consequence
-`docs/EXTERNAL_SYSTEMS.md` and `docs/REMEDIATION_PLAN.md` are now part of the governed documentation surface. Deploy workflows must surface governance and quality steps explicitly. `docs/DECISION_LOG.md` must be updated when governance-critical workflow files change without a paired decision entry (enforced by `scripts/governance_guard.py`).
+`docs/DECISION_LOG.md` must be updated when governance-critical workflow files change without a paired decision entry (enforced by `scripts/governance_guard.py`).
 
----
-
-## 6) Maintenance Rule
-
-This file must be updated whenever a major governing decision is made or materially revised.
-
-The log must remain:
-- clean,
-- readable,
-- accurate,
-- and strategically useful.
-
-It is not a dumping ground.
-It is a record of governing intent.
+**Constraint**  
+Repair work must follow severity-based sequencing. Content Security Policy changes must use **Report-Only** collection and review before mandatory enforce modes, except where superseded by a later explicit decision.
 
 ---
 
-## 7) Final Rule
+### [2026-04-17] Reference-layer expansion established as sovereign authority-building direction
+**Status**  
+Approved | Active
 
-Funnelplugs must be able to explain itself.
-Not only through what exists,
-but through why it exists.
+**Decision**  
+FunnelPlugs is not to remain a thin static website centered only on a diagnostic tool.
 
-That is the purpose of this log.
+It is to develop into a governed reference system for funnel integrity through:
+- reference pages
+- leak-class pages
+- plug-class pages
+- conceptual papers
+- methodology and interpretation layers
+- internal linking infrastructure
+
+**Rationale**  
+The asset�??s long-term strategic value does not come from utility alone.
+It comes from authority, framework ownership, doctrinal clarity, and institutional legibility.
+
+**Operational Effect**  
+Expansion beyond the initial core pages is not optional polish.
+It is part of the asset thesis.
+
+Reference-layer growth, internal linking density, and taxonomy visibility are now aligned with the sovereign build direction.
+
+**Constraint**  
+The asset must not regress into a shallow �??single-tool website�?� posture.
+
+---
+
+### [2026-04-17] Sitemap generation aligned with governed page registry
+**Status**  
+Approved | Active
+
+**Decision**  
+Sitemap generation is governed through the repository�??s page registry and build system rather than through ad hoc manual URL insertion.
+
+**Rationale**  
+A sovereign asset cannot depend on manual sitemap drift.
+Its public discovery layer must be generated from the same governed source that defines live page existence.
+
+**Operational Effect**  
+Sitemap inclusion is now expected to reflect the governed page register and generated live files.
+New reference pages are intended to enter the sitemap through structured generation, not isolated manual edits.
+
+**Constraint**  
+Discovery infrastructure must remain aligned with governed page existence.
+
+---
+
+### [2026-04-17] Working tree cleanliness elevated to operational requirement
+**Status**  
+Approved | Active
+
+**Decision**  
+Repository cleanliness is a governance requirement, not a convenience preference.
+
+Generated noise such as `__pycache__`, temporary artifacts, and non-intentional output drift must not remain in the working tree.
+
+**Rationale**  
+A polluted working tree weakens judgment, slows review, obscures material changes, and degrades institutional confidence in what is actually being published.
+
+**Operational Effect**  
+Temporary Python cache artifacts and non-deliberate file churn must be removed before commit and before merge.
+
+**Constraint**  
+A dirty working tree is not an acceptable steady state.
+
+---
+
+### [2026-04-17] Quality gate retained as mandatory publication boundary
+**Status**  
+Approved | Active
+
+**Decision**  
+The quality gate remains a mandatory publication boundary for FunnelPlugs.
+
+No change is considered publication-ready if it crosses governance, structural, or validation boundaries without passing the established checks.
+
+**Rationale**  
+The asset�??s value depends on disciplined consistency, not raw publishing velocity.
+
+**Operational Effect**  
+Governance guards, markdown checks, validation routines, and build checks remain part of the required route to production readiness.
+
+**Constraint**  
+No �??publish first, clean later�?� posture is acceptable.
+
+---
+
+## Review Rule
+
+This file must be updated when:
+- a production-relevant external system changes
+- a governance doctrine changes
+- a structural build rule changes
+- a search/indexation decision materially changes
+- a security or routing decision materially changes
+- a sovereign positioning decision changes the development direction of the asset
+
+If a material decision is made and this file is not updated, governance memory has failed.
+
+---
+
+## Sovereign Closing Rule
+
+FunnelPlugs is not governed only by what is deployed.  
+It is governed by what is decided, recorded, and kept institutionally legible.
+
+An undocumented material decision is not operational maturity.  
+It is hidden instability.
