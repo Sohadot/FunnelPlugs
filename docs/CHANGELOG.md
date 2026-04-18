@@ -227,6 +227,10 @@ Only include categories that are actually relevant for that date.
 
 #### Refined
 - `scripts/governance_guard.py` now treats `.github/workflows/governance.yml` as governance-critical alongside `deploy.yml`.
+- `docs/EXTERNAL_SYSTEMS.md` now includes a Phase B rollout draft for Cloudflare baseline headers and CSP Report-Only (to be applied and re-verified post-merge).
+
+#### Added
+- `scripts/smoke_critical_pages.py` as an automated pre-push smoke check for `/`, `/reference.html`, `/engine.html`, and `/registry.html` after a production build.
 
 ---
 

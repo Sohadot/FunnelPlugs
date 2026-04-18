@@ -67,6 +67,10 @@ Confirm:
 - GTM inclusion remains intact where required
 - no empty or broken content sections
 
+Optional automated pre-check (after the build, before opening the browser):
+
+- `python scripts/smoke_critical_pages.py`
+
 ### Step 5: Pre-commit cleanup, then commit and PR
 
 Before commit:

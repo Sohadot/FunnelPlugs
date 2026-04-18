@@ -282,6 +282,43 @@ Minimum review cadence:
 
 ---
 
+## Phase B — Cloudflare edge headers (planned rollout)
+
+**Status:** Planned (execute after Phase A merge, per `docs/REMEDIATION_PLAN.md` Phase B).
+
+**Purpose:** Move from “TLS + proxy only” to a fully documented edge security posture: baseline response headers first, then **CSP Report-Only**, then CSP enforce after violation review.
+
+**Important sequencing rule**
+
+1. Ship baseline headers that do not depend on CSP.
+2. Add `Content-Security-Policy-Report-Only` and collect reports until stable.
+3. Only then add enforcing `Content-Security-Policy` (and remove or narrow Report-Only as appropriate).
+
+**Baseline response headers (target)**
+
+These are intended to be applied at the Cloudflare edge (Transform Rules or equivalent), then recorded here as **live** once verified:
+
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()`
+- `X-Frame-Options: DENY` (or superseded by CSP `frame-ancestors 'none'` once CSP is enforced)
+
+**CSP Report-Only (starting draft — must be tuned using real reports)**
+
+This is a conservative starting point for a static asset that loads **GTM** and **GA4 via GTM**. It is expected to require iteration after you review browser console + CSP report endpoints.
+
+```http
+Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https:; style-src 'self'; font-src 'self' data:; frame-src https://www.googletagmanager.com; manifest-src 'self'; report-uri https://YOUR_CSP_REPORT_ENDPOINT
+```
+
+**Operational notes**
+
+- Replace `https://YOUR_CSP_REPORT_ENDPOINT` with a governed reporting sink (Cloudflare CSP reporting, or another approved collector).
+- Validate with Tag Assistant / Preview mode and real navigation across `/`, `/engine.html`, and representative reference pages.
+- When the policy is actually enabled in Cloudflare, update this section with: **Applied**, **date**, **exact live values**, and any known exceptions.
+
+---
+
 ## Sovereign Rule
 
 External systems may exist outside the repository.  
