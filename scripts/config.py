@@ -175,7 +175,9 @@ CONFIG: Final[FunnelPlugsConfig] = FunnelPlugsConfig(
         block_on_placeholder_content=True,
     ),
     security=SecurityConfig(
-        allow_inline_scripts=False,
+        # GTM bootstrap is intentionally inline in `templates/base.html` (governed exception).
+        # All other inline scripts remain forbidden in rendered HTML via `validate_content.py`.
+        allow_inline_scripts=True,
         allow_unapproved_external_scripts=False,
         expose_internal_docs_in_output=False,
         expose_raw_data_in_output=False,

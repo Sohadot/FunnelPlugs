@@ -8,6 +8,7 @@ DOCS = ROOT / "docs"
 
 REQUIRED_DOCS = (
     "FOUNDATION_DOCTRINE.md",
+    "EXTERNAL_SYSTEMS.md",
     "PROJECT_DOCTRINE.md",
     "ARCHITECTURE.md",
     "SEO_POLICY.md",

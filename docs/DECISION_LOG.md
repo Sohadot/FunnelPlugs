@@ -560,6 +560,32 @@ Markdownlint policy in `.markdownlint-cli2.yaml` now also disables `MD041`.
 
 ---
 
+## DECISION-017
+
+**Date:** 2026-04-18  
+**Status:** Accepted
+
+### Decision
+Adopt a formal **sovereign remediation program** documented in `docs/REMEDIATION_PLAN.md`, and require external production systems to remain visible through `docs/EXTERNAL_SYSTEMS.md`.
+
+### Context
+The asset is no longer a thin static presence. It now depends on governed external systems (measurement, edge proxy, indexation visibility) and must harden against supply-chain, injection, and operational drift risks without collapsing work into undifferentiated batches.
+
+### Rationale
+Sequenced remediation preserves reviewability, keeps security-first ordering intact, and prevents “aesthetic” or reference-layer expansion from masking foundational weaknesses.
+
+### Alternatives Rejected
+- Ad-hoc fixes without a sequencing doctrine — rejected because it weakens traceability and repeats historical governance noise.
+- Documentation-only closure — rejected because the asset requires executable gates and staged enforcement (for example CSP Report-Only before enforce).
+
+### Strategic Impact
+Strengthens institutional legibility: external reality is mapped in-repo, and repair work is staged by severity rather than convenience.
+
+### Operational Consequence
+`docs/EXTERNAL_SYSTEMS.md` and `docs/REMEDIATION_PLAN.md` are now part of the governed documentation surface. Deploy workflows must surface governance and quality steps explicitly. `docs/DECISION_LOG.md` must be updated when governance-critical workflow files change without a paired decision entry (enforced by `scripts/governance_guard.py`).
+
+---
+
 ## 6) Maintenance Rule
 
 This file must be updated whenever a major governing decision is made or materially revised.
