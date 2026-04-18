@@ -18,6 +18,28 @@ GOVERNANCE_CRITICAL = {
 
 MANDATORY_WITH_GOVERNANCE_CHANGE = "docs/DECISION_LOG.md"
 
+WORKFLOW_DIR = ".github/workflows/"
+
+
+def diff_only_github_actions_uses_pin_bumps(diff: str) -> bool:
+    """True if every +/- line in a unified diff is blank or a YAML `uses:` pin line."""
+    for raw in diff.splitlines():
+        if raw.startswith(("---", "+++", "@@", "diff ", "index ")):
+            continue
+        if raw.startswith("\\"):
+            continue
+        if not raw:
+            continue
+        tag, body = raw[0], raw[1:]
+        if tag not in "-+":
+            continue
+        if not body.strip():
+            continue
+        if body.lstrip().startswith("uses:"):
+            continue
+        return False
+    return True
+
 
 def run_git(*args: str) -> str:
     result = subprocess.run(
@@ -92,10 +114,24 @@ def main() -> int:
     decision_log_changed = MANDATORY_WITH_GOVERNANCE_CHANGE in changed
 
     if changed_governance_files and not decision_log_changed:
-        issues.append(
-            "Governance-critical files changed without updating docs/DECISION_LOG.md: "
-            + ", ".join(changed_governance_files)
-        )
+        non_workflow = [
+            path for path in changed_governance_files if not path.startswith(WORKFLOW_DIR)
+        ]
+        if non_workflow:
+            issues.append(
+                "Governance-critical files changed without updating docs/DECISION_LOG.md: "
+                + ", ".join(non_workflow)
+            )
+        else:
+            for path in changed_governance_files:
+                diff = run_git("diff", f"{base_ref}...HEAD", "--", path)
+                if not diff_only_github_actions_uses_pin_bumps(diff):
+                    issues.append(
+                        "Governance-critical workflow files changed without a decision log entry, "
+                        f"and `{path}` is not limited to `uses:` pin bumps. "
+                        "Update docs/DECISION_LOG.md or keep the diff to action reference lines only."
+                    )
+                    break
 
     if issues:
         print("[GOVERNANCE_GUARD_BLOCKED] Governance checks failed:")
@@ -105,9 +141,15 @@ def main() -> int:
 
     print("[GOVERNANCE_GUARD_PASSED] Governance checks passed.")
     if changed_governance_files:
-        print(
-            "[GOVERNANCE_GUARD] Governance-critical changes detected and decision log updated."
-        )
+        if decision_log_changed:
+            print(
+                "[GOVERNANCE_GUARD] Governance-critical changes detected and decision log updated."
+            )
+        elif all(path.startswith(WORKFLOW_DIR) for path in changed_governance_files):
+            print(
+                "[GOVERNANCE_GUARD] Workflow-only `uses:` pin maintenance; "
+                "docs/DECISION_LOG.md update not required."
+            )
     return 0
 
 
