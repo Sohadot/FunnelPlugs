@@ -36,7 +36,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install Jinja2
 
-      - name: Run sovereign build
+      - name: Validate sovereign governance baseline
+        run: python scripts/sovereign_standards_guard.py
+
+      - name: Run sovereign build and quality gate
         run: python scripts/build.py
 
       - name: Stage public Pages artifact
