@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 GOVERNANCE_CRITICAL = {
     ".github/workflows/deploy.yml",
+    ".github/workflows/governance.yml",
     "docs/PROJECT_DOCTRINE.md",
     "docs/FOUNDATION_DOCTRINE.md",
     "docs/SECURITY_POLICY.md",

@@ -217,6 +217,30 @@ Search Console may monitor indexation externally, but its operational consequenc
 
 ---
 
+### [2026-04-18] Sovereign remediation program adopted with staged security enforcement
+**Status**  
+Approved | Active
+
+**Decision**  
+Adopt a formal **sovereign remediation program** documented in `docs/REMEDIATION_PLAN.md`, and require external production systems to remain visible through `docs/EXTERNAL_SYSTEMS.md`.
+
+**Rationale**  
+The asset is no longer a thin static presence. It now depends on governed external systems (measurement, edge proxy, indexation visibility) and must harden against supply-chain, injection, and operational drift risks without collapsing work into undifferentiated batches.
+
+Sequenced remediation preserves reviewability, keeps security-first ordering intact, and prevents reference-layer expansion from masking foundational weaknesses.
+
+**Operational Effect**  
+`docs/EXTERNAL_SYSTEMS.md` and `docs/REMEDIATION_PLAN.md` are now part of the governed documentation surface.
+
+Deploy workflows must surface governance and quality steps explicitly.
+
+`docs/DECISION_LOG.md` must be updated when governance-critical workflow files change without a paired decision entry (enforced by `scripts/governance_guard.py`).
+
+**Constraint**  
+Repair work must follow severity-based sequencing. Content Security Policy changes must use **Report-Only** collection and review before mandatory enforce modes, except where superseded by a later explicit decision.
+
+---
+
 ### [2026-04-17] Reference-layer expansion established as sovereign authority-building direction
 **Status**  
 Approved | Active
@@ -233,7 +257,7 @@ It is to develop into a governed reference system for funnel integrity through:
 - internal linking infrastructure
 
 **Rationale**  
-The asset‚Äôs long-term strategic value does not come from utility alone.
+The asset‚??s long-term strategic value does not come from utility alone.
 It comes from authority, framework ownership, doctrinal clarity, and institutional legibility.
 
 **Operational Effect**  
@@ -243,7 +267,7 @@ It is part of the asset thesis.
 Reference-layer growth, internal linking density, and taxonomy visibility are now aligned with the sovereign build direction.
 
 **Constraint**  
-The asset must not regress into a shallow ‚Äúsingle-tool website‚Äù posture.
+The asset must not regress into a shallow ‚??single-tool website‚?ù posture.
 
 ---
 
@@ -252,7 +276,7 @@ The asset must not regress into a shallow ‚Äúsingle-tool website‚Äù posture.
 Approved | Active
 
 **Decision**  
-Sitemap generation is governed through the repository‚Äôs page registry and build system rather than through ad hoc manual URL insertion.
+Sitemap generation is governed through the repository‚??s page registry and build system rather than through ad hoc manual URL insertion.
 
 **Rationale**  
 A sovereign asset cannot depend on manual sitemap drift.
@@ -297,13 +321,13 @@ The quality gate remains a mandatory publication boundary for FunnelPlugs.
 No change is considered publication-ready if it crosses governance, structural, or validation boundaries without passing the established checks.
 
 **Rationale**  
-The asset‚Äôs value depends on disciplined consistency, not raw publishing velocity.
+The asset‚??s value depends on disciplined consistency, not raw publishing velocity.
 
 **Operational Effect**  
 Governance guards, markdown checks, validation routines, and build checks remain part of the required route to production readiness.
 
 **Constraint**  
-No ‚Äúpublish first, clean later‚Äù posture is acceptable.
+No ‚??publish first, clean later‚?ù posture is acceptable.
 
 ---
 

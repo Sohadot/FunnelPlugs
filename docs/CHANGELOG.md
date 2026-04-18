@@ -208,6 +208,32 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-04-18]
+
+#### Added
+- `docs/EXTERNAL_SYSTEMS.md` to govern production systems that exist outside GitHub but materially affect the live asset.
+- `docs/REMEDIATION_PLAN.md` as the sequenced sovereign repair and expansion program (security → hardening → UX → authority → verification).
+- `404.html` as a governed error surface aligned with the public design system.
+- `.github/dependabot.yml` for weekly grouped GitHub Actions update proposals.
+- `.gitignore` to reduce repository noise (`__pycache__/`, virtualenvs, local editor artifacts).
+- `assets/img/og-default.jpg` so declared Open Graph defaults resolve to a real file.
+
+#### Changed
+- `robots.txt` simplified to a minimal crawl policy with reduced speculative path disclosure.
+- `.github/workflows/deploy.yml` now runs markdown lint, governance guard, markdown link checks, sovereign standards guard, and an explicit `quality_gate.py` step before staging; third-party actions are pinned to immutable SHAs.
+- `.github/workflows/governance.yml` third-party actions pinned to immutable SHAs.
+- `scripts/config.py` now documents that inline GTM bootstrap is an intentional governed exception to the “no arbitrary inline scripts” posture enforced in rendered HTML validation.
+- `scripts/quality_gate.py` and `scripts/sovereign_standards_guard.py` now require `docs/EXTERNAL_SYSTEMS.md` alongside other foundation governance files.
+
+#### Refined
+- `scripts/governance_guard.py` now treats `.github/workflows/governance.yml` as governance-critical alongside `deploy.yml`.
+- `docs/EXTERNAL_SYSTEMS.md` now includes a Phase B rollout draft for Cloudflare baseline headers and CSP Report-Only (to be applied and re-verified post-merge).
+
+#### Added
+- `scripts/smoke_critical_pages.py` as an automated pre-push smoke check for `/`, `/reference.html`, `/engine.html`, and `/registry.html` after a production build.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:

@@ -1,14 +1,17 @@
 # EXTERNAL_SYSTEMS.md
 
 ## Status
+
 Active governance document.
 
 ## Purpose
+
 This document records production systems that operate outside the GitHub repository but materially affect FunnelPlugs.com behavior, measurement, routing, security posture, or indexation.
 
 These systems are external to the repository, but they are not outside governance.
 
 GitHub remains the sovereign source of truth for:
+
 - documentation
 - operational visibility
 - decision logging
@@ -23,6 +26,7 @@ Any production-relevant external system that affects the live asset must be docu
 FunnelPlugs does not permit shadow operational infrastructure.
 
 If a system changes any of the following, it must be tracked in-repo:
+
 - measurement
 - DNS or routing
 - HTTPS behavior
@@ -38,6 +42,7 @@ Undocumented live configuration is governance debt.
 ## Documentation Boundary
 
 This file documents only:
+
 - identifiers
 - current status
 - purpose
@@ -45,6 +50,7 @@ This file documents only:
 - last verification state
 
 This file must never contain:
+
 - passwords
 - API tokens
 - login emails
@@ -74,21 +80,25 @@ Active
 **Configured Outside Repo**  
 Yes
 
-**Repository Dependency**  
-- `templates/base.html`
-- `assets/js/gtm.js`
+**Repository Dependency**
+
+- `templates/base.html` (GTM bootstrap inline; `noscript` iframe)
+- `assets/js/gtm.js` (optional legacy loader; production pages use inline bootstrap in the template)
 
 **Known Live Configuration**
+
 - Google tag deployed through GTM
 - Primary measurement delivery active
 - Current production use is limited and controlled
 
 **Governance Notes**
+
 - No experimental or unpublished production-affecting tags should remain in the live container
 - Any tag, trigger, or measurement-path change affecting production behavior must be reflected in this file
 - GTM must remain operationally minimal and tightly governed
 
 **Last Verified**
+
 - Date: `2026-04-18`
 - Status: Verified active
 
@@ -112,16 +122,19 @@ Active
 Yes
 
 **Known Live Configuration**
+
 - GA4 receives production data
 - Delivery path is governed through GTM
 - Duplicate direct page-level tagging must not be introduced
 
 **Governance Notes**
+
 - GA4 exists for measurement only, not indexation
 - Any change to measurement ID, stream structure, or tag delivery logic must be documented here
 - GA4 and GTM must not be configured in a way that produces duplicate pageview reporting
 
 **Last Verified**
+
 - Date: `2026-04-18`
 - Status: Receiving data
 
@@ -142,6 +155,7 @@ Active
 Yes
 
 **Known Live Configuration**
+
 - DNS setup: Full
 - Apex records proxied through Cloudflare
 - `www` CNAME present and proxied
@@ -155,18 +169,22 @@ Yes
 - Client-side security: Enabled
 
 **Known Not Yet Confirmed as Fully Governed in Repo**
+
 - Full security headers inventory
 - WAF rule inventory
 - Cache-control policy inventory
 - Rate limiting inventory
 - HSTS final policy state
+- Content-Security-Policy (Report-Only then enforce) rollout plan — see `docs/REMEDIATION_PLAN.md` Phase B
 
 **Governance Notes**
+
 - Cloudflare must not function as an undocumented shadow control plane
 - Any rule affecting routing, headers, crawl behavior, or cache behavior must be recorded here
 - Any redirect introduced at the edge must be treated as a production architecture change
 
 **Last Verified**
+
 - Date: `2026-04-18`
 - Status: Active, partially documented
 
@@ -187,6 +205,7 @@ Active
 Yes
 
 **Known Live Configuration**
+
 - Property type: Domain property
 - Verification status: Verified
 - Primary sitemap submitted: `https://funnelplugs.com/sitemap.xml`
@@ -197,11 +216,13 @@ Yes
   - `http://www.funnelplugs.com/`
 
 **Governance Notes**
+
 - Search Console does not publish the site, but it materially affects indexation workflow and operational visibility
 - Material validation actions, sitemap changes, and indexation anomalies should be reflected in `docs/DECISION_LOG.md`
 - Canonical enforcement and redirect behavior must remain aligned with Search Console findings
 
 **Last Verified**
+
 - Date: `2026-04-18`
 - Status: Verified, sitemap active, indexation under observation
 
@@ -217,6 +238,7 @@ The following external systems are now identified and tracked in-repo:
 - Google Search Console
 
 This closes the documentation gap between:
+
 - live operational reality
 - and the sovereign source-of-truth doctrine
 
@@ -234,6 +256,7 @@ A material change to any external system above requires all of the following:
 4. Confirm that repository documentation still matches live infrastructure
 
 Examples of material changes:
+
 - new GTM tags or triggers
 - GA4 measurement path changes
 - Cloudflare redirect or security rule changes
@@ -245,6 +268,7 @@ Examples of material changes:
 ## Review Standard
 
 This document should be reviewed whenever:
+
 - a production system is added
 - a measurement or security tool changes
 - Cloudflare behavior changes
@@ -252,8 +276,46 @@ This document should be reviewed whenever:
 - governance documentation is updated
 
 Minimum review cadence:
+
 - on every material infrastructure change
 - otherwise at least once per month during active build periods
+
+---
+
+## Phase B — Cloudflare edge headers (planned rollout)
+
+**Status:** Planned (execute after Phase A merge, per `docs/REMEDIATION_PLAN.md` Phase B).
+
+**Purpose:** Move from “TLS + proxy only” to a fully documented edge security posture: baseline response headers first, then **CSP Report-Only**, then CSP enforce after violation review.
+
+**Important sequencing rule**
+
+1. Ship baseline headers that do not depend on CSP.
+2. Add `Content-Security-Policy-Report-Only` and collect reports until stable.
+3. Only then add enforcing `Content-Security-Policy` (and remove or narrow Report-Only as appropriate).
+
+**Baseline response headers (target)**
+
+These are intended to be applied at the Cloudflare edge (Transform Rules or equivalent), then recorded here as **live** once verified:
+
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()`
+- `X-Frame-Options: DENY` (or superseded by CSP `frame-ancestors 'none'` once CSP is enforced)
+
+**CSP Report-Only (starting draft — must be tuned using real reports)**
+
+This is a conservative starting point for a static asset that loads **GTM** and **GA4 via GTM**. It is expected to require iteration after you review browser console + CSP report endpoints.
+
+```http
+Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https:; style-src 'self'; font-src 'self' data:; frame-src https://www.googletagmanager.com; manifest-src 'self'; report-uri https://YOUR_CSP_REPORT_ENDPOINT
+```
+
+**Operational notes**
+
+- Replace `https://YOUR_CSP_REPORT_ENDPOINT` with a governed reporting sink (Cloudflare CSP reporting, or another approved collector).
+- Validate with Tag Assistant / Preview mode and real navigation across `/`, `/engine.html`, and representative reference pages.
+- When the policy is actually enabled in Cloudflare, update this section with: **Applied**, **date**, **exact live values**, and any known exceptions.
 
 ---
 
@@ -263,3 +325,5 @@ External systems may exist outside the repository.
 They may not exist outside governance.
 
 If live infrastructure affects FunnelPlugs.com and is not documented here, the repository is operationally incomplete.
+
+For sequenced repair work across security, CI, UX, and authority layers, see `docs/REMEDIATION_PLAN.md`.
