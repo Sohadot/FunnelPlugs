@@ -934,9 +934,63 @@
         }
 
         const result = computeResult();
-        renderResult(result);
+        showEmailGate(result);
         updateSessionIndicators();
+        setStatus("Diagnostic complete — enter email to view report");
+      });
+    }
+
+    const emailGate = document.getElementById("engine-email-gate");
+    const emailForm = document.getElementById("engine-email-form");
+    const emailInput = document.getElementById("engine-email-input");
+    const emailError = document.getElementById("engine-email-error");
+    const skipEmail = document.getElementById("engine-skip-email");
+
+    let pendingResult = null;
+
+    function showEmailGate(result) {
+      pendingResult = result;
+      if (emailGate) {
+        emailGate.style.display = "";
+        emailGate.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function revealReport(email) {
+      if (emailGate) emailGate.style.display = "none";
+      if (pendingResult) {
+        renderResult(pendingResult);
         setStatus("Report generated");
+        const resultsSection = document.querySelector("[data-tool-results]");
+        if (resultsSection) resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (email && typeof window.dataLayer !== "undefined") {
+        window.dataLayer.push({
+          event: "engine_email_capture",
+          engine_email: email,
+          engine_integrity_band: pendingResult ? pendingResult.integrityBand : null,
+          engine_primary_leak: pendingResult ? pendingResult.primaryLeakId : null
+        });
+      }
+    }
+
+    if (emailForm) {
+      emailForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = emailInput ? emailInput.value.trim() : "";
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!valid) {
+          if (emailError) emailError.style.display = "";
+          return;
+        }
+        if (emailError) emailError.style.display = "none";
+        revealReport(email);
+      });
+    }
+
+    if (skipEmail) {
+      skipEmail.addEventListener("click", () => {
+        revealReport(null);
       });
     }
   }
