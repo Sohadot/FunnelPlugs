@@ -234,6 +234,30 @@ Only include categories that are actually relevant for that date.
 
 ---
 
+### [2026-06-01]
+
+#### Added
+
+- `structural-integrity-brief.html` — full sovereign reference brief covering the three integrity dimensions (Trust Integrity, Flow Continuity, Recovery Readiness), all 10 Plug Classes with diagnostic criteria, and a self-assessment methodology table. Email gate at bottom publishes `brief_email_capture` GTM dataLayer event.
+- Email gate added to `engine.html` — inline JS form captures email and publishes `engine_email_capture` GTM dataLayer event before revealing engine output.
+- Affiliate placement sections added to `friction-overload.html` (AFFILIATE-SLOT: friction-diagnostic-tools), `trust-collapse.html` (AFFILIATE-SLOT: trust-evidence-platforms), and `recovery-absence.html` (AFFILIATE-SLOT: recovery-automation-platforms). Nine total AFFILIATE-LINK placeholder slots awaiting activation.
+- System position classification blocks (`doc-classification` div) added to 12 taxonomy pages: all 9 leak-class pages and 3 plug-class pages. Each block exposes DIMENSION, PROTOCOL STAGE, and PLUG CLASS as machine-readable metadata anchored to the site's ontological structure.
+- `sitemap.xml` updated: 14 concept and leaf pages moved to `2026-06-01` lastmod; `structural-integrity-brief.html` added at priority 0.7.
+
+#### Changed
+
+- All 33 pages expanded to sovereign reference depth (1,000+ words, unique primary keyword per page, Article + FAQPage JSON-LD structured data).
+- `registry.html`, `engine.html`, `reference.html` lastmod updated to `2026-06-01` in sitemap.
+- `docs/DECISION_LOG.md` updated with entries for Phase 1–4 methodology execution decisions.
+
+#### Refined
+
+- Interface thesis applied to taxonomy layer: doc-header classification blocks make the site's structural logic visible at the interface level — the interface now embodies the asset's thesis rather than decorating it.
+- Monetization architecture completed: two capture surfaces (engine gate, brief gate) plus nine affiliate slots create a monetization skeleton ready for activation without disrupting content authority.
+- Acquisition readiness established: `BUYER-BRIEF.md`, updated `DOSSIER.md` (5 named tier-1 buyer targets), and `MANIFEST.md` (full technical inventory) committed to sovereign-asset-system repository.
+
+---
+
 ## 7) Logging Discipline
 
 The changelog must remain:
