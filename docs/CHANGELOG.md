@@ -256,6 +256,12 @@ Only include categories that are actually relevant for that date.
 - Monetization architecture completed: two capture surfaces (engine gate, brief gate) plus nine affiliate slots create a monetization skeleton ready for activation without disrupting content authority.
 - Acquisition readiness established: `BUYER-BRIEF.md`, updated `DOSSIER.md` (5 named tier-1 buyer targets), and `MANIFEST.md` (full technical inventory) committed to sovereign-asset-system repository.
 
+#### Next steps
+
+- Activate affiliate links once platform agreements are signed (Hotjar, Klaviyo, Trustpilot-category).
+- Verify Google Search Console indexing post-merge.
+- Begin tier-1 buyer outreach after indexing threshold is met.
+
 ---
 
 ## 7) Logging Discipline
