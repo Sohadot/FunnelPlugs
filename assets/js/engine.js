@@ -735,7 +735,17 @@
     renderDimensions(result.dimensionScores);
 
     if (els.resultPrimaryLeak) {
-      els.resultPrimaryLeak.textContent = result.primaryLeak ? result.primaryLeak.title : "—";
+      const primaryLeak = result.primaryLeak;
+      if (primaryLeak && primaryLeak.ontology_class_url) {
+        const a = document.createElement("a");
+        a.href = primaryLeak.ontology_class_url;
+        a.textContent = primaryLeak.title;
+        a.className = "text-link";
+        els.resultPrimaryLeak.innerHTML = "";
+        els.resultPrimaryLeak.appendChild(a);
+      } else {
+        els.resultPrimaryLeak.textContent = primaryLeak ? primaryLeak.title : "—";
+      }
     }
 
     if (els.resultPrimaryLeakSummary) {
@@ -745,7 +755,17 @@
     }
 
     if (els.resultSecondaryLeak) {
-      els.resultSecondaryLeak.textContent = result.secondaryLeak ? result.secondaryLeak.title : "Not materially meaningful";
+      const secondaryLeak = result.secondaryLeak;
+      if (secondaryLeak && secondaryLeak.ontology_class_url) {
+        const a = document.createElement("a");
+        a.href = secondaryLeak.ontology_class_url;
+        a.textContent = secondaryLeak.title;
+        a.className = "text-link";
+        els.resultSecondaryLeak.innerHTML = "";
+        els.resultSecondaryLeak.appendChild(a);
+      } else {
+        els.resultSecondaryLeak.textContent = secondaryLeak ? secondaryLeak.title : "Not materially meaningful";
+      }
     }
 
     if (els.resultSecondaryLeakSummary) {
