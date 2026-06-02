@@ -69,7 +69,7 @@
     "generate_twitter_cards": true,
     "generate_schema": true,
     "twitter_card_type": "summary_large_image",
-    "default_og_image": "/assets/img/og-default.jpg",
+    "default_og_image": "/assets/img/og-default-v3.jpg",
     "sitemap_filename": "sitemap.xml",
     "sitemap_include_lastmod": true,
     "trailing_slash_policy": "no_trailing_slash_canonical",
@@ -122,9 +122,11 @@
       "description": "The sovereign reference for funnel integrity, commercial flow continuity, and revenue leakage logic.",
       "indexable": true,
       "canonical": "https://funnelplugs.com",
-      "og_image": "/assets/img/og-default.jpg",
+      "og_image": "/assets/img/og-default-v3.jpg",
       "page_type": "gateway",
       "hero": {
+        "brand_lockup": true,
+        "support_line": "SOVEREIGN REFERENCE FOR FUNNEL INTEGRITY",
         "title": "Control the Structural Logic of Revenue Flow",
         "lead": "Funnelplugs exists to identify missing intervention layers, classify structural leakage, and restore commercial integrity.",
         "actions": [

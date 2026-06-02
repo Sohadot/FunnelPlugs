@@ -1,0 +1,105 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#05070a"/>
+
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#1a1f26" stroke-width="1"/>
+    </pattern>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00ff41" flood-opacity="0.16"/>
+    </filter>
+    <filter id="logoGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00ff41" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Corner frame accents -->
+  <g stroke="#2d343f" stroke-width="2" fill="none">
+    <path d="M50 100 V50 H100"/>
+    <path d="M1150 100 V50 H1100"/>
+    <path d="M50 530 V580 H100"/>
+    <path d="M1150 530 V580 H1100"/>
+  </g>
+
+  <!-- Logo mark: 88x88 centered at (600, 88), transform: translate(556, 44) scale(0.88) -->
+  <g transform="translate(556, 44) scale(0.88)" filter="url(#logoGlow)">
+    <!-- Crosshair guide lines (subtle) -->
+    <path d="M10 50H90M50 10V90" stroke="#2d343f" stroke-width="0.8"/>
+    <!-- Dashed bounding circle (subtle) -->
+    <circle cx="50" cy="50" r="38" stroke="#2d343f" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <!-- Green sovereign frame -->
+    <rect x="15" y="15" width="70" height="70" rx="2" stroke="#00ff41" stroke-width="1.5" opacity="0.85"/>
+    <!-- Inner plug core with fill -->
+    <rect x="38" y="38" width="24" height="24" fill="#00ff41" fill-opacity="0.28" stroke="#00ff41" stroke-width="2"/>
+    <!-- Dashed connector lines -->
+    <path d="M50 15V38M50 62V85M15 50H38M62 50H85" stroke="#00ff41" stroke-width="1" stroke-dasharray="4 2"/>
+    <!-- Corner bracket marks (bold, high-visibility) -->
+    <path d="M15 25V15H25M75 15H85V25M85 75V85H75M25 85H15V75" stroke="#00ff41" stroke-width="3"/>
+  </g>
+
+  <!-- Central text system -->
+  <g text-anchor="middle">
+    <text
+      x="600"
+      y="262"
+      fill="#ffffff"
+      font-family="JetBrains Mono, Fira Code, monospace"
+      font-size="92"
+      font-weight="800"
+      letter-spacing="8"
+      filter="url(#softGlow)">
+      FUNNELPLUGS
+    </text>
+
+    <text
+      x="600"
+      y="340"
+      fill="#00ff41"
+      font-family="JetBrains Mono, Fira Code, monospace"
+      font-size="36"
+      font-weight="700"
+      letter-spacing="4">
+      THE LOGIC OF THE MISSING PLUG
+    </text>
+
+    <text
+      x="600"
+      y="403"
+      fill="#d1d5db"
+      font-family="Inter, Arial, sans-serif"
+      font-size="24"
+      font-weight="500"
+      letter-spacing="2">
+      SOVEREIGN REFERENCE FOR FUNNEL INTEGRITY
+    </text>
+  </g>
+
+  <!-- Status marker -->
+  <g transform="translate(962, 562)">
+    <circle cx="0" cy="0" r="6" fill="#00ff41"/>
+    <text
+      x="16"
+      y="6"
+      fill="#00ff41"
+      font-family="JetBrains Mono, Fira Code, monospace"
+      font-size="16"
+      font-weight="700"
+      letter-spacing="1">
+      SYSTEM ONLINE
+    </text>
+  </g>
+
+  <!-- Integrity stamp -->
+  <text
+    x="50"
+    y="565"
+    fill="#2d343f"
+    font-family="JetBrains Mono, Fira Code, monospace"
+    font-size="12"
+    font-weight="600"
+    letter-spacing="1.2">
+    INTEGRITY_STAMP: VALIDATED
+  </text>
+</svg>
