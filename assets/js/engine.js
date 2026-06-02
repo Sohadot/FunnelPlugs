@@ -62,6 +62,8 @@
     resultSecondaryPlug: document.querySelector("[data-result-secondary-plug]"),
     resultSecondaryPlugSummary: document.querySelector("[data-result-secondary-plug-summary]"),
     resultInterpretation: document.querySelector("[data-result-interpretation]"),
+    resultPrimaryLeakRelated: document.querySelector("[data-result-primary-leak-related]"),
+    resultSecondaryLeakRelated: document.querySelector("[data-result-secondary-leak-related]"),
     dimensionScoreNodes: document.querySelectorAll("[data-dimension-score]"),
     inputs: root.querySelectorAll("[data-question-input]"),
     questionNodes: root.querySelectorAll(".tool-question"),
@@ -699,6 +701,28 @@
     };
   }
 
+  function renderRelatedOntologyLinks(el, leak) {
+    if (!el) return;
+    const links = leak && Array.isArray(leak.ontology_class_links) ? leak.ontology_class_links : [];
+    if (links.length === 0) {
+      el.textContent = "";
+      return;
+    }
+    el.innerHTML = "";
+    const label = document.createTextNode("Also see: ");
+    el.appendChild(label);
+    links.forEach((entry, i) => {
+      if (i > 0) {
+        el.appendChild(document.createTextNode(", "));
+      }
+      const a = document.createElement("a");
+      a.href = entry.url;
+      a.textContent = entry.title;
+      a.className = "text-link";
+      el.appendChild(a);
+    });
+  }
+
   function renderDimensions(dimensionScores) {
     els.dimensionScoreNodes.forEach((node) => {
       const slug = node.getAttribute("data-dimension-score");
@@ -735,7 +759,17 @@
     renderDimensions(result.dimensionScores);
 
     if (els.resultPrimaryLeak) {
-      els.resultPrimaryLeak.textContent = result.primaryLeak ? result.primaryLeak.title : "—";
+      const primaryLeak = result.primaryLeak;
+      if (primaryLeak && primaryLeak.ontology_class_url) {
+        const a = document.createElement("a");
+        a.href = primaryLeak.ontology_class_url;
+        a.textContent = primaryLeak.title;
+        a.className = "text-link";
+        els.resultPrimaryLeak.innerHTML = "";
+        els.resultPrimaryLeak.appendChild(a);
+      } else {
+        els.resultPrimaryLeak.textContent = primaryLeak ? primaryLeak.title : "—";
+      }
     }
 
     if (els.resultPrimaryLeakSummary) {
@@ -744,8 +778,20 @@
         : "The primary leak class could not be resolved.";
     }
 
+    renderRelatedOntologyLinks(els.resultPrimaryLeakRelated, result.primaryLeak);
+
     if (els.resultSecondaryLeak) {
-      els.resultSecondaryLeak.textContent = result.secondaryLeak ? result.secondaryLeak.title : "Not materially meaningful";
+      const secondaryLeak = result.secondaryLeak;
+      if (secondaryLeak && secondaryLeak.ontology_class_url) {
+        const a = document.createElement("a");
+        a.href = secondaryLeak.ontology_class_url;
+        a.textContent = secondaryLeak.title;
+        a.className = "text-link";
+        els.resultSecondaryLeak.innerHTML = "";
+        els.resultSecondaryLeak.appendChild(a);
+      } else {
+        els.resultSecondaryLeak.textContent = secondaryLeak ? secondaryLeak.title : "Not materially meaningful";
+      }
     }
 
     if (els.resultSecondaryLeakSummary) {
@@ -762,6 +808,8 @@
           "A secondary leak class is not materially meaningful under the current scoring state.";
       }
     }
+
+    renderRelatedOntologyLinks(els.resultSecondaryLeakRelated, result.secondaryLeak);
 
     if (els.resultWeakestDimension) {
       els.resultWeakestDimension.textContent = result.weakestDimension

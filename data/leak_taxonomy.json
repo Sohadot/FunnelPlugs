@@ -38,6 +38,10 @@
   "leak_classes": [
     {
       "id": "LEAK-01",
+      "ontology_class_url": "/trust-infrastructure-failure.html",
+      "ontology_class_links": [
+        { "url": "/proof-alignment-failure.html", "title": "Proof Alignment Failure" }
+      ],
       "slug": "trust-collapse",
       "title": "Trust Collapse",
       "short_title": "Trust Collapse",
@@ -105,6 +109,10 @@
     },
     {
       "id": "LEAK-02",
+      "ontology_class_url": "/flow-continuity-failure.html",
+      "ontology_class_links": [
+        { "url": "/intent-continuity-failure.html", "title": "Intent Continuity Failure" }
+      ],
       "slug": "flow-break",
       "title": "Flow Break",
       "short_title": "Flow Break",
@@ -176,6 +184,10 @@
     },
     {
       "id": "LEAK-03",
+      "ontology_class_url": "/commitment-boundary-failure.html",
+      "ontology_class_links": [
+        { "url": "/decision-clarity-failure.html", "title": "Decision Clarity Failure" }
+      ],
       "slug": "friction-overload",
       "title": "Friction Overload",
       "short_title": "Friction Overload",
@@ -241,6 +253,7 @@
     },
     {
       "id": "LEAK-04",
+      "ontology_class_url": "/decision-clarity-failure.html",
       "slug": "decision-ambiguity",
       "title": "Decision Ambiguity",
       "short_title": "Decision Ambiguity",
@@ -312,6 +325,7 @@
     },
     {
       "id": "LEAK-05",
+      "ontology_class_url": "/recovery-absence-failure.html",
       "slug": "recovery-absence",
       "title": "Recovery Absence",
       "short_title": "Recovery Absence",
@@ -379,6 +393,10 @@
     },
     {
       "id": "LEAK-06",
+      "ontology_class_url": "/intent-continuity-failure.html",
+      "ontology_class_links": [
+        { "url": "/offer-action-mismatch.html", "title": "Offer-Action Mismatch" }
+      ],
       "slug": "message-path-misalignment",
       "title": "Message-Path Misalignment",
       "short_title": "Message-Path Misalignment",
