@@ -86,7 +86,7 @@ All scripts must exit zero. Any failure is a blocking issue.
 
 Entry format in `docs/DECISION_LOG.md`:
 
-```
+```text
 ## [Date] — [Layer] [Version increment if applicable]
 
 **Change:** [What changed]
