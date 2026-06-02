@@ -42,52 +42,6 @@
   <meta name="twitter:description" content="A reference brief covering the three formal integrity dimensions, ten leak classes, and diagnostic methodology for structural assessment of commercial paths.">
   <meta name="twitter:image" content="/assets/img/og-default.jpg">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "headline": "Structural Integrity Brief — Commercial Path Assessment Reference",
-        "description": "A reference brief for structural assessment of commercial paths: the three formal integrity dimensions, ten leak classes, diagnostic methodology, and self-assessment criteria from the Funnelplugs standard.",
-        "url": "https://funnelplugs.com/structural-integrity-brief.html",
-        "isPartOf": { "@type": "WebSite", "name": "Funnelplugs", "url": "https://funnelplugs.com" },
-        "about": { "@type": "Thing", "name": "Structural Integrity Assessment", "description": "A formal framework for evaluating structural completeness of commercial digital paths." },
-        "datePublished": "2026-06-01",
-        "dateModified": "2026-06-01"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is a Structural Integrity Brief for a commercial funnel?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A Structural Integrity Brief is a reference document that summarizes the three formal dimensions of funnel integrity (Trust, Flow, Recovery), identifies which of the ten Plug Ontology failure classes apply to a specific commercial path, and provides structured self-assessment criteria for determining where structural leakage is occurring."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What are the three dimensions of funnel integrity?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The Funnelplugs Standard defines three formal dimensions: (1) Trust Integrity — the presence and calibration of confidence architecture at commitment-proximate positions; (2) Flow Continuity — the structural capacity of the path to sustain buyer movement from entry to completion without interruption or accumulation-threshold failure; (3) Recovery Readiness — the presence of re-engagement architecture that extends the commercial relationship beyond the first session."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How many structural failure classes does the Plug Ontology define?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The Plug Ontology defines ten structural failure classes: Trust Infrastructure Failure, Proof Alignment Failure, Intent Continuity Failure, Flow Continuity Failure, Offer-Action Mismatch, Trust Collapse (decision-boundary failure), Friction Overload, Decision Ambiguity, Message-Path Misalignment, and Recovery Absence. Each class has a corresponding plug — the structural intervention class that addresses it."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
 
 </head>
 <body class="fp-shell page-structural-integrity-brief page-type-resource">
@@ -288,7 +242,6 @@
                   id="brief-email-input"
                   class="engine-email-form__input"
                   type="email"
-                  placeholder="you@company.com"
                   autocomplete="email"
                   required>
               </div>
@@ -372,42 +325,5 @@
     </div>
   </footer>
 
-  <script>
-    (function() {
-      var form = document.getElementById('brief-email-form');
-      var emailInput = document.getElementById('brief-email-input');
-      var errorMsg = document.getElementById('brief-email-error');
-      var deliveredMsg = document.getElementById('brief-delivered');
-      var submitBtn = document.getElementById('brief-submit-btn');
-
-      if (!form) return;
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var email = emailInput ? emailInput.value.trim() : '';
-        var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-        if (!valid) {
-          if (errorMsg) errorMsg.style.display = '';
-          if (emailInput) emailInput.focus();
-          return;
-        }
-
-        if (errorMsg) errorMsg.style.display = 'none';
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-
-        if (typeof window.dataLayer !== 'undefined') {
-          window.dataLayer.push({
-            event: 'brief_email_capture',
-            brief_email: email,
-            brief_source: 'structural-integrity-brief'
-          });
-        }
-
-        if (form) form.style.display = 'none';
-        if (deliveredMsg) deliveredMsg.style.display = '';
-      });
-    })();
-  </script>
 </body>
 </html>
