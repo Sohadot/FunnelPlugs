@@ -145,6 +145,103 @@
         },
         {
           "type": "cards",
+          "title": "Ontology classes",
+          "columns": 3,
+          "cards": [
+            {
+              "eyebrow": "Ontology class 01",
+              "title": "Intent Continuity Failure",
+              "body": "<p>The commercial path fails to carry the buyer's entering intent forward coherently to each subsequent stage.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/intent-continuity-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 02",
+              "title": "Trust Infrastructure Failure",
+              "body": "<p>The path lacks sufficient credibility, proof, or reassurance at the moment a commitment decision is required.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/trust-infrastructure-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 03",
+              "title": "Decision Clarity Failure",
+              "body": "<p>The path cannot make the value, terms, or next step of a commitment decision sufficiently interpretable.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/decision-clarity-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 04",
+              "title": "Flow Continuity Failure",
+              "body": "<p>The path cannot sustain coherent forward movement across stage transitions toward the conversion event.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/flow-continuity-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 05",
+              "title": "Commitment Boundary Failure",
+              "body": "<p>The path presents commitment requirements that exceed what the buyer's current state can support.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/commitment-boundary-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 06",
+              "title": "Recovery Absence Failure",
+              "body": "<p>The path has no structural mechanisms to recover buyers who pause, hesitate, or abandon before conversion.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/recovery-absence-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 07",
+              "title": "Proof Alignment Failure",
+              "body": "<p>The evidence the path presents does not correspond to the specific objections or concerns present at each stage.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/proof-alignment-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 08",
+              "title": "Offer-Action Mismatch",
+              "body": "<p>The commitment action the path requests is structurally incongruent with the offer value the path has presented.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/offer-action-mismatch.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 09",
+              "title": "Measurement Blindness Failure",
+              "body": "<p>The path cannot observe its own structural failure states because the measurement architecture is absent or misaligned.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/measurement-blindness-failure.html"
+              }
+            },
+            {
+              "eyebrow": "Ontology class 10",
+              "title": "System Ownership Failure",
+              "body": "<p>No accountable owner governs the path as a structural system, allowing architectural decay without detection.</p>",
+              "link": {
+                "label": "Open page",
+                "href": "/system-ownership-failure.html"
+              }
+            }
+          ]
+        },
+        {
+          "type": "cards",
           "title": "Concept papers",
           "columns": 3,
           "cards": [
