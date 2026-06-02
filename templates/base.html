@@ -46,13 +46,20 @@
   <meta property="og:type" content="{{ page.get('og_type') or 'website' }}">
   <meta property="og:locale" content="{{ site.get('locale') }}">
   <meta property="og:url" content="{{ page.get('canonical') or site.get('canonical_url') }}">
-  <meta property="og:image" content="{{ page.get('og_image') or seo.get('default_og_image') }}">
+  {% set _og_raw = page.get('og_image') or seo.get('default_og_image') or '' %}
+  {% set _og_url = (site.get('canonical_url', '').rstrip('/') ~ _og_raw) if not _og_raw.startswith('http') else _og_raw %}
+  <meta property="og:image" content="{{ _og_url }}">
+  <meta property="og:image:secure_url" content="{{ _og_url }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="{{ page.get('og_image_alt') or page.get('title') or site.get('title_default') }}">
 
   <meta name="twitter:card" content="{{ seo.get('twitter_card_type') }}">
   <meta name="twitter:title" content="{{ page.get('og_title') or page.get('title') or site.get('title_default') }}">
   <meta name="twitter:description" content="{{ page.get('og_description') or page.get('description') or site.get('description_default') }}">
-  <meta name="twitter:image" content="{{ page.get('og_image') or seo.get('default_og_image') }}">
+  <meta name="twitter:image" content="{{ _og_url }}">
+  <meta name="twitter:image:alt" content="{{ page.get('og_image_alt') or page.get('title') or site.get('title_default') }}">
 
   {% if extra_head %}
     {{ extra_head | safe }}
@@ -156,11 +163,39 @@
             </span>
           </div>
 
+          {% if hero.get('brand_lockup') %}
+          <div class="hero-brand-lockup">
+            <figure class="hero-logo-mark" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="{{ site.get('name') }} logo mark">
+                <path d="M10 50H90M50 10V90" stroke="#1a1f26" stroke-width="0.5"/>
+                <circle cx="50" cy="50" r="38" stroke="#1a1f26" stroke-width="0.5" stroke-dasharray="2 2"/>
+                <rect x="15" y="15" width="70" height="70" rx="2" stroke="#00ff41" stroke-width="1.5" class="fp-frame-pulse"/>
+                <g class="fp-plug-core">
+                  <rect x="38" y="38" width="24" height="24" fill="#00ff41" fill-opacity="0.15" stroke="#00ff41" stroke-width="2">
+                    <animate attributeName="fill-opacity" values="0.10;0.35;0.10" dur="3s" repeatCount="indefinite"/>
+                  </rect>
+                  <path d="M50 15V38M50 62V85M15 50H38M62 50H85" stroke="#00ff41" stroke-width="1" stroke-dasharray="4 2"/>
+                </g>
+                <path d="M15 25V15H25M75 15H85V25M85 75V85H75M25 85H15V75" stroke="#00ff41" stroke-width="3"/>
+                <style>
+                  .fp-frame-pulse { animation: fp-border-glow 4s ease-in-out infinite; }
+                  @keyframes fp-border-glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+                  .hero-logo-mark svg { filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.45)); }
+                </style>
+              </svg>
+            </figure>
+            <h1 class="hero-wordmark">{{ site.get('name') | upper }}</h1>
+            <p class="hero-signal-line">{{ site.get('tagline') | upper }}</p>
+            {% if hero.get('support_line') %}
+            <p class="hero-support-line">{{ hero.get('support_line') }}</p>
+            {% endif %}
+          </div>
+          {% else %}
           {% if page.get('eyebrow') or brand.get('reference_role') %}
           <p class="doc-eyebrow">{{ page.get('eyebrow') or brand.get('reference_role') }}</p>
           {% endif %}
-
           <h1 class="doc-header__title">{{ hero.get('title') or page.get('title') or site.get('title_default') }}</h1>
+          {% endif %}
 
           {% if hero.get('lead') %}
           <p class="doc-header__lead">{{ hero.get('lead') }}</p>
