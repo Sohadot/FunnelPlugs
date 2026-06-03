@@ -158,12 +158,22 @@
       },
       "sections": [
         {
+          "type": "narrative",
+          "title": "What FunnelPlugs does",
+          "body": "<p>FunnelPlugs helps founders, marketers, and operators diagnose why visitors drop off before they buy, sign up, or continue.</p><p>It identifies the missing structural layer in the commercial path: trust, clarity, flow, recovery, or message-action alignment.</p><p><strong>CRO asks how to improve conversion. FunnelPlugs asks what structural layer is missing from the path.</strong></p>"
+        },
+        {
+          "type": "narrative",
+          "title": "System architecture",
+          "body": "<p>Eight layers form the structured interpretation path from the plain problem statement through doctrine, taxonomy, standard, protocol, diagnostic engine, and reference index to governance.</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 550\" role=\"img\" aria-label=\"FunnelPlugs system architecture: Plain Problem through Governance\"><title>FunnelPlugs System Architecture</title><defs><style>.fp-nb{fill:#0b0e12;stroke:#00ff41;stroke-width:1.5}.fp-nk{font-size:8px;font-family:monospace;fill:#558855;letter-spacing:1px}.fp-nl{font-size:10px;font-family:monospace;fill:#e6e6e6}.fp-al{stroke:#00ff41;stroke-width:1.5;fill:none}</style></defs><rect class=\"fp-nb\" x=\"50\" y=\"5\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"23\" text-anchor=\"middle\">ENTRY POINT</text><text class=\"fp-nl\" x=\"150\" y=\"41\" text-anchor=\"middle\">Plain Problem</text><line class=\"fp-al\" x1=\"150\" y1=\"53\" x2=\"150\" y2=\"65\"/><polygon points=\"143,65 150,73 157,65\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"75\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"93\" text-anchor=\"middle\">CONCEPTUAL</text><text class=\"fp-nl\" x=\"150\" y=\"111\" text-anchor=\"middle\">Doctrine</text><line class=\"fp-al\" x1=\"150\" y1=\"123\" x2=\"150\" y2=\"135\"/><polygon points=\"143,135 150,143 157,135\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"145\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"163\" text-anchor=\"middle\">TAXONOMY</text><text class=\"fp-nl\" x=\"150\" y=\"181\" text-anchor=\"middle\">Ontology</text><line class=\"fp-al\" x1=\"150\" y1=\"193\" x2=\"150\" y2=\"205\"/><polygon points=\"143,205 150,213 157,205\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"215\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"233\" text-anchor=\"middle\">DEFINITION</text><text class=\"fp-nl\" x=\"150\" y=\"251\" text-anchor=\"middle\">Standard</text><line class=\"fp-al\" x1=\"150\" y1=\"263\" x2=\"150\" y2=\"275\"/><polygon points=\"143,275 150,283 157,275\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"285\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"303\" text-anchor=\"middle\">METHOD</text><text class=\"fp-nl\" x=\"150\" y=\"321\" text-anchor=\"middle\">Protocol</text><line class=\"fp-al\" x1=\"150\" y1=\"333\" x2=\"150\" y2=\"345\"/><polygon points=\"143,345 150,353 157,345\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"355\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"373\" text-anchor=\"middle\">DIAGNOSTIC</text><text class=\"fp-nl\" x=\"150\" y=\"391\" text-anchor=\"middle\">Engine</text><line class=\"fp-al\" x1=\"150\" y1=\"403\" x2=\"150\" y2=\"415\"/><polygon points=\"143,415 150,423 157,415\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"425\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"443\" text-anchor=\"middle\">INDEX</text><text class=\"fp-nl\" x=\"150\" y=\"461\" text-anchor=\"middle\">Reference</text><line class=\"fp-al\" x1=\"150\" y1=\"473\" x2=\"150\" y2=\"485\"/><polygon points=\"143,485 150,493 157,485\" fill=\"#00ff41\"/><rect class=\"fp-nb\" x=\"50\" y=\"495\" width=\"200\" height=\"48\" rx=\"3\"/><text class=\"fp-nk\" x=\"150\" y=\"513\" text-anchor=\"middle\">GOVERNANCE</text><text class=\"fp-nl\" x=\"150\" y=\"531\" text-anchor=\"middle\">Governance</text></svg>"
+        },
+        {
           "type": "cards",
           "title": "System layers",
           "columns": 3,
           "cards": [
             {
-              "eyebrow": "Doctrine",
+              "eyebrow": "Foundation",
               "title": "Manifesto",
               "body": "<p>The conceptual position behind the missing plug logic.</p>",
               "link": {
@@ -197,6 +207,42 @@
                 "label": "Open reference index",
                 "href": "/reference.html"
               }
+            },
+            {
+              "eyebrow": "Conceptual layer",
+              "title": "The FunnelPlugs Doctrine",
+              "body": "<p>The governing thesis explaining why commercial paths fail structurally before they fail commercially.</p>",
+              "link": {
+                "label": "Read the doctrine",
+                "href": "/doctrine.html"
+              }
+            },
+            {
+              "eyebrow": "Architecture",
+              "title": "System Architecture",
+              "body": "<p>The governed layer structure showing how each component fits into the overall interpretation system.</p>",
+              "link": {
+                "label": "View system architecture",
+                "href": "/system.html"
+              }
+            },
+            {
+              "eyebrow": "Taxonomy",
+              "title": "Ontology",
+              "body": "<p>The classification system for leak types, plug classes, and intervention categories.</p>",
+              "link": {
+                "label": "View ontology",
+                "href": "/ontology.html"
+              }
+            },
+            {
+              "eyebrow": "Policy",
+              "title": "Governance",
+              "body": "<p>The operating constraints and quality controls that govern how this system makes claims.</p>",
+              "link": {
+                "label": "View governance",
+                "href": "/governance.html"
+              }
             }
           ]
         }
@@ -215,16 +261,28 @@
           "description": "Why commercial paths fail structurally before they fail commercially."
         },
         {
+          "eyebrow": "Architecture",
+          "label": "System Architecture",
+          "href": "/system.html",
+          "description": "The governed layer structure behind FunnelPlugs."
+        },
+        {
+          "eyebrow": "Taxonomy",
+          "label": "Ontology",
+          "href": "/ontology.html",
+          "description": "The classification system for leak and plug types."
+        },
+        {
+          "eyebrow": "Policy",
+          "label": "Governance",
+          "href": "/governance.html",
+          "description": "The operating constraints and integrity controls for this system."
+        },
+        {
           "eyebrow": "Methodology",
           "label": "Protocol",
           "href": "/protocol.html",
           "description": "Understand how leakage is classified."
-        },
-        {
-          "eyebrow": "Reference Layer",
-          "label": "Registry",
-          "href": "/registry.html",
-          "description": "Explore governed plug categories."
         }
       ]
     },
