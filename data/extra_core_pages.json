@@ -365,6 +365,12 @@
           "label": "Revenue Leak Engine",
           "href": "/engine.html",
           "description": "Apply diagnostic logic to live paths."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "The FunnelPlugs Doctrine",
+          "href": "/doctrine.html",
+          "description": "The governing thesis behind structural commercial failure."
         }
       ]
     },

@@ -209,6 +209,12 @@
           "description": "Read the founding declaration of the asset."
         },
         {
+          "eyebrow": "Doctrine",
+          "label": "The FunnelPlugs Doctrine",
+          "href": "/doctrine.html",
+          "description": "Why commercial paths fail structurally before they fail commercially."
+        },
+        {
           "eyebrow": "Methodology",
           "label": "Protocol",
           "href": "/protocol.html",
@@ -271,6 +277,12 @@
           "label": "Funnel Integrity Standard",
           "href": "/standard.html",
           "description": "View the formal conditions of structural soundness."
+        },
+        {
+          "eyebrow": "Doctrine",
+          "label": "The FunnelPlugs Doctrine",
+          "href": "/doctrine.html",
+          "description": "The governing thesis behind the missing plug logic and why commercial paths fail structurally."
         }
       ]
     },
